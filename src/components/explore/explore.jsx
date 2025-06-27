@@ -81,7 +81,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
         <button
           ref={refs.setReference}
           {...getReferenceProps()}
-          className="btn btn-xl px-6 border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] flex items-center gap-2 rounded-full bg-base-100 font-semibold overflow-hidden cursor-pointer hover:bg-base-200 transition-colors relative shimmer"
+          className="btn md:btn-xl btn-sm md:px-6.5 border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] flex items-center gap-1 md:gap-2 rounded-full bg-base-100 font-semibold overflow-hidden cursor-pointer hover:bg-base-200 transition-colors relative shimmer"
         >
           {server.tagImg && (
             <Image
@@ -89,7 +89,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
               alt={`[${server.tagName}]`}
               width={20}
               height={20}
-              className="w-5 h-5 text-transparent"
+              className="w-4 h-4 md:w-5 md:h-5 text-transparent"
               unoptimized
             />
           )}
@@ -107,7 +107,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
                 onMouseMove={(evt) => evt.stopPropagation()}
                 onTouchStart={(evt) => evt.stopPropagation()}
               >
-                <div className="w-80 md:max-w-sm md:w-full">
+                <div className="w-76 md:max-w-sm md:w-full">
                   <ServerListItem server={server} idx={0} />
                 </div>
               </div>
@@ -120,9 +120,19 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
 };
 
 export const Explore = ({ servers = [] }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const gridSize = isMobile ? 145 : 200;
   return (
     <ThiingsGrid
-      gridSize={200}
+      gridSize={gridSize}
       renderItem={(props) => <ThiingsIconCell {...props} servers={servers} />}
       initialPosition={{ x: 0, y: 0 }}
     />
