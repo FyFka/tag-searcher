@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getServers } from "@/lib/servers";
 import { Explore } from "@/components/explore/explore";
 
-export const revalidate = 43200; // 12 hours
+export const revalidate = 64800; // 12 hours
 
 export const metadata = {
   title: "Search Discord Tags & Badges",
