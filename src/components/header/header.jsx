@@ -10,14 +10,16 @@ export function Header() {
           TagSearcher
         </Link>
       </div>
-      <nav>
+      <nav className="hidden">
         <ul className="flex gap-4">
           <li>Explore</li>
           <li>Popular</li>
           <li>Categories</li>
         </ul>
       </nav>
-      <button className="btn btn-primary">Add Server</button>
+      <button className="btn btn-primary" disabled>
+        Add Server
+      </button>
     </header>
   );
 }

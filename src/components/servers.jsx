@@ -1,47 +1,61 @@
 import Link from "next/link";
 import { Users } from "lucide-react";
+import Image from "next/image";
+import { SafeImage } from "./safe-image";
 
-export const Servers = () => {
-  const servers = [...new Array(10)].map((_, i) => ({
-    id: i,
-    tag: {
-      label: "aj",
-      icon: "https://cdn.discordapp.com/clan-badges/1369716917010563092/d0a9f69ebef53aea82c28b9683df334d.png",
-    },
-    title: "The Server of AJs",
-    description:
-      "ajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj",
-    cover: "https://cdn.discordapp.com/icons/1369716917010563092/9b0cfac697a1572315c754db3a1fd4f6.png",
-    avatar: "https://cdn.discordapp.com/icons/1369716917010563092/9b0cfac697a1572315c754db3a1fd4f6.png",
-    membersOnline: 100,
-    membersCount: 6416,
-  }));
-
+export const Servers = ({ servers }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-base-300 px-10 py-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-base-300 px-10 py-4">
+      {servers.length === 0 && (
+        <div className="min-h-48 flex justify-center items-center col-span-full">
+          <p className="text-center text-2xl font-extrabold">No servers found</p>
+        </div>
+      )}
       {servers.map((server) => (
-        <div key={server.id} className="card bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
+        <div key={server.inviteCode} className="card bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
           <div className="absolute top-3 left-3 z-10">
-            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold bg-base-100`}>
-              <img src={server.tag.icon} alt="" className="w-4 h-4" />
-              {server.tag.label}
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full font-semibold bg-base-100 text-base">
+              {server.tagImg && (
+                <Image
+                  src={`${server.tagImg}.webp?size=16`}
+                  alt={`${server.name} tag`}
+                  width={16}
+                  height={16}
+                  className="w-4 h-4"
+                  unoptimized
+                />
+              )}
+              {server.tagName}
             </span>
           </div>
 
           <div className="relative">
             <figure className="h-28 w-full overflow-hidden">
-              <img src={server.cover} alt="Server cover" className="w-full h-full object-cover" />
+              <Image
+                src={`${server.cover}.webp?size=480`}
+                alt="Server cover"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover"
+                unoptimized
+              />
             </figure>
 
             <figure className="h-16 w-16 rounded-full absolute -bottom-8 left-4 border-4 border-base-100 overflow-hidden">
-              <img src={server.avatar} alt="Server avatar" className="h-full w-full object-cover" />
+              <Image
+                src={`${server.avatar}.webp?size=64`}
+                className="w-full h-full"
+                alt="Server avatar"
+                width={64}
+                height={64}
+                unoptimized
+              />
             </figure>
           </div>
 
           <div className="card-body py-10">
-            <h2 className="card-title">{server.title}</h2>
-            <p className="text-sm text-base-content/80 overflow-hidden line-clamp-2">{server.description}</p>
-            <div className="flex justify-between">
+            <h2 className="card-title">{server.name}</h2>
+            <div className="flex gap-1 justify-between">
               <p className="flex gap-1 items-center text-sm text-base-content/60">
                 <Users height={14} width={14} className="text-primary" /> {server.membersCount.toLocaleString()} members
               </p>
@@ -50,9 +64,11 @@ export const Servers = () => {
                 online
               </p>
             </div>
+            <p className="text-sm text-base-content/80 overflow-hidden line-clamp-3">{server.description}</p>
+
             <div className="card-actions justify-end mt-2">
               <Link
-                href="https://discord.com/invite/e6ChczScqB"
+                href={`https://discord.com/invite/${server.inviteCode}`}
                 rel="noopener noreferrer"
                 target="_blank"
                 className="btn btn-primary "

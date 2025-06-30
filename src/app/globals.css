@@ -44,6 +44,10 @@
   --noise: 0;
 }
 
+body {
+  min-width: 320px;
+}
+
 @utility input {
   @apply !outline-none;
 }
