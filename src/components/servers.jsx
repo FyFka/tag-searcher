@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { Users } from "lucide-react";
 import Image from "next/image";
-import { SafeImage } from "./safe-image";
 
 export const Servers = ({ servers }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-base-300 px-10 py-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-base-300 py-4 pt-0 px-2 md:px-10">
       {servers.length === 0 && (
         <div className="min-h-48 flex justify-center items-center col-span-full">
           <p className="text-center text-2xl font-extrabold">No servers found</p>

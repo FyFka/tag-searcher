@@ -3,7 +3,9 @@ import "./globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
+  preload: true,
+  weight: ["300", "400", "700", "800"],
 });
 
 const montserrat = Montserrat({
