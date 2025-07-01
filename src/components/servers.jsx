@@ -31,8 +31,8 @@ export const Servers = ({ servers }) => {
           <div className="relative">
             <figure className="h-28 w-full overflow-hidden">
               <Image
-                src={`${server.cover}.webp?size=480`}
-                alt="Server cover"
+                src={`${server.banner}.webp?size=480`}
+                alt="Server banner"
                 width={500}
                 height={500}
                 className="w-full h-full object-cover"

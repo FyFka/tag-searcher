@@ -9,11 +9,10 @@ const getServers = async () => {
     const connection = await client;
     const db = connection.db(dbName);
 
-    const servers = await db.collection("servertags").find({}, { _id: 0 }).toArray();
+    const servers = await db.collection("servertags").find({}, { _id: 0 }).limit(35).toArray();
+    const stats = await db.collection("stats").findOne({});
 
-    if (!servers) return [];
-
-    return servers;
+    return { servers, stats };
   } catch (e) {
     console.error("Error fetching collections:", e);
     return [];
@@ -30,8 +29,8 @@ export default async function Home() {
   return (
     <div>
       <Hero />
-      <Search totalServers={1000} totalMembers={83990} />
-      <Servers servers={result} />
+      <Search totalServers={result.stats.servers} totalMembers={result.stats.members} />
+      <Servers servers={result.servers} />
     </div>
   );
 }
