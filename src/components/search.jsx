@@ -29,8 +29,15 @@ export const Search = ({ refetchServersWithSearch, totalServers, totalMembers })
   const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
   const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+  };
+
   return (
-    <form className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 py-4 flex gap-2 flex-col md:flex-row px-2 md:px-10 xl:px-14">
+    <form
+      onSubmit={handleSubmit}
+      className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 py-4 flex gap-2 flex-col md:flex-row px-2 md:px-10 xl:px-14"
+    >
       <input
         onChange={onSearchChange}
         val={search}
