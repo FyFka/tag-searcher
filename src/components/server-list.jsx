@@ -49,26 +49,35 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
           </div>
 
           <div className="relative">
-            <figure className="h-28 w-full overflow-hidden">
-              <Image
-                src={`${server.banner}.webp?size=480`}
-                alt="Server banner"
-                width={500}
-                height={500}
-                className="w-full h-full object-cover"
-                unoptimized
-              />
+            <figure className="h-28 w-full overflow-hidden bg-primary">
+              {server.banner && (
+                <Image
+                  src={`${server.banner}.webp?size=480`}
+                  alt="Server banner"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover"
+                  unoptimized
+                />
+              )}
             </figure>
 
-            <figure className="h-16 w-16 rounded-full absolute -bottom-8 left-4 border-4 border-base-100 overflow-hidden">
-              <Image
-                src={`${server.avatar}.webp?size=64`}
-                className="w-full h-full"
-                alt="Server avatar"
-                width={64}
-                height={64}
-                unoptimized
-              />
+            <figure className="h-16 w-16 rounded-full absolute -bottom-8 left-4 border-4 border-base-100  bg-base-200 overflow-hidden">
+              {server.avatar && (
+                <Image
+                  src={`${server.avatar}.webp?size=64`}
+                  className="w-full h-full"
+                  alt="Server avatar"
+                  width={64}
+                  height={64}
+                  unoptimized
+                />
+              )}
+              {!server.avatar && (
+                <div className="h-full w-full flex items-center justify-center">
+                  <span className="text-base font-extrabold">{server.name.slice(0, 1)}</span>
+                </div>
+              )}
             </figure>
           </div>
 
