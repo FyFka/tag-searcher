@@ -5,8 +5,9 @@ import { useMemo } from "react";
 import { debounce } from "@/lib/time";
 import { useState } from "react";
 
-export const Search = ({ refetchServersWithSearch, totalServers, totalMembers }) => {
+export const Search = ({ refetchServers, totalServers, totalMembers }) => {
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("popular");
 
   const formatNumber = (num) => {
     if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
@@ -16,9 +17,15 @@ export const Search = ({ refetchServersWithSearch, totalServers, totalMembers })
   };
 
   const debouncedRefetch = useMemo(
-    () => debounce((searchValue) => refetchServersWithSearch(searchValue), 1000),
-    [refetchServersWithSearch]
+    () => debounce((searchValue) => refetchServers(searchValue, sortBy), 1000),
+    [refetchServers, sortBy]
   );
+
+  const handleChangeSortBy = (evt) => {
+    const newSortBy = evt.target.value;
+    setSortBy(newSortBy);
+    refetchServers(search, newSortBy);
+  };
 
   const onSearchChange = (evt) => {
     const val = evt.target.value;
@@ -36,26 +43,33 @@ export const Search = ({ refetchServersWithSearch, totalServers, totalMembers })
   return (
     <form
       onSubmit={handleSubmit}
-      className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 py-4 flex gap-2 flex-col md:flex-row px-2 md:px-10 xl:px-14"
+      className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 flex flex-col gap-1 py-4 px-2 md:px-10 xl:px-14"
     >
-      <input
-        onChange={onSearchChange}
-        val={search}
-        type="text"
-        name="search"
-        placeholder="Search"
-        className="input w-full"
-      />
-      <div className="flex gap-2 items-center">
-        <div className="flex items-center text-nowrap gap-0.5">
-          <Hash height={20} width={20} className="opacity-60" />
-          <span>{beautifiedServers} servers</span>
-        </div>
-        <div className="flex items-center text-nowrap gap-1">
-          <Users height={20} width={20} className="text-primary" />
-          <span>{beautifiedMembers} members</span>
+      <div className="flex gap-2 flex-col md:flex-row">
+        <input
+          onChange={onSearchChange}
+          value={search}
+          type="text"
+          name="search"
+          placeholder="Search"
+          className="input w-full"
+        />
+        <div className="gap-2 items-center hidden md:flex">
+          <div className="flex items-center text-nowrap gap-0.5">
+            <Hash height={20} width={20} className="opacity-60" />
+            <span>{beautifiedServers} servers</span>
+          </div>
+          <div className="flex items-center text-nowrap gap-1">
+            <Users height={20} width={20} className="text-primary" />
+            <span>{beautifiedMembers} members</span>
+          </div>
         </div>
       </div>
+      <select onChange={handleChangeSortBy} defaultValue="Xsmall" name="Sort by" className="select select-sm max-w-40">
+        <option value="popular">Most popular</option>
+        <option value="relevant">Most relevant</option>
+        <option value="newest">Newest</option>
+      </select>
     </form>
   );
 };

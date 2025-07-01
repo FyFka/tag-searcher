@@ -49,14 +49,14 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
           </div>
 
           <div className="relative">
-            <figure className="h-28 w-full overflow-hidden bg-primary">
+            <figure className="h-32 w-full overflow-hidden bg-primary">
               {server.banner && (
                 <Image
                   src={`${server.banner}.webp?size=480`}
                   alt="Server banner"
                   width={500}
                   height={500}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   unoptimized
                 />
               )}
@@ -83,7 +83,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
 
           <div className="card-body py-10">
             <h2 className="card-title">{server.name}</h2>
-            <div className="flex gap-1 justify-between">
+            <div className="flex gap-0.5 justify-between">
               <p className="flex gap-1 items-center text-sm text-base-content/60">
                 <Users height={14} width={14} className="text-primary" /> {server.membersCount.toLocaleString()} members
               </p>

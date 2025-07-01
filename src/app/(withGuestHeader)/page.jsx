@@ -2,15 +2,25 @@ import { Hero } from "@/components/hero";
 import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import { ServerDashboard } from "@/components/server-dashboard";
+import { notFound } from "next/navigation";
+import { getSortByType, parseSortBy } from "@/lib/parse";
+
+export const metadata = {
+  title: "TagSearcher",
+  description: "TagSearcher",
+};
 
 const getServers = async () => {
   try {
     const connection = await client;
     const db = connection.db(dbName);
+    const sortBy = parseSortBy(); // we take popular
+    const sort = getSortByType(sortBy, "");
 
     const results = await db
       .collection("servertags")
       .find({}, { projection: { _id: 0, __v: 0 } })
+      .sort(sort)
       .limit(serverLimitPerPage + 1)
       .toArray();
 

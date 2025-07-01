@@ -1,15 +1,18 @@
 import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import cache from "@/lib/cache.js";
+import { parsePage, parseSortBy, parseSearch, getSortByType } from "@/lib/parse";
 
 export const serverList = async (req) => {
   try {
     const searchParams = req.nextUrl.searchParams;
-    const page = parseInt(searchParams.get("page") || "1", 10) || 1;
-    const search = searchParams.get("s") || "";
+    const page = parsePage(searchParams.get("page"));
+    const search = parseSearch(searchParams.get("s"));
+    const sortBy = parseSortBy(searchParams.get("sortBy"));
+    const sort = getSortByType(sortBy, search);
     const skip = (page - 1) * serverLimitPerPage;
 
-    const cacheKey = `servers:${search}:${page}`;
+    const cacheKey = `${search}:${page}:${sortBy}`;
     const cached = cache.get(cacheKey);
 
     if (cached) {
@@ -19,10 +22,12 @@ export const serverList = async (req) => {
     const connection = await client;
     const db = connection.db(dbName);
     const query = search ? { $text: { $search: search } } : {};
-
+    const projection = { _id: 0, __v: 0 };
+    console.log(sort);
     const results = await db
       .collection("servertags")
-      .find(query, { projection: { _id: 0, __v: 0 } })
+      .find(query, { projection })
+      .sort(sort)
       .skip(skip)
       .limit(serverLimitPerPage + 1)
       .toArray();
@@ -35,6 +40,7 @@ export const serverList = async (req) => {
 
     return new Response(JSON.stringify(responseData), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (e) {
+    console.log(e.message);
     const res = { message: "Something went wrong. Please try again later.", error: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
