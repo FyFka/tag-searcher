@@ -56,7 +56,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
           placeholder="Search"
           className="input w-full"
         />
-        <div className="gap-2 items-center hidden md:flex">
+        <div className="gap-2 items-center hidden md:flex min-w-[260px]">
           <div className="flex items-center gap-0.5">
             <Hash height={20} width={20} className="opacity-60" />
             <span className="text-nowrap">{beautifiedServers} servers</span>

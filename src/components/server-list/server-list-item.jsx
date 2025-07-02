@@ -126,7 +126,7 @@ export const ServerListItem = ({ server, idx }) => {
             {beautifiedMembersCount} members
           </p>
           <p className="flex gap-1 items-center justify-end text-sm text-base-content/60">
-            <span aria-label="success" className="status status-success"></span>
+            <span className="status status-success"></span>
             {beautifiedMembersOnline} online
           </p>
         </div>

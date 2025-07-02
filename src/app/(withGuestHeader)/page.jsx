@@ -6,9 +6,55 @@ import { notFound } from "next/navigation";
 import { getSortByType, parseSortBy } from "@/lib/parse";
 
 export const metadata = {
-  title: "TagSearcher",
-  description: "TagSearcher",
-  keywords: "discord, discord badge, discord tag, discord server tag, discord tags 2025, discord tags list",
+  title: "Discord Server Tags & Profile Badges | 2025 Directory & Search",
+  description:
+    "Explore the most up-to-date collection of Discord server tags and profile badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out.",
+  keywords: [
+    "discord server tags",
+    "discord badges",
+    "discord profile badges",
+    "discord tags 2025",
+    "discord server",
+    "new discord badges 2025",
+    "server tag search",
+    "server tag finder",
+    "discord tag directory",
+    "list of Discord tags",
+    "how to get discord server tags",
+    "discord profile customization",
+    "username flair",
+    "discord community tags",
+  ],
+  openGraph: {
+    url: "https://tagsearcher.lol/",
+    type: "website",
+    title: "The Ultimate 2025 Discord Server Tag & Profile Badge Directory",
+    description:
+      "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
+    images: [
+      {
+        url: "https://tagsearcher.lol/preview.webp",
+        width: 1200,
+        height: 630,
+        alt: "A display of various Discord Server Tags and Profile Badges available to search on TagSearcher.lol.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Ultimate 2025 Discord Server Tag & Profile Badge Directory",
+    description:
+      "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
+    images: [
+      {
+        url: "https://tagsearcher.lol/preview.webp",
+        width: 1200,
+        height: 630,
+        alt: "A display of various Discord Server Tags and Profile Badges available to search on TagSearcher.lol.",
+      },
+    ],
+  },
+  alternates: { canonical: "https://tagsearcher.lol/" },
 };
 
 const getServers = async () => {
