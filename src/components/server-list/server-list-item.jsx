@@ -6,8 +6,8 @@ import Image from "next/image";
 import { formatNumber } from "@/lib/utils";
 
 export const ServerListItem = ({ server, idx }) => {
-  const beautifiedMembersCount = () => formatNumber(server.membersCount);
-  const beautifiedMembersOnline = () => formatNumber(server.membersOnline);
+  const beautifiedMembersCount = formatNumber(server.membersCount);
+  const beautifiedMembersOnline = formatNumber(server.membersOnline);
 
   const isPriority = idx < 4;
   return (
