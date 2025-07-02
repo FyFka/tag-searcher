@@ -55,3 +55,23 @@ body {
 @utility select {
   @apply !outline-none;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.2), transparent 80%);
+  transform: translateX(-100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.group:hover .shimmer::before {
+  animation: shimmer 0.75s ease-in-out;
+}

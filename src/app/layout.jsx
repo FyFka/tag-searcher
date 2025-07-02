@@ -5,7 +5,6 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin", "cyrillic"],
   preload: true,
-  weight: ["300", "400", "700", "800"],
 });
 
 const montserrat = Montserrat({
@@ -15,7 +14,7 @@ const montserrat = Montserrat({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className=" bg-base-300">
+    <html lang="en" data-theme="dark" className="bg-base-300">
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
       </body>

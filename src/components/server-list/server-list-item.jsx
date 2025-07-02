@@ -4,31 +4,73 @@ import Link from "next/link";
 import { Users } from "lucide-react";
 import Image from "next/image";
 import { formatNumber } from "@/lib/utils";
+import {
+  useClick,
+  useDismiss,
+  useRole,
+  useInteractions,
+  useFloating,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  FloatingFocusManager,
+  FloatingPortal,
+} from "@floating-ui/react";
+import { useState } from "react";
+import { ServerTagPreview } from "./server-tag-preview";
 
 export const ServerListItem = ({ server, idx }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { refs, floatingStyles, context } = useFloating({
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [offset(4), flip(), shift({ padding: 8 })],
+    whileElementsMounted: autoUpdate,
+  });
+
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+  const role = useRole(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
+
   const beautifiedMembersCount = formatNumber(server.membersCount);
   const beautifiedMembersOnline = formatNumber(server.membersOnline);
 
   const isPriority = idx < 4;
   return (
-    <div className="card bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
-      <div className="absolute top-3 left-3 z-20">
-        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full font-semibold bg-base-100">
-          {server.tagImg && (
-            <Image
-              src={`${server.tagImg}.webp?size=16`}
-              alt={`${server.name} tag`}
-              width={16}
-              height={16}
-              className="w-4 h-4"
-              unoptimized
-              priority={isPriority}
-              data-idx={idx}
-            />
-          )}
-          <span className="text-base">{server.tagName}</span>
-        </span>
-      </div>
+    <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
+      <button
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className="btn btn-sm border-none flex items-center gap-1 absolute px-2.5 rounded-full bg-base-100 font-semibold overflow-hidden top-3 left-3 z-20 cursor-pointer shimmer"
+      >
+        {server.tagImg && (
+          <Image
+            src={`${server.tagImg}.webp?size=32`}
+            alt={`[${server.tagName}]`}
+            width={16}
+            height={16}
+            className="w-4 h-4"
+            unoptimized
+            priority={isPriority}
+            data-idx={idx}
+          />
+        )}
+        <span className="text-base">{server.tagName}</span>
+      </button>
+
+      {isOpen && (
+        <FloatingPortal>
+          <FloatingFocusManager context={context} modal={true}>
+            <div ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+              <ServerTagPreview tagImg={server.tagImg} tagName={server.tagName} />
+            </div>
+          </FloatingFocusManager>
+        </FloatingPortal>
+      )}
 
       {server.nsfw && (
         <div className="absolute top-4 right-3 z-20 opacity-65">

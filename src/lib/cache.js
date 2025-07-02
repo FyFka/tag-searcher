@@ -1,9 +1,9 @@
 import { LRUCache } from "lru-cache";
 
-const cacheLife = 1000 * 60 * 30; // 30 minutes
+const cacheLife = 1000 * 60 * 15; // 15 minutes
 
 const options = {
-  max: 1000,
+  max: 700,
   ttl: cacheLife,
 };
 
