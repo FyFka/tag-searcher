@@ -55,13 +55,3 @@ body {
 @utility select {
   @apply !outline-none;
 }
-
-:root {
-  scrollbar-color: currentColor var(--color-base-300);
-}
-
-@supports (color: color-mix(in lab, red, red)) {
-  :root {
-    scrollbar-color: color-mix(in oklch, currentColor 35%, #0000) var(--color-base-300);
-  }
-}

@@ -4,53 +4,34 @@ import { Servers } from "@/components/servers";
 import { useState } from "react";
 
 export const ServerDashboard = ({ result }) => {
-  const [dashboard, setDashboard] = useState({ ...result, page: 1, search: "", sortBy: "popular", NSFW: true }); // hasMore
+  const [dashboard, setDashboard] = useState({ ...result, page: 1, search: "", sortBy: "popular", NSFW: true });
   const [serversLoading, setServersLoading] = useState({ loading: false, force: false });
 
-  const refetchServers = async (search, sortBy, NSFW) => {
+  const fetchServers = async ({
+    page = 1,
+    search = dashboard.search,
+    sortBy = dashboard.sortBy,
+    NSFW = dashboard.NSFW,
+    append = false,
+  }) => {
     try {
-      setServersLoading({ loading: true, force: true });
-      const query = new URLSearchParams({ page: 1, s: search, sortBy, NSFW }).toString();
+      setServersLoading({ loading: true, force: !append });
+
+      const query = new URLSearchParams({ page, s: search, sortBy, NSFW }).toString();
       const res = await fetch(`/api/servers?${query}`);
       const data = await res.json();
 
       setDashboard((prev) => ({
         ...prev,
-        servers: data.servers,
+        servers: append ? [...prev.servers, ...data.servers] : data.servers,
         hasMore: data.hasMore,
+        page,
         search,
-        page: 1,
         sortBy,
         NSFW,
       }));
     } catch (err) {
-      console.log(err.message);
-    } finally {
-      setServersLoading({ loading: false, force: false });
-    }
-  };
-
-  const fetchNextServers = async () => {
-    try {
-      setServersLoading({ loading: true, force: false });
-      const nextPage = dashboard.page + 1;
-      const query = new URLSearchParams({
-        page: nextPage,
-        s: dashboard.search,
-        sortBy: dashboard.sortBy,
-        NSFW: dashboard.NSFW,
-      }).toString();
-      const res = await fetch(`/api/servers?${query}`);
-      const data = await res.json();
-      setDashboard((prev) => ({
-        ...prev,
-        servers: [...prev.servers, ...data.servers],
-        hasMore: data.hasMore,
-        page: nextPage,
-        // sortBy
-      }));
-    } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
     } finally {
       setServersLoading({ loading: false, force: false });
     }
@@ -58,12 +39,16 @@ export const ServerDashboard = ({ result }) => {
 
   return (
     <>
-      <Search refetchServers={refetchServers} totalServers={result.stats.servers} totalMembers={result.stats.members} />
+      <Search
+        refetchServers={(search, sortBy, NSFW) => fetchServers({ page: 1, search, sortBy, NSFW })}
+        totalServers={result.stats.servers}
+        totalMembers={result.stats.members}
+      />
       <Servers
         servers={dashboard.servers}
         hasMore={dashboard.hasMore}
         serversLoading={serversLoading}
-        fetchNextServers={fetchNextServers}
+        fetchNextServers={() => fetchServers({ page: dashboard.page + 1, append: true })}
       />
     </>
   );

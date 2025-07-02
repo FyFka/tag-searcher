@@ -4,7 +4,9 @@ export const parsePage = (userPage = "1") => {
 };
 
 export const parseSearch = (search = "") => {
-  return search ?? "";
+  if (typeof search !== "string") return "";
+  const trimmedSearch = search.trim().slice(0, 200);
+  return trimmedSearch;
 };
 
 export const parseSortBy = (userSortBy = "") => {
