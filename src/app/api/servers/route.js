@@ -1,7 +1,7 @@
 import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import cache from "@/lib/cache.js";
-import { parsePage, parseSortBy, parseSearch, getSortByType } from "@/lib/parse";
+import { parsePage, parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
 export const serverList = async (req) => {
   try {
@@ -10,9 +10,10 @@ export const serverList = async (req) => {
     const search = parseSearch(searchParams.get("s"));
     const sortBy = parseSortBy(searchParams.get("sortBy"));
     const sort = getSortByType(sortBy, search);
+    const withNSFW = parseNSFW(searchParams.get("NSFW"));
     const skip = (page - 1) * serverLimitPerPage;
 
-    const cacheKey = `${search}:${page}:${sortBy}`;
+    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}`;
     const cached = cache.get(cacheKey);
 
     if (cached) {
@@ -22,8 +23,9 @@ export const serverList = async (req) => {
     const connection = await client;
     const db = connection.db(dbName);
     const query = search ? { $text: { $search: search } } : {};
+    if (!withNSFW) query.nsfw = withNSFW;
     const projection = { _id: 0, __v: 0 };
-    console.log(sort);
+
     const results = await db
       .collection("servertags")
       .find(query, { projection })

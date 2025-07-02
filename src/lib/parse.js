@@ -19,6 +19,11 @@ export const parseSortBy = (userSortBy = "") => {
   }
 };
 
+export const parseNSFW = (userNSFW) => {
+  if (userNSFW === "false") return false;
+  return true;
+};
+
 export const getSortByType = (sortBy, search) => {
   const sortByMap = {
     popular: { membersCount: -1 },

@@ -32,8 +32,8 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
     <>
       {servers.map((server) => (
         <div key={server.inviteCode} className="card bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
-          <div className="absolute top-3 left-3 z-10">
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full font-semibold bg-base-100 text-base">
+          <div className="absolute top-3 left-3 z-20">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full font-semibold bg-base-100">
               {server.tagImg && (
                 <Image
                   src={`${server.tagImg}.webp?size=16`}
@@ -44,12 +44,20 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
                   unoptimized
                 />
               )}
-              {server.tagName}
+              <span className="text-base">{server.tagName}</span>
             </span>
           </div>
 
+          {server.nsfw && (
+            <div className="absolute top-4 right-3 z-20 opacity-65">
+              <div className="badge badge-error badge-sm">
+                <span className="text-sm">NSFW</span>
+              </div>
+            </div>
+          )}
+
           <div className="relative">
-            <figure className="h-32 w-full overflow-hidden bg-primary">
+            <figure className="h-32 w-full overflow-hidden bg-primary relative">
               {server.banner && (
                 <Image
                   src={`${server.banner}.webp?size=480`}
@@ -59,6 +67,9 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
                   className="w-full h-full object-cover object-center"
                   unoptimized
                 />
+              )}
+              {server.nsfw && (
+                <span className="absolute top-0 left-0 h-full backdrop-blur-sm w-[102%] -translate-x-[1%]"></span>
               )}
             </figure>
 

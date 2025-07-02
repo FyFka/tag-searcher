@@ -8,6 +8,7 @@ import { useState } from "react";
 export const Search = ({ refetchServers, totalServers, totalMembers }) => {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("popular");
+  const [NSFW, setNSFW] = useState(true);
 
   const formatNumber = (num) => {
     if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
@@ -17,14 +18,20 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
   };
 
   const debouncedRefetch = useMemo(
-    () => debounce((searchValue) => refetchServers(searchValue, sortBy), 1000),
-    [refetchServers, sortBy]
+    () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW), 1000),
+    [refetchServers, sortBy, NSFW]
   );
 
   const handleChangeSortBy = (evt) => {
     const newSortBy = evt.target.value;
     setSortBy(newSortBy);
-    refetchServers(search, newSortBy);
+    refetchServers(search, newSortBy, NSFW);
+  };
+
+  const handleToggleNSFW = (evt) => {
+    const newNSFW = evt.target.checked;
+    setNSFW(newNSFW);
+    refetchServers(search, sortBy, newNSFW);
   };
 
   const onSearchChange = (evt) => {
@@ -40,6 +47,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
     evt.preventDefault();
   };
 
+  const NSFWHighlight = NSFW ? "text-base-content" : "";
   return (
     <form
       onSubmit={handleSubmit}
@@ -65,11 +73,28 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
           </div>
         </div>
       </div>
-      <select onChange={handleChangeSortBy} defaultValue="Xsmall" name="Sort by" className="select select-sm max-w-40">
-        <option value="popular">Most popular</option>
-        <option value="relevant">Most relevant</option>
-        <option value="newest">Newest</option>
-      </select>
+      <div className="flex gap-1 items-center">
+        <select
+          onChange={handleChangeSortBy}
+          defaultValue="Xsmall"
+          name="Sort by"
+          className="select select-sm max-w-40"
+        >
+          <option value="popular">Most popular</option>
+          <option value="relevant">Most relevant</option>
+          <option value="newest">Newest</option>
+        </select>
+        <label className="label px-2.5 py-1.25 bg-base-100 border-1 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
+          <input
+            onChange={handleToggleNSFW}
+            name="NSFW toggle"
+            type="checkbox"
+            defaultChecked={NSFW}
+            className="toggle toggle-sm"
+          />
+          <span className={`text-sm ${NSFWHighlight}`}>NSFW</span>
+        </label>
+      </div>
     </form>
   );
 };

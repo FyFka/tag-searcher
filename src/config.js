@@ -1,2 +1,2 @@
-export const dbName = "prod";
+export const dbName = "prodV2";
 export const serverLimitPerPage = 30;

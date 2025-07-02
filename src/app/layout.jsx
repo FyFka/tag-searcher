@@ -13,11 +13,6 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "TagSearcher",
-  description: "TagSearcher",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark">

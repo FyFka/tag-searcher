@@ -8,6 +8,7 @@ import { getSortByType, parseSortBy } from "@/lib/parse";
 export const metadata = {
   title: "TagSearcher",
   description: "TagSearcher",
+  keywords: "discord, discord badge, discord tag, discord server tag, discord tags 2025, discord tags list",
 };
 
 const getServers = async () => {
@@ -19,7 +20,7 @@ const getServers = async () => {
 
     const results = await db
       .collection("servertags")
-      .find({}, { projection: { _id: 0, __v: 0 } })
+      .find({}, { projection: { _id: 0, __v: 0 } }) // any nsfw
       .sort(sort)
       .limit(serverLimitPerPage + 1)
       .toArray();

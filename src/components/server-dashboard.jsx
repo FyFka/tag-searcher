@@ -4,17 +4,25 @@ import { Servers } from "@/components/servers";
 import { useState } from "react";
 
 export const ServerDashboard = ({ result }) => {
-  const [dashboard, setDashboard] = useState({ ...result, page: 1, search: "", sortBy: "popular" }); // hasMore
+  const [dashboard, setDashboard] = useState({ ...result, page: 1, search: "", sortBy: "popular", NSFW: true }); // hasMore
   const [serversLoading, setServersLoading] = useState({ loading: false, force: false });
 
-  const refetchServers = async (search, sortBy) => {
+  const refetchServers = async (search, sortBy, NSFW) => {
     try {
       setServersLoading({ loading: true, force: true });
-      const query = new URLSearchParams({ page: 1, s: search, sortBy }).toString();
+      const query = new URLSearchParams({ page: 1, s: search, sortBy, NSFW }).toString();
       const res = await fetch(`/api/servers?${query}`);
       const data = await res.json();
 
-      setDashboard((prev) => ({ ...prev, servers: data.servers, hasMore: data.hasMore, search, page: 1, sortBy }));
+      setDashboard((prev) => ({
+        ...prev,
+        servers: data.servers,
+        hasMore: data.hasMore,
+        search,
+        page: 1,
+        sortBy,
+        NSFW,
+      }));
     } catch (err) {
       console.log(err.message);
     } finally {
@@ -26,7 +34,12 @@ export const ServerDashboard = ({ result }) => {
     try {
       setServersLoading({ loading: true, force: false });
       const nextPage = dashboard.page + 1;
-      const query = new URLSearchParams({ page: nextPage, s: dashboard.search, sortBy: dashboard.sortBy }).toString();
+      const query = new URLSearchParams({
+        page: nextPage,
+        s: dashboard.search,
+        sortBy: dashboard.sortBy,
+        NSFW: dashboard.NSFW,
+      }).toString();
       const res = await fetch(`/api/servers?${query}`);
       const data = await res.json();
       setDashboard((prev) => ({
