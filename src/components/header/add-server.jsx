@@ -43,7 +43,7 @@ export const AddServer = () => {
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}
-          className="p-2 rounded-lg shadow-lg bg-base-300 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1"
+          className="p-2 rounded-lg shadow-lg bg-base-300 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1 z-50"
         >
           Temporarily unavailable
         </div>
