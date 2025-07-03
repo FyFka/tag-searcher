@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { AddServer } from "@/components/header/add-server";
 
 export function Header() {
   return (
@@ -11,9 +12,7 @@ export function Header() {
         <Image src="/logo.svg" height={32} width={32} alt="logo" priority />
         <span className="font-extrabold font-mono text-xl">TagSearcher</span>
       </Link>
-      <button className="btn btn-primary" disabled>
-        Add Server
-      </button>
+      <AddServer />
     </header>
   );
 }

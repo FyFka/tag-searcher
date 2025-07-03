@@ -2,11 +2,8 @@
 @plugin "daisyui";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-open-sans);
   --font-mono: var(--font-montserrat);
-  --color-primary-highlight: oklch(0.72 0.18 37.38);
 }
 
 @plugin "daisyui/theme" {

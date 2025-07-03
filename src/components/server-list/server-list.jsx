@@ -32,7 +32,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
         <ServerListItem key={server.inviteCode} server={server} idx={idx} />
       ))}
       {isServersLoading && (
-        <div className="min-h-64 col-span-full flex justify-center py-4">
+        <div className="min-h-96 col-span-full flex justify-center py-4">
           <span className="loading loading-spinner loading-lg" />
         </div>
       )}
