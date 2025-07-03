@@ -1,6 +1,6 @@
 "use client";
 
-import { Hash, Users } from "lucide-react";
+import { Hash, Users, Search as SearchIcon } from "lucide-react";
 import { useMemo } from "react";
 import { debounce, formatNumber } from "@/lib/utils";
 import { useState } from "react";
@@ -48,22 +48,29 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
       className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 flex flex-col gap-1 py-2 px-2 md:px-10 xl:px-14"
     >
       <div className="flex gap-2 flex-col md:flex-row">
-        <input
-          onChange={onSearchChange}
-          value={search}
-          type="text"
-          name="search"
-          placeholder="Search"
-          className="input w-full"
-        />
-        <div className="gap-2 items-center hidden md:flex min-w-[260px]">
-          <div className="flex items-center gap-0.5">
+        <label className="input w-full">
+          <SearchIcon width={22} height={22} />
+          <input
+            onChange={onSearchChange}
+            value={search}
+            type="text"
+            name="search"
+            placeholder="Search"
+            className="w-full"
+          />
+        </label>
+        <div className="gap-2 items-center hidden md:flex min-w-[270px]">
+          <div className="flex items-center gap-0.75">
             <Hash height={20} width={20} className="opacity-60" />
-            <span className="text-nowrap">{beautifiedServers} servers</span>
+            <span className="text-nowrap">
+              <span className="font-semibold">{beautifiedServers}</span> servers
+            </span>
           </div>
-          <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-0.75">
             <Users height={20} width={20} className="text-primary" />
-            <span className="text-nowrap">{beautifiedMembers} members</span>
+            <span className="text-nowrap">
+              <span className="font-semibold">{beautifiedMembers}</span> members
+            </span>
           </div>
         </div>
       </div>

@@ -23,8 +23,9 @@ export const serverList = async (req) => {
     const connection = await client;
     const db = connection.db(dbName);
     const query = search ? { $text: { $search: search } } : {};
-    if (!withNSFW) query.nsfw = withNSFW;
     const projection = { _id: 0, __v: 0 };
+
+    if (!withNSFW) query.nsfw = withNSFW;
 
     const results = await db
       .collection("servertags")

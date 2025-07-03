@@ -30,7 +30,7 @@ export const getSortByType = (sortBy, search) => {
   const sortByMap = {
     popular: { membersCount: -1 },
     newest: { updatedAt: -1 },
-    relevant: search ? { score: { $meta: "textScore" } } : { membersCount: -1 },
+    relevant: search ? { score: { $meta: "textScore" }, _id: -1 } : { membersCount: -1 },
   };
 
   return sortByMap[sortBy] || sortByMap.popular;
