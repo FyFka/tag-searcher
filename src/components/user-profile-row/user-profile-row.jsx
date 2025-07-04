@@ -94,7 +94,7 @@ export const UserProfileRow = ({
                       className="-indent-96 mr-0.5 w-3 h-3 text-transparent"
                       width={12}
                       height={12}
-                      src={`${tagImg}.webp?size=32`}
+                      src={`https://cdn.discordapp.com/${tagImg}.webp?size=32`}
                       unoptimized
                       priority
                     />
