@@ -136,7 +136,8 @@ export const ServerListItem = ({ server, idx }) => {
             href={`/join/${server.profileId}`}
             rel="noopener noreferrer"
             target="_blank"
-            className="btn btn-primary "
+            className="btn btn-primary"
+            prefetch={false}
           >
             Join Server
           </Link>
