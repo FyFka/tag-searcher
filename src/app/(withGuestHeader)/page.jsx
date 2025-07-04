@@ -61,7 +61,7 @@ const getServers = async () => {
   try {
     const connection = await client;
     const db = connection.db(dbName);
-    const sortBy = parseSortBy(); // we take popular
+    const sortBy = parseSortBy("relevant"); // we take relevant
     const sort = getSortByType(sortBy, "");
 
     const results = await db

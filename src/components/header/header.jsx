@@ -9,7 +9,7 @@ export function Header() {
         href="/"
         className="flex items-center flex-row gap-2 py-0.75 px-3.5 bg-base-100 rounded-full border-1 border-base-300/50"
       >
-        <Image src="/logo.svg" height={32} width={32} alt="logo" priority />
+        <Image src="/logo.svg" height={32} width={32} alt="TagSearcher" priority />
         <span className="font-extrabold font-mono text-xl">TagSearcher</span>
       </Link>
       <AddServer />

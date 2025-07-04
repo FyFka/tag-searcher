@@ -14,6 +14,8 @@ export const parseSortBy = (userSortBy = "") => {
 
   if (userSortByPrep === "newest") {
     return "newest";
+  } else if (userSortByPrep === "visited") {
+    return "visited";
   } else if (userSortByPrep === "relevant") {
     return "relevant";
   } else {
@@ -28,9 +30,10 @@ export const parseNSFW = (userNSFW) => {
 
 export const getSortByType = (sortBy, search) => {
   const sortByMap = {
+    visited: { visits: -1, membersCount: -1 },
     popular: { membersCount: -1 },
     newest: { updatedAt: -1 },
-    relevant: search ? { score: { $meta: "textScore" }, _id: -1 } : { membersCount: -1 },
+    relevant: search ? { score: { $meta: "textScore" }, membersCount: -1 } : { membersCount: -1 },
   };
 
   return sortByMap[sortBy] || sortByMap.popular;

@@ -1,13 +1,13 @@
 "use client";
 
-import { Hash, Users, Search as SearchIcon } from "lucide-react";
+import { Hash, Search as SearchIcon } from "lucide-react";
 import { useMemo } from "react";
 import { debounce, formatNumber } from "@/lib/utils";
 import { useState } from "react";
 
 export const Search = ({ refetchServers, totalServers, totalMembers }) => {
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("popular");
+  const [sortBy, setSortBy] = useState("relevant");
   const [NSFW, setNSFW] = useState(true);
 
   const debouncedRefetch = useMemo(
@@ -61,13 +61,13 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
         </label>
         <div className="gap-2 items-center hidden md:flex min-w-[270px]">
           <div className="flex items-center gap-0.75">
-            <Hash height={20} width={20} className="opacity-60" />
+            <Hash height={20} width={20} className="text-primary" />
             <span className="text-nowrap">
               <span className="font-semibold">{beautifiedServers}</span> servers
             </span>
           </div>
           <div className="flex items-center gap-0.75">
-            <Users height={20} width={20} className="text-primary" />
+            <span className="status bg-base-content/80 status-md"></span>
             <span className="text-nowrap">
               <span className="font-semibold">{beautifiedMembers}</span> members
             </span>
@@ -81,8 +81,9 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
           name="Sort by"
           className="select select-sm max-w-40"
         >
-          <option value="popular">Most popular</option>
-          <option value="relevant">Most relevant</option>
+          <option value="relevant">Most Relevant</option>
+          <option value="popular">Most Popular</option>
+          <option value="visited">Most Visited</option>
           <option value="newest">Newest</option>
         </select>
         <label className="label px-2.5 py-1.25 bg-base-100 border-1 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">

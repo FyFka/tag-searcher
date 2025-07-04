@@ -18,7 +18,7 @@ export const AvatarWithStatus = ({ avatar, username, status = "online" }) => {
           <div className="grid w-full h-full">
             <Image
               alt={`${username} avatar`}
-              className="-indent-96 w-8 h-8 min-w-8 min-h-8 rounded-full"
+              className="-indent-96 w-8 h-8 min-w-8 min-h-8 rounded-full text-transparent"
               width={32}
               height={32}
               src={avatar}
