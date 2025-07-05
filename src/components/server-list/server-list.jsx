@@ -29,7 +29,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
   return (
     <>
       {servers.map((server, idx) => (
-        <ServerListItem key={server.inviteCode} server={server} idx={idx} />
+        <ServerListItem key={server.profileId} server={server} idx={idx} />
       ))}
       {isServersLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">

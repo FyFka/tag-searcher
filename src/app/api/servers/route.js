@@ -23,7 +23,7 @@ export const serverList = async (req) => {
     const connection = await client;
     const db = connection.db(dbName);
     const query = search ? { $text: { $search: search } } : {};
-    const projection = { _id: 0, __v: 0 };
+    const projection = { _id: 0, __v: 0, inviteCode: 0 };
 
     if (!withNSFW) query.nsfw = withNSFW;
 
