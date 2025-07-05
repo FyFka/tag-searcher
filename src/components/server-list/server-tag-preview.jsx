@@ -17,12 +17,12 @@ export const ServerTagPreview = ({ tagName, tagImg }) => {
     <div className="p-2 rounded-lg shadow-lg bg-base-300 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1">
       <div className="flex flex-col gap-0.5">
         <UserProfileRow
-          avatar="https://cdn.discordapp.com/avatars/1133224855140044890/ff6471cd1e018f9adaeafc2d793d4812.webp?size=64"
-          username="Cheese Shark"
+          avatar="https://cdn.discordapp.com/avatars/1093973375627567185/8da0dab9168e1ba26352078ed5a901fc.webp?size=64"
+          username="Cheese Monkey"
           status="idle"
         />
         <UserProfileRow
-          avatar="https://cdn.discordapp.com/avatars/1093973375627567185/25e92a3176136a522d506e6ec860b5b7.webp?size=64"
+          avatar="https://cdn.discordapp.com/avatars/1035837542844612639/44f246f20257585d6d54cd42dd49621d.webp?size=64"
           tagName={tagName}
           tagImg={tagImg}
           username={storedUsername}
@@ -32,8 +32,8 @@ export const ServerTagPreview = ({ tagName, tagImg }) => {
           status="online"
         />
         <UserProfileRow
-          avatar="https://cdn.discordapp.com/avatars/385151051868798979/eb20573770640b1b14577de3f25ca8d6.webp?size=64"
-          username="Jalapeño Hot Dorito"
+          avatar="https://cdn.discordapp.com/avatars/995593479537303613/ba8dcd9f26300c46f96f752b9ac17d0f.webp?size=64"
+          username="Donut Otter"
           status="dnd"
         />
       </div>
