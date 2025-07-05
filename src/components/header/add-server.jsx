@@ -12,6 +12,7 @@ import {
   autoUpdate,
 } from "@floating-ui/react";
 import { useState } from "react";
+import { Plus } from "lucide-react";
 
 export const AddServer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,8 @@ export const AddServer = () => {
   return (
     <>
       <span ref={refs.setReference} {...getReferenceProps()} className="inline-block">
-        <button className="btn btn-primary cursor-not-allowed" disabled>
+        <button className="btn btn-primary gap-1" disabled>
+          <Plus height={20} width={20} />
           Add Server
         </button>
       </span>

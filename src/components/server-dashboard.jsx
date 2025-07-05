@@ -1,9 +1,9 @@
 "use client";
 
-import { Search } from "@/components/search";
+import { Search } from "@/components/search/search";
 import { Servers } from "@/components/servers";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const ServerDashboard = ({ result }) => {
   const pathname = usePathname();

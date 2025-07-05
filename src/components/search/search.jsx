@@ -4,6 +4,7 @@ import { Hash, Search as SearchIcon } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
 import { debounce, formatNumber } from "@/lib/utils";
 import { maxSearchLength, searchDebounce } from "@/config";
+import { SuggestedTags } from "./suggested-tags";
 
 export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }) => {
   const [search, setSearch] = useState(initSetup.search);
@@ -64,17 +65,20 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
       className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 flex flex-col gap-1 py-2 px-2 md:px-10 xl:px-14"
     >
       <div className="flex gap-2 flex-col md:flex-row">
-        <label className="input w-full">
-          <SearchIcon width={22} height={22} />
-          <input
-            onChange={onSearchChange}
-            value={search}
-            type="text"
-            name="search"
-            placeholder="Search"
-            className="w-full"
-          />
-        </label>
+        <div className="relative w-full">
+          <label className="input w-full pr-40 lg:pr-80 ">
+            <SearchIcon width={22} height={22} />
+            <input
+              onChange={onSearchChange}
+              value={search}
+              type="text"
+              name="search"
+              placeholder="Search"
+              className="w-full"
+            />
+          </label>
+          <SuggestedTags onSearchChange={onSearchChange} search={search} />
+        </div>
         <div className="gap-2 items-center hidden md:flex">
           <div className="flex items-center gap-0.75">
             <Hash height={20} width={20} className="text-primary" />
