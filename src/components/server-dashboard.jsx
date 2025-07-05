@@ -1,10 +1,13 @@
 "use client";
+
 import { Search } from "@/components/search";
 import { Servers } from "@/components/servers";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export const ServerDashboard = ({ result }) => {
-  const [dashboard, setDashboard] = useState({ ...result, page: 1, search: "", sortBy: "popular", NSFW: true });
+  const pathname = usePathname();
+  const [dashboard, setDashboard] = useState({ ...result, page: 1 });
   const [serversLoading, setServersLoading] = useState({ loading: false, force: false });
 
   const fetchServers = async ({
@@ -37,12 +40,33 @@ export const ServerDashboard = ({ result }) => {
     }
   };
 
+  const createQueryWithDefaultParams = (search, sortBy, NSFW) => {
+    const defaultParams = { search: "", sortBy: "relevant", NSFW: true };
+    const params = {};
+
+    if (search !== defaultParams.search) params.s = search;
+    if (sortBy !== defaultParams.sortBy) params.sortBy = sortBy;
+    if (NSFW !== defaultParams.NSFW) params.nsfw = NSFW;
+
+    return new URLSearchParams(params).toString();
+  };
+
+  const forceRefreshServers = async (search, sortBy, NSFW, isPopState) => {
+    if (!isPopState) {
+      const query = createQueryWithDefaultParams(search, sortBy, NSFW);
+      window.history.pushState(null, "", `${pathname}?${query}`);
+    }
+
+    await fetchServers({ page: 1, search, sortBy, NSFW });
+  };
+
   return (
     <>
       <Search
-        refetchServers={(search, sortBy, NSFW) => fetchServers({ page: 1, search, sortBy, NSFW })}
+        refetchServers={forceRefreshServers}
         totalServers={result.stats.servers}
         totalMembers={result.stats.members}
+        initSetup={{ search: result.search, sortBy: result.sortBy, NSFW: result.NSFW }}
       />
       <Servers
         servers={dashboard.servers}

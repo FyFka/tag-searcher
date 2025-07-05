@@ -1,17 +1,34 @@
 "use client";
 
 import { Hash, Search as SearchIcon } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { debounce, formatNumber } from "@/lib/utils";
-import { useState } from "react";
+import { maxSearchLength, searchDebounce } from "@/config";
 
-export const Search = ({ refetchServers, totalServers, totalMembers }) => {
-  const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState("relevant");
-  const [NSFW, setNSFW] = useState(true);
+export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }) => {
+  const [search, setSearch] = useState(initSetup.search);
+  const [sortBy, setSortBy] = useState(initSetup.sortBy);
+  const [NSFW, setNSFW] = useState(initSetup.NSFW);
+
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const s = params.get("s") || "";
+      const sortBy = params.get("sortBy") || "relevant";
+      const nsfw = params.get("nsfw") !== "false";
+
+      setSearch(s);
+      setSortBy(sortBy);
+      setNSFW(nsfw);
+      refetchServers(s, sortBy, nsfw, true);
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   const debouncedRefetch = useMemo(
-    () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW), 1000),
+    () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW), searchDebounce),
     [refetchServers, sortBy, NSFW]
   );
 
@@ -29,18 +46,17 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
 
   const onSearchChange = (evt) => {
     const val = evt.target.value;
-    if (val.trim().length > 200) return;
+    if (val.trim().length > maxSearchLength) return;
     setSearch(val);
     debouncedRefetch(val);
   };
-
-  const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
-  const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
   };
 
+  const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
+  const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
   const NSFWHighlight = NSFW ? "text-base-content" : "";
   return (
     <form
@@ -59,7 +75,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
             className="w-full"
           />
         </label>
-        <div className="gap-2 items-center hidden md:flex min-w-[270px]">
+        <div className="gap-2 items-center hidden md:flex">
           <div className="flex items-center gap-0.75">
             <Hash height={20} width={20} className="text-primary" />
             <span className="text-nowrap">
@@ -75,12 +91,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
         </div>
       </div>
       <div className="flex gap-1 items-center">
-        <select
-          onChange={handleChangeSortBy}
-          defaultValue="Xsmall"
-          name="Sort by"
-          className="select select-sm max-w-40"
-        >
+        <select onChange={handleChangeSortBy} name="Sort by" value={sortBy} className="select select-sm max-w-40">
           <option value="relevant">Most Relevant</option>
           <option value="popular">Most Popular</option>
           <option value="visited">Most Visited</option>
@@ -91,7 +102,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers }) => {
             onChange={handleToggleNSFW}
             name="NSFW toggle"
             type="checkbox"
-            defaultChecked={NSFW}
+            checked={NSFW}
             className="toggle toggle-sm"
           />
           <span className={`text-sm ${NSFWHighlight}`}>NSFW</span>

@@ -1,3 +1,5 @@
+import { maxSearchLength } from "@/config";
+
 export const parsePage = (userPage = "1") => {
   const page = parseInt(userPage || "1", 10);
   return page < 1 ? 1 : page;
@@ -5,7 +7,7 @@ export const parsePage = (userPage = "1") => {
 
 export const parseSearch = (search = "") => {
   if (typeof search !== "string") return "";
-  const trimmedSearch = search.trim().slice(0, 200);
+  const trimmedSearch = search.trim().slice(0, maxSearchLength);
   return trimmedSearch;
 };
 

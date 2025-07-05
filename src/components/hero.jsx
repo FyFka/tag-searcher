@@ -1,13 +1,7 @@
-import { Sparkles } from "lucide-react";
-
 export const Hero = () => {
   return (
     <div className="py-24 text-center flex flex-col items-center gap-4 px-2 md:px-10 xl:px-14 bg-base-100">
-      {/* <span className="inline-flex">
-        <Sparkles className="h-8 w-8 text-purple-400 animate-pulse" /> */}
       <h1 className="font-extrabold text-4xl md:text-6xl font-mono">Discord server tag searcher</h1>
-      {/* <Sparkles className="h-8 w-8 text-purple-400 animate-pulse" />
-      </span> */}
       <p className="text-base max-w-[768px]">
         Explore the most up-to-date collection of Discord server tags and profile badges for 2025. Search thousands of
         tags, discover new communities, and personalize your profile to stand out.

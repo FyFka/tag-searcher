@@ -3,7 +3,7 @@ import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import { ServerDashboard } from "@/components/server-dashboard";
 import { notFound } from "next/navigation";
-import { getSortByType, parseSortBy } from "@/lib/parse";
+import { parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
 export const metadata = {
   title: "Discord Server Tags & Profile Badges | 2025 Directory & Search",
@@ -57,16 +57,24 @@ export const metadata = {
   alternates: { canonical: "https://tagsearcher.lol/" },
 };
 
-const getServers = async () => {
+const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
   try {
+    const search = parseSearch(userSearch);
+    const sortBy = parseSortBy(userSortBy);
+    const sort = getSortByType(sortBy, search);
+    const withNSFW = parseNSFW(nsfw);
+
     const connection = await client;
     const db = connection.db(dbName);
-    const sortBy = parseSortBy("relevant"); // we take relevant
-    const sort = getSortByType(sortBy, "");
+
+    const query = search ? { $text: { $search: search } } : {};
+    const projection = { _id: 0, __v: 0 };
+
+    if (!withNSFW) query.nsfw = withNSFW;
 
     const results = await db
       .collection("servertags")
-      .find({}, { projection: { _id: 0, __v: 0 } }) // any nsfw
+      .find(query, { projection })
       .sort(sort)
       .limit(serverLimitPerPage + 1)
       .toArray();
@@ -74,17 +82,18 @@ const getServers = async () => {
     const hasMore = results.length > serverLimitPerPage;
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
 
-    const stats = await db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
+    const stats = await db.collection("stats").findOne({}, { projection });
 
-    return { servers, stats, hasMore };
+    return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW };
   } catch (e) {
     console.error("Error fetching collections:", e);
     return null;
   }
 };
 
-export default async function Home() {
-  const result = await getServers();
+export default async function Home({ searchParams }) {
+  const { s, sortBy, nsfw } = await searchParams;
+  const result = await getServers(s, sortBy, nsfw);
 
   if (!result) {
     return notFound();

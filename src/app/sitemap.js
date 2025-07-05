@@ -4,7 +4,7 @@ export default function sitemap() {
       url: "https://tagsearcher.lol",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 1.0,
     },
   ];
 }
