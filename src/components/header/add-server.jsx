@@ -33,12 +33,12 @@ export const AddServer = () => {
 
   return (
     <>
-      <span ref={refs.setReference} {...getReferenceProps()} className="inline-block">
+      <div ref={refs.setReference} {...getReferenceProps()}>
         <button className="btn btn-primary gap-1" disabled>
           <Plus height={20} width={20} />
           Add Server
         </button>
-      </span>
+      </div>
 
       {isOpen && (
         <div
