@@ -66,7 +66,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
     >
       <div className="flex gap-2 flex-col md:flex-row">
         <div className="relative w-full">
-          <label className="input w-full pr-40 lg:pr-80 ">
+          <label className="input w-full pr-32 md:pr-40 lg:pr-[300px]">
             <SearchIcon width={22} height={22} />
             <input
               onChange={onSearchChange}
