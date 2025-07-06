@@ -46,7 +46,7 @@ export const SubmitServer = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-1 items-end">
       <fieldset className="fieldset py-0 w-full">
-        <legend className="fieldset-legend m-0! pt-0 pb-1">Discord Invite Link</legend>
+        <legend className="fieldset-legend m-0! pt-0 pb-1 w-full block">Discord Invite Link</legend>
         <div className="flex gap-1 flex-col md:flex-row">
           <label className="input w-full gap-0">
             <span className="text-muted-foreground">https://discord.com/invite/</span>
