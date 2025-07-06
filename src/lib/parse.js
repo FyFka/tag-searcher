@@ -40,3 +40,53 @@ export const getSortByType = (sortBy, search) => {
 
   return sortByMap[sortBy] || sortByMap.popular;
 };
+
+export const parseInviteCode = (userInviteCode) => {
+  if (typeof userInviteCode !== "string") return "";
+  return userInviteCode
+    .trim()
+    .replace(/[^a-zA-Z0-9_-]/g, "")
+    .slice(0, 48);
+};
+
+const inviteDomains = [
+  "discord.gg",
+  "discord.com",
+  "discordapp.com",
+  "discord.media",
+  "discordapp.net",
+  "discordcdn.com",
+  "discord.dev",
+  "discord.new",
+  "discord.gift",
+  "discordstatus.com",
+  "dis.gd",
+  "discord.co",
+  "invite.gg",
+];
+
+export const parseInviteCodeFromUrl = (url) => {
+  if (!url) return "";
+
+  let val = url.trim();
+  const valLower = val.toLowerCase();
+
+  const matchedDomain = inviteDomains.find((domain) => valLower.includes(domain));
+
+  if (!matchedDomain) {
+    return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48);
+  }
+
+  const re = new RegExp(
+    `(https?://)?(www\\.)?${matchedDomain.replace(/\./g, "\\.")}/(?:invite/)?([a-zA-Z0-9_-]{1,48})`,
+    "i"
+  );
+
+  const match = val.match(re);
+
+  if (match && match[3]) {
+    return match[3];
+  }
+
+  return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48);
+};

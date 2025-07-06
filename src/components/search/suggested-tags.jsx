@@ -9,9 +9,9 @@ export const SuggestedTags = ({ onSearchChange, search }) => {
       {suggestedSearchTags.map((tag, idx) => (
         <button
           key={tag}
-          className={`btn btn-xs btn-thirdary border-1 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] ${
-            idx >= 3 ? "hidden md:flex" : ""
-          } ${idx >= 4 ? "md:hidden lg:flex" : ""}`}
+          className={`btn btn-xs btn-neutral ${idx >= 3 ? "hidden md:flex" : ""} ${
+            idx >= 4 ? "md:hidden lg:flex" : ""
+          }`}
           onClick={() => onSuggestedTagClick(tag)}
           disabled={search === tag}
           type="button"
