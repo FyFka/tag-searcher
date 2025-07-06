@@ -14,6 +14,7 @@ export const SuggestedTags = ({ onSearchChange, search }) => {
           } ${idx >= 4 ? "md:hidden lg:flex" : ""}`}
           onClick={() => onSuggestedTagClick(tag)}
           disabled={search === tag}
+          type="button"
         >
           {tag}
         </button>
