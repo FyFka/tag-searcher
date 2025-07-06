@@ -33,7 +33,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       ))}
       {isServersLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">
-          <span className="loading loading-spinner loading-lg" />
+          <span className="loading loading-spinner loading-lg text-primary" />
         </div>
       )}
       <div ref={loaderRef} className="absolute bottom-0 left-0 h-96 w-full -z-50" />

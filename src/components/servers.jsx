@@ -20,7 +20,7 @@ export const Servers = ({ servers, serversLoading, hasMore, fetchNextServers }) 
       )}
       {isServersForceLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">
-          <span className="loading loading-spinner loading-lg" />
+          <span className="loading loading-spinner loading-lg text-primary" />
         </div>
       )}
     </div>
