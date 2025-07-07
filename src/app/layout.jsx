@@ -19,11 +19,24 @@ export const metadata = {
   appleWebApp: { title: "Server tag searcher", statusBarStyle: "default", capable: true },
   applicationName: "Server tag searcher",
   icons: {
-    icon: [
-      { url: "/favicon.ico", type: "image/x-icon" },
-      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    icon: "/favicon.ico",
+    other: [
+      {
+        rel: "icon",
+        url: "/favicon-32x32.png",
+        sizes: "32x32",
+      },
+      {
+        rel: "icon",
+        url: "/favicon-16x16.png",
+        sizes: "16x16",
+      },
+      {
+        rel: "apple-touch-icon",
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+      },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 
