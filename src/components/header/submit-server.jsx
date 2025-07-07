@@ -10,6 +10,7 @@ export const SubmitServer = () => {
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
   const [turnstileToken, setTurnstileToken] = useState(null);
+  const turnstileRef = useRef(null);
 
   const handleSubmit = async (evt) => {
     try {
@@ -33,12 +34,9 @@ export const SubmitServer = () => {
       setNotification({ message: data.message || "Unexpected error", type: "error" });
     } finally {
       setLoading(false);
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
     }
-  };
-
-  const handleTurnstileError = (message) => {
-    console.log(message);
-    setNotification({ message, type: "error" });
   };
 
   const handleInviteCodeInput = (evt) => {
@@ -84,6 +82,7 @@ export const SubmitServer = () => {
         </p>
       </div>
       <Turnstile
+        ref={turnstileRef}
         siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
         retry="auto"
         refreshExpired="auto"
