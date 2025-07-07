@@ -10,7 +10,6 @@ export const SubmitServer = () => {
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
   const [turnstileToken, setTurnstileToken] = useState(null);
-  const [turnstileResetCounter, setTurnstileResetCounter] = useState(0);
 
   const handleSubmit = async (evt) => {
     try {
@@ -35,7 +34,7 @@ export const SubmitServer = () => {
     } finally {
       setLoading(false);
       setTurnstileToken(null);
-      setTurnstileResetCounter((prev) => prev + 1);
+      window.turnstile.reset();
     }
   };
 
@@ -82,7 +81,6 @@ export const SubmitServer = () => {
         </p>
       </div>
       <Turnstile
-        key={turnstileResetCounter}
         siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
         retry="auto"
         refreshExpired="auto"
