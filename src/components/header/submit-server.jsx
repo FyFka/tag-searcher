@@ -3,18 +3,23 @@
 import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
+import { Turnstile } from "next-turnstile";
 
 export const SubmitServer = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
+  const [turnstileToken, setTurnstileToken] = useState(null);
 
   const handleSubmit = async (evt) => {
     try {
       evt.preventDefault();
       setLoading(true);
 
-      const res = await fetch("/api/request-server", { method: "POST", body: JSON.stringify({ inviteCode }) });
+      const res = await fetch("/api/request-server", {
+        method: "POST",
+        body: JSON.stringify({ inviteCode, turnstileToken }),
+      });
       const data = await res.json();
 
       if (data.type === "error") {
@@ -31,6 +36,11 @@ export const SubmitServer = () => {
     }
   };
 
+  const handleTurnstileError = (message) => {
+    console.log(message);
+    setNotification({ message, type: "error" });
+  };
+
   const handleInviteCodeInput = (evt) => {
     const inputVal = evt.target.value;
     const code = parseInviteCodeFromUrl(inputVal);
@@ -44,7 +54,7 @@ export const SubmitServer = () => {
         <legend className="fieldset-legend m-0! pt-0 pb-1 w-full block">Discord Invite Link</legend>
         <div className="flex gap-1 flex-col md:flex-row">
           <label className="input w-full gap-0">
-            <span className="text-muted-foreground">https://discord.com/invite/</span>
+            <span>https://discord.com/invite/</span>
             <input
               value={inviteCode}
               onInput={handleInviteCodeInput}
@@ -73,6 +83,16 @@ export const SubmitServer = () => {
           <strong>temporary membership disabled</strong> to avoid removal.
         </p>
       </div>
+      <Turnstile
+        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        retry="auto"
+        refreshExpired="auto"
+        theme="dark"
+        onVerify={(token) => {
+          setTurnstileToken(token);
+          setNotification({});
+        }}
+      />
     </form>
   );
 };

@@ -1,6 +1,7 @@
 import client from "@/lib/mongodb";
 import { dbName, maxSearchInviteCodeLength, serverRequestLimitPerPage } from "@/config";
 import { parseInviteCode, parsePage, parseSearch } from "@/lib/parse";
+import { validateRecaptchaToken } from "@/lib/recaptcha";
 
 const serverRequestList = async (req) => {
   try {
@@ -43,12 +44,25 @@ const serverRequest = async (req) => {
   try {
     const body = await req.json();
     const inviteCode = parseInviteCode(body?.inviteCode || "");
+    const token = body?.turnstileToken || "";
+
+    const isRecaptchaValid = await validateRecaptchaToken(token);
+
+    if (!isRecaptchaValid) {
+      return new Response(
+        JSON.stringify({ type: "error", message: "Hmm... that security check didn’t pass. Give it another shot!" }),
+        { status: 200, headers: { "Content-Type": "application/json" } }
+      );
+    }
 
     if (inviteCode.length < 1) {
-      return new Response(JSON.stringify({ type: "error", message: "Invalid invite code" }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ type: "error", message: "We couldn't find a valid invite code. Double-check and try again!" }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     }
 
     const connection = await client;
@@ -61,10 +75,13 @@ const serverRequest = async (req) => {
     ]);
 
     if (existing) {
-      return new Response(JSON.stringify({ message: "This server has already been added", type: "error" }), {
-        status: 409,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ message: "That server’s already on the list! No need to add it twice 😉", type: "error" }),
+        {
+          status: 409,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
     } else if (requested) {
       return new Response(
         JSON.stringify({ message: "This server has already been submitted and is being processed", type: "error" }),
