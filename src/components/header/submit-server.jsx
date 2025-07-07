@@ -1,7 +1,7 @@
 "use client";
 
 import { TriangleAlert } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
 import { Turnstile } from "next-turnstile";
 
@@ -10,7 +10,7 @@ export const SubmitServer = () => {
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
   const [turnstileToken, setTurnstileToken] = useState(null);
-  const turnstileRef = useRef(null);
+  const [turnstileResetCounter, setTurnstileResetCounter] = useState(0);
 
   const handleSubmit = async (evt) => {
     try {
@@ -35,7 +35,7 @@ export const SubmitServer = () => {
     } finally {
       setLoading(false);
       setTurnstileToken(null);
-      turnstileRef.current?.reset();
+      setTurnstileResetCounter((prev) => prev + 1);
     }
   };
 
@@ -82,7 +82,7 @@ export const SubmitServer = () => {
         </p>
       </div>
       <Turnstile
-        ref={turnstileRef}
+        key={turnstileResetCounter}
         siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
         retry="auto"
         refreshExpired="auto"
