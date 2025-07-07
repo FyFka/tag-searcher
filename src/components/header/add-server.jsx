@@ -16,7 +16,7 @@ import { AddRequestList } from "@/components/header/add-request-list/add-request
 
 export const AddServer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { refs, context } = useFloating({ open: isOpen, onOpenChange: setIsOpen });
+  const { refs, context } = useFloating({ open: isOpen, onOpenChange: setIsOpen);
 
   const click = useClick(context);
   const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
@@ -26,12 +26,10 @@ export const AddServer = () => {
 
   return (
     <>
-      <div ref={refs.setReference} {...getReferenceProps()}>
-        <button className="btn btn-primary gap-1">
-          <Plus height={20} width={20} />
-          Add Server
-        </button>
-      </div>
+      <button className="btn btn-primary gap-1" ref={refs.setReference} {...getReferenceProps()}>
+        <Plus height={20} width={20} />
+        Add Server
+      </button>
       {isOpen && (
         <FloatingPortal>
           <FloatingOverlay lockScroll className="bg-base-300/80 flex items-center justify-center z-1000">
