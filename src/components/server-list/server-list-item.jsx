@@ -118,7 +118,7 @@ export const ServerListItem = ({ server, idx }) => {
       </div>
 
       <div className="card-body gap-1 pt-10">
-        <h2 className="card-title">{server.name}</h2>
+        <h3 className="card-title">{server.name}</h3>
         <div className="flex gap-0.5 justify-between">
           <p className="flex gap-1 items-center text-sm text-base-content/60">
             <span className="status status-success"></span>
