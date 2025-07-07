@@ -1,7 +1,7 @@
 "use client";
 
 import { TriangleAlert } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
 import { Turnstile } from "next-turnstile";
 
