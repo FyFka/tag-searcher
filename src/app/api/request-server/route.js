@@ -55,11 +55,19 @@ const serverRequest = async (req) => {
     const db = connection.db(dbName);
 
     const collection = db.collection("requestedservertags");
-    const existing = await collection.findOne({ inviteCode, status: "Pending" }, { projection: { _id: 1 } });
+    const [requested, existing] = await Promise.all([
+      collection.findOne({ inviteCode, status: "Pending" }, { projection: { _id: 1 } }),
+      db.collection("servertags").findOne({ inviteCode }, { projection: { _id: 1 } }),
+    ]);
 
     if (existing) {
+      return new Response(JSON.stringify({ message: "This server has already been added", type: "error" }), {
+        status: 409,
+        headers: { "Content-Type": "application/json" },
+      });
+    } else if (requested) {
       return new Response(
-        JSON.stringify({ message: "This server has already been submitted and is being processed.", type: "error" }),
+        JSON.stringify({ message: "This server has already been submitted and is being processed", type: "error" }),
         { status: 409, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -73,14 +81,14 @@ const serverRequest = async (req) => {
 
     return new Response(
       JSON.stringify({
-        message: "Server submitted successfully. It will be processed within 24 hours.",
+        message: "Server submitted successfully. It will be processed within 24 hours",
         type: "success",
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (e) {
     console.log(e.message);
-    const res = { message: "Something went wrong. Please try again later.", hasError: true };
+    const res = { message: "Something went wrong. Please try again later", hasError: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };
