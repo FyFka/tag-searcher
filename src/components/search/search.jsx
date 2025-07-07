@@ -101,7 +101,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
           <option value="visited">Most Visited</option>
           <option value="newest">Newest</option>
         </select>
-        <label className="label px-2.5 py-1.25 bg-base-100 border-1 border-input-color border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
+        <label className="label px-2.5 py-1.25 bg-base-100 border-1 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
           <input
             onChange={handleToggleNSFW}
             name="NSFW toggle"

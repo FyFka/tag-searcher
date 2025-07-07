@@ -3,7 +3,7 @@ import { dbName, serverLimitPerPage } from "@/config";
 import cache from "@/lib/cache.js";
 import { parsePage, parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
-export const serverList = async (req) => {
+const serverList = async (req) => {
   try {
     const searchParams = req.nextUrl.searchParams;
     const page = parsePage(searchParams.get("page"));

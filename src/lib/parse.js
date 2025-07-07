@@ -1,13 +1,13 @@
-import { maxSearchLength } from "@/config";
+import { maxSearchInviteCodeLength, maxSearchLength } from "@/config";
 
 export const parsePage = (userPage = "1") => {
   const page = parseInt(userPage || "1", 10);
   return page < 1 ? 1 : page;
 };
 
-export const parseSearch = (search = "") => {
+export const parseSearch = (search = "", maxLength = maxSearchLength) => {
   if (typeof search !== "string") return "";
-  const trimmedSearch = search.trim().slice(0, maxSearchLength);
+  const trimmedSearch = search.trim().slice(0, maxLength);
   return trimmedSearch;
 };
 
@@ -74,11 +74,14 @@ export const parseInviteCodeFromUrl = (url) => {
   const matchedDomain = inviteDomains.find((domain) => valLower.includes(domain));
 
   if (!matchedDomain) {
-    return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48);
+    return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, maxSearchInviteCodeLength);
   }
 
   const re = new RegExp(
-    `(https?://)?(www\\.)?${matchedDomain.replace(/\./g, "\\.")}/(?:invite/)?([a-zA-Z0-9_-]{1,48})`,
+    `(https?://)?(www\\.)?${matchedDomain.replace(
+      /\./g,
+      "\\."
+    )}/(?:invite/)?([a-zA-Z0-9_-]{1,${maxSearchInviteCodeLength}})`,
     "i"
   );
 
@@ -88,5 +91,5 @@ export const parseInviteCodeFromUrl = (url) => {
     return match[3];
   }
 
-  return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48);
+  return val.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, maxSearchInviteCodeLength);
 };

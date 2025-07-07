@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import { SubmitServer } from "@/components/header/submit-server";
-import { AddRequestList } from "@/components/header/add-request-list";
+import { AddRequestList } from "@/components/header/add-request-list/add-request-list";
 
 export const AddServer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,6 @@ export const AddServer = () => {
   const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
   const role = useRole(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
-
   const handleCloseAddServer = () => setIsOpen(false);
 
   return (
@@ -33,7 +32,6 @@ export const AddServer = () => {
           Add Server
         </button>
       </div>
-
       {isOpen && (
         <FloatingPortal>
           <FloatingOverlay lockScroll className="bg-base-300/80 flex items-center justify-center z-1000">

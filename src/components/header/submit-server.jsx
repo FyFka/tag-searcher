@@ -3,7 +3,6 @@
 import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
-// import { Turnstile } from "next-turnstile";
 
 export const SubmitServer = () => {
   const [inviteCode, setInviteCode] = useState("");
@@ -26,15 +25,11 @@ export const SubmitServer = () => {
         setNotification({ message: data.message || "Unexpected error", type: "error" });
       }
     } catch (err) {
+      setNotification({ message: data.message || "Unexpected error", type: "error" });
     } finally {
       setLoading(false);
     }
   };
-
-  // const handleTurnstileError = (message, ...p) => {
-  //   console.log(message);
-  //   setNotification({ message, type: "error" });
-  // };
 
   const handleInviteCodeInput = (evt) => {
     const inputVal = evt.target.value;
@@ -65,27 +60,12 @@ export const SubmitServer = () => {
           </button>
         </div>
       </fieldset>
-
-      {/* <Turnstile
-        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-        retry="auto"
-        refreshExpired="auto"
-        theme="dark"
-        fixedSize={false}
-        sandbox={process.env.NODE_ENV === "development"}
-        onError={() => handleTurnstileError("Security check failed. Please verify again.")}
-        onExpire={() => handleTurnstileError("Security check expired. Please verify again.")}
-        onLoad={() => handleTurnstileError("Security check failed. Please verify again.")}
-        onVerify={() => setNotification({})}
-      /> */}
-
       {notification.type === "error" && (
         <div className="badge badge-soft badge-error w-full">{notification.message}</div>
       )}
       {notification.type === "success" && (
         <div className="badge badge-soft badge-success w-full">{notification.message}</div>
       )}
-
       <div className="flex gap-0.5 items-center">
         <TriangleAlert className="inline-block mr-0.75 min-w-4 min-h-4" height={16} width={16} color="#ffd60a" />
         <p className="text-xs text-muted-foreground">

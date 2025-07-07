@@ -1,9 +1,45 @@
 import client from "@/lib/mongodb";
-import { dbName, serverLimitPerPage } from "@/config";
-import { parseInviteCode } from "@/lib/parse";
-import { validateTurnstileToken } from "next-turnstile";
+import { dbName, maxSearchInviteCodeLength, serverRequestLimitPerPage } from "@/config";
+import { parseInviteCode, parsePage, parseSearch } from "@/lib/parse";
 
-export const serverRequest = async (req) => {
+const serverRequestList = async (req) => {
+  try {
+    const searchParams = req.nextUrl.searchParams;
+    const page = parsePage(searchParams.get("page"));
+    const search = parseSearch(searchParams.get("s"), maxSearchInviteCodeLength);
+    const skip = (page - 1) * serverRequestLimitPerPage;
+
+    const connection = await client;
+    const db = connection.db(dbName);
+    const collection = db.collection("requestedservertags");
+
+    const query = search ? { inviteCode: { $regex: search, $options: "i" } } : {};
+    const projection = { _id: 0, __v: 0 };
+
+    const [total, items] = await Promise.all([
+      collection.countDocuments(query),
+      collection
+        .find(query, { projection })
+        .sort({ requestedAt: -1 })
+        .skip(skip)
+        .limit(serverRequestLimitPerPage)
+        .toArray(),
+    ]);
+
+    return new Response(
+      JSON.stringify({ items, page, total, totalPages: Math.ceil(total / serverRequestLimitPerPage) }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
+  } catch (e) {
+    console.log(e.message);
+    const res = { message: "Failed to load data", hasError: true };
+    return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
+  }
+};
+
+export const GET = serverRequestList;
+
+const serverRequest = async (req) => {
   try {
     const body = await req.json();
     const inviteCode = parseInviteCode(body?.inviteCode || "");
@@ -15,21 +51,11 @@ export const serverRequest = async (req) => {
       });
     }
 
-    // const validationResponse = await validateTurnstileToken({
-    //   token,
-    //   secretKey: process.env.TURNSTILE_SECRET_KEY,
-    //   sandbox: process.env.NODE_ENV === "development",
-    // });
-
-    // if (!validationResponse.success) {
-    //   return NextResponse.json({ message: "Invalid token" }, { status: 400 });
-    // }
-
     const connection = await client;
     const db = connection.db(dbName);
 
-    const collection = db.collection("requestedServerTags");
-    const existing = await collection.findOne({ inviteCode, status: "pending" }, { projection: { _id: 1 } });
+    const collection = db.collection("requestedservertags");
+    const existing = await collection.findOne({ inviteCode, status: "Pending" }, { projection: { _id: 1 } });
 
     if (existing) {
       return new Response(
@@ -42,8 +68,7 @@ export const serverRequest = async (req) => {
     await collection.insertOne({
       inviteCode,
       requestedAt: now,
-      resolvedAt: now,
-      status: "pending",
+      status: "Pending",
     });
 
     return new Response(
@@ -54,6 +79,7 @@ export const serverRequest = async (req) => {
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (e) {
+    console.log(e.message);
     const res = { message: "Something went wrong. Please try again later.", hasError: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
