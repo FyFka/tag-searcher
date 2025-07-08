@@ -15,7 +15,7 @@ export const AddRequestList = () => {
   const fetchRequests = async (pageNum, searchTerm = "") => {
     try {
       setLoading(true);
-      const query = new URLSearchParams({ page: String(pageNum) });
+      const query = new URLSearchParams({ page: pageNum });
       if (searchTerm) query.set("s", searchTerm);
 
       const res = await fetch(`/api/request-server?${query.toString()}`);

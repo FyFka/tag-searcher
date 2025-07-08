@@ -27,10 +27,10 @@ const serverRequestList = async (req) => {
         .toArray(),
     ]);
 
-    return new Response(
-      JSON.stringify({ items, page, total, totalPages: Math.ceil(total / serverRequestLimitPerPage) }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ items, page, totalPages: Math.ceil(total / serverRequestLimitPerPage) }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (e) {
     console.log(e.message);
     const res = { message: "Failed to load data", hasError: true };

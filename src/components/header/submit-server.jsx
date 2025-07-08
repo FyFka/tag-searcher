@@ -34,7 +34,7 @@ export const SubmitServer = () => {
     } finally {
       setLoading(false);
       setTurnstileToken(null);
-      window.turnstile.reset();
+      window.turnstile?.reset();
     }
   };
 
@@ -85,6 +85,7 @@ export const SubmitServer = () => {
         retry="auto"
         refreshExpired="auto"
         theme="dark"
+        sandbox={process.env.NODE_ENV === "development"}
         onVerify={(token) => {
           setTurnstileToken(token);
           setNotification({});

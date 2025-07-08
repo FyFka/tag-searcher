@@ -16,7 +16,7 @@ import { AddRequestList } from "@/components/header/add-request-list/add-request
 
 export const AddServer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { refs, context } = useFloating({ open: isOpen, onOpenChange: setIsOpen);
+  const { refs, context } = useFloating({ open: isOpen, onOpenChange: setIsOpen });
 
   const click = useClick(context);
   const dismiss = useDismiss(context, { outsidePressEvent: "mousedown" });
