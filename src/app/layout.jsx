@@ -1,5 +1,4 @@
 import { Open_Sans, Montserrat } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const openSans = Open_Sans({
@@ -42,12 +41,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-XXXXXXXXXX";
   return (
     <html lang="en" data-theme="dark" className="bg-base-300">
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
-        <GoogleAnalytics debugMode gaId={gaId} />
       </body>
     </html>
   );
