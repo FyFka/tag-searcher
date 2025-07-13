@@ -26,6 +26,9 @@ export const metadata = {
     "popular discord servers",
     "2025 discord servers",
   ],
+  alternates: {
+    canonical: `https://tagsearcher.org/terms`,
+  },
 };
 
 export default function Terms() {

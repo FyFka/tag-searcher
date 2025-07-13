@@ -16,27 +16,30 @@ export const generateMetadata = async ({ params }) => {
     const tag = fastRoute.tagName;
 
     return {
-      title: `Find Discord Servers with tag ${tag}`,
+      title: `Find Discord Servers with ${tag} tag`,
       description: `Explore active Discord communities using the "${tag}" tag. Instantly search servers, discover unique tags, and personalize your Discord experience.`,
       keywords: [
         "discord",
         "discord server",
         `discord badge ${tag}`,
-        `discord tag ${tag}`,
+        `discord ${tag} tag`,
         `discord servers with ${tag}`,
-        `find discord servers with tag ${tag}`,
+        `find discord servers with ${tag} tag`,
         `discord servers using tag ${tag}`,
         `discord servers with server tag ${tag}`,
-        `search discord servers with tag ${tag}`,
+        `search discord servers with ${tag} tag`,
         `explore discord servers with ${tag}`,
         `join discord communities tagged ${tag}`,
-        `discord channels with tag ${tag}`,
-        `top discord servers with tag ${tag}`,
-        `trending discord tag ${tag}`,
+        `discord channels with ${tag} tag`,
+        `top discord servers with ${tag} tag`,
+        `trending discord tags`,
         `active discord servers tagged ${tag}`,
         `best discord servers for ${tag}`,
         `discord groups related to ${tag}`,
       ],
+      alternates: {
+        canonical: `https://tagsearcher.org/tag/${slug}`,
+      },
     };
   } catch (error) {
     return {
