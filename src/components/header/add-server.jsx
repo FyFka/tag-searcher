@@ -34,18 +34,16 @@ export const AddServer = () => {
         <FloatingPortal>
           <FloatingOverlay lockScroll className="bg-base-300/80 flex items-center justify-center z-1000">
             <FloatingFocusManager context={context}>
-              <div ref={refs.setFloating} {...getFloatingProps()} className="p-2 w-full max-w-[625px]">
-                <div className="relative bg-base-300 py-4 px-6 rounded-lg shadow-lg border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1 z-50">
-                  <div className="flex items-center justify-between mb-3">
-                    <h2 className="font-extrabold font-mono text-2xl">Add a Discord Server</h2>
-                    <button
-                      className="btn btn-neutral h-8.5 w-8.5 p-1 rounded-full"
-                      onClick={handleCloseAddServer}
-                      type="button"
-                    >
-                      <X height={18} width={18} />
-                    </button>
-                  </div>
+              <button
+                className="fixed top-2 right-2 md:top-16 md:right-16 btn btn-neutral h-12 w-12 p-1 rounded-full z-50"
+                onClick={handleCloseAddServer}
+                type="button"
+              >
+                <X height={24} width={24} />
+              </button>
+              <div ref={refs.setFloating} {...getFloatingProps()} className="p-2 w-full max-w-[650px]">
+                <div className="relative bg-base-300 py-7 px-6 rounded-lg shadow-lg border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1 z-50">
+                  <h2 className="font-extrabold font-mono text-2xl mb-3">Add a Discord Server</h2>
                   <div className="flex flex-col gap-4">
                     <SubmitServer />
                     <AddRequestList />

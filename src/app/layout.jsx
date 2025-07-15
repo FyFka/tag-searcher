@@ -42,7 +42,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className="bg-base-300">
+    <html lang="en" data-theme="dark" className="bg-base-300 scroll-smooth">
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
       </body>

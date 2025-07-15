@@ -50,7 +50,7 @@ export const AddRequestList = () => {
   };
 
   return (
-    <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 max-h-96">
+    <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 liq-table">
       <div className="p-2 w-full sticky top-auto left-0 z-10 bg-base-300">
         <label className="input w-full">
           <SearchIcon width={22} height={22} />

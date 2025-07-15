@@ -49,6 +49,8 @@ export const parseInviteCode = (userInviteCode) => {
     .slice(0, 48);
 };
 
+export const parseText = (name) => (typeof name === "string" ? name.trim() : "");
+
 const inviteDomains = [
   "discord.gg",
   "discord.com",

@@ -65,7 +65,7 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
       className="sticky top-16 left-0 backdrop-blur-md bg-base-300/70 z-50 flex flex-col gap-1 py-2 px-2 md:px-10 xl:px-14"
     >
       <div className="flex gap-2 flex-col md:flex-row">
-        <div className="relative w-full">
+        <div className="relative flex-10">
           <label className="input w-full pr-32 md:pr-40 lg:pr-[300px]">
             <SearchIcon width={22} height={22} />
             <input

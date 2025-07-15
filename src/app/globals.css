@@ -49,6 +49,10 @@ body {
   @apply !outline-none;
 }
 
+@utility textarea {
+  @apply !outline-none;
+}
+
 @utility select {
   @apply !outline-none;
 }
@@ -81,4 +85,20 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 0s 0s, color 0s 0s;
   transition-delay: calc(infinity * 1s);
+}
+
+.liq-table {
+  max-height: calc(var(--spacing) * 96);
+}
+
+@media (max-height: 800px) {
+  .liq-table {
+    max-height: calc(var(--spacing) * 64);
+  }
+}
+
+@media (max-height: 650px) {
+  .liq-table {
+    max-height: calc(var(--spacing) * 56);
+  }
 }

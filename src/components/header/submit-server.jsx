@@ -73,7 +73,7 @@ export const SubmitServer = () => {
       {notification.type === "success" && (
         <div className="badge badge-soft badge-success w-full">{notification.message}</div>
       )}
-      <div className="flex gap-0.5 items-center">
+      <div className="flex gap-0.5 items-center w-full">
         <TriangleAlert className="inline-block mr-0.75 min-w-4 min-h-4" height={16} width={16} color="#ffd60a" />
         <p className="text-xs text-muted-foreground">
           Make sure your invite link has <strong>infinite uses</strong> and{" "}

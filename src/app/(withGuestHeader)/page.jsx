@@ -103,9 +103,9 @@ export default async function Home({ searchParams }) {
   }
 
   return (
-    <div>
+    <>
       <Hero />
       <ServerDashboard result={result} />
-    </div>
+    </>
   );
 }

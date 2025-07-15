@@ -100,7 +100,7 @@ export const ServerListItem = ({ server, idx }) => {
         <figure className="h-16 w-16 rounded-2xl absolute -bottom-8 left-4 border-4 border-base-100  bg-base-200 overflow-hidden">
           {server.avatar && (
             <Image
-              src={`https://cdn.discordapp.com/${server.avatar}.webp?size=64`}
+              src={`https://cdn.discordapp.com/${server.avatar}?size=64`}
               className="w-full h-full text-transparent"
               alt={`${server.name} avatar`}
               width={64}
