@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer className="w-full bg-base-300/80 backdrop-blur-md border-t border-base-100/50 py-2 px-4">
       <div className="flex flex-col md:flex-row items-center justify-center gap-2 px-2 md:px-10 xl:px-14">
         <div className="flex-10">
-          <p className="text-sm">
+          <p className="text-sm inline-block text-center">
             Made in {year} for the community | Not affiliated with{" "}
             <Link
               className="link"
