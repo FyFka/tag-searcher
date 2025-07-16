@@ -25,7 +25,7 @@ export const metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32" },
       { url: "/favicon-192x192.png", sizes: "192x192" },
     ],
-    apple: "https://jazzteam.org/wp-content/uploads/2023/07/cropped-cropped-2020-01-15_125510-180x180.webp",
+    apple: "/favicon-apple.png",
   },
 };
 
