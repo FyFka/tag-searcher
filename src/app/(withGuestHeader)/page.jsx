@@ -70,7 +70,7 @@ const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
     const db = connection.db(dbName);
 
     const query = search ? { $text: { $search: search } } : {};
-    const projection = { _id: 0, __v: 0 };
+    const projection = { _id: 0, __v: 0, inviteCode: 0, guildId: 0, categoryId: 0 };
 
     if (!withNSFW) query.nsfw = withNSFW;
 
@@ -84,7 +84,7 @@ const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
     const hasMore = results.length > serverLimitPerPage;
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
 
-    const stats = await db.collection("stats").findOne({}, { projection });
+    const stats = await db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
 
     return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW };
   } catch (e) {
@@ -103,7 +103,7 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
-      <Hero />
+      <Hero totalMembers={result.stats.members} totalServers={result.stats.servers} />
       <ServerDashboard result={result} />
     </>
   );

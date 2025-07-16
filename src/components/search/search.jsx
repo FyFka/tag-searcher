@@ -1,12 +1,12 @@
 "use client";
 
-import { Hash, Search as SearchIcon } from "lucide-react";
+import { Search as SearchIcon } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
-import { debounce, formatNumber } from "@/lib/utils";
+import { debounce } from "@/lib/utils";
 import { maxSearchLength, searchDebounce } from "@/config";
 import { SuggestedTags } from "./suggested-tags";
 
-export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }) => {
+export const Search = ({ refetchServers, initSetup }) => {
   const [search, setSearch] = useState(initSetup.search);
   const [sortBy, setSortBy] = useState(initSetup.sortBy);
   const [NSFW, setNSFW] = useState(initSetup.NSFW);
@@ -56,8 +56,6 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
     evt.preventDefault();
   };
 
-  const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
-  const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
   const NSFWHighlight = NSFW ? "text-base-content" : "";
   return (
     <form
@@ -78,20 +76,6 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
             />
           </label>
           <SuggestedTags onSearchChange={onSearchChange} search={search} />
-        </div>
-        <div className="gap-2 items-center hidden md:flex">
-          <div className="flex items-center gap-0.75">
-            <Hash height={20} width={20} className="text-primary" />
-            <span className="text-nowrap">
-              <span className="font-semibold">{beautifiedServers}</span> servers
-            </span>
-          </div>
-          <div className="flex items-center gap-0.75">
-            <span className="status bg-base-content/80 status-md"></span>
-            <span className="text-nowrap">
-              <span className="font-semibold">{beautifiedMembers}</span> members
-            </span>
-          </div>
         </div>
       </div>
       <div className="flex gap-1 items-center">

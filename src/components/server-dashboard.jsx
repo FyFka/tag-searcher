@@ -64,8 +64,6 @@ export const ServerDashboard = ({ result }) => {
     <>
       <Search
         refetchServers={forceRefreshServers}
-        totalServers={result.stats.servers}
-        totalMembers={result.stats.members}
         initSetup={{ search: result.search, sortBy: result.sortBy, NSFW: result.NSFW }}
       />
       <Servers

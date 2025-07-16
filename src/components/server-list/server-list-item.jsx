@@ -56,6 +56,7 @@ export const ServerListItem = ({ server, idx }) => {
             unoptimized
             priority={isPriority}
             data-idx={idx}
+            fetchPriority={isPriority ? "high" : "auto"}
           />
         )}
         <span className="text-base">{server.tagName}</span>

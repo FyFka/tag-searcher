@@ -6,6 +6,10 @@
   --font-mono: var(--font-montserrat);
 }
 
+@theme {
+  --breakpoint-ms: 30rem;
+}
+
 @plugin "daisyui/theme" {
   name: "dark";
   default: true;
