@@ -13,12 +13,12 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: { template: "%s | Discord server tag searcher" },
+  title: { template: "%s | Discord Server Tag Searcher" },
   metadataBase: new URL("https://tagsearcher.lol"),
-  openGraph: { siteName: "Discord server tag searcher", type: "website", locale: "en_US" },
+  openGraph: { siteName: "Discord Server Tag Searcher", type: "website", locale: "en_US" },
   robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
-  appleWebApp: { title: "Discord server tag searcher", statusBarStyle: "default", capable: true },
-  applicationName: "Discord server tag searcher",
+  appleWebApp: { title: "Discord Server Tag Searcher", statusBarStyle: "default", capable: true },
+  applicationName: "Discord Server Tag Searcher",
   icons: {
     icon: [
       { url: "/favicon.ico", rel: "icon" },

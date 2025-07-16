@@ -47,7 +47,7 @@ export default function Privacy() {
           <li>
             <p>
               <strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-              &quot;Our&quot; in this Agreement) refers to Discord server tag searcher.
+              &quot;Our&quot; in this Agreement) refers to Discord Server Tag Searcher.
             </p>
           </li>
           <li>
@@ -94,7 +94,7 @@ export default function Privacy() {
           </li>
           <li>
             <p>
-              <strong>Website</strong> refers to Discord server tag searcher, accessible from{" "}
+              <strong>Website</strong> refers to Discord Server Tag Searcher, accessible from{" "}
               <Link
                 className="link"
                 href="https://tagsearcher.lol/"

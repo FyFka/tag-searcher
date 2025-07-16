@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
 export const metadata = {
-  title: "Discord Server Tags & Badges",
+  title: "Search Discord Server Tags & Badges to Discover New Communities",
   description:
     "Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out",
   keywords: [
