@@ -1,5 +1,5 @@
 const cspHeader = `default-src 'self';
-script-src 'self' 'unsafe-eval' 'unsafe-inline' https://challenges.cloudflare.com;
+script-src 'self' 'unsafe-eval' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com;
 style-src 'self' 'unsafe-inline';
 img-src 'self' blob: data: cdn.discordapp.com;
 font-src 'self';
