@@ -19,6 +19,14 @@ export const metadata = {
   robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   appleWebApp: { title: "Discord server tag searcher", statusBarStyle: "default", capable: true },
   applicationName: "Discord server tag searcher",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", rel: "icon" },
+      { url: "/favicon-32x32.png", sizes: "32x32" },
+      { url: "/favicon-192x192.png", sizes: "192x192" },
+    ],
+    apple: "https://jazzteam.org/wp-content/uploads/2023/07/cropped-cropped-2020-01-15_125510-180x180.webp",
+  },
 };
 
 export default function RootLayout({ children }) {
