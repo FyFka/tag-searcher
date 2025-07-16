@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 import { parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
 export const metadata = {
-  title: "Discord Server Tags & Profile Badges",
+  title: "Discord Server Tags & Badges",
   description:
-    "Explore the most up-to-date collection of Discord server tags and profile badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out",
+    "Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out",
   keywords: [
     "discord",
     "discord server",
@@ -31,29 +31,29 @@ export const metadata = {
   openGraph: {
     url: "https://tagsearcher.lol/",
     type: "website",
-    title: "Discord Server Tag & Profile Badge Directory",
+    title: "Discord Server Tag & Badge Directory",
     description:
-      "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.lol/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Server Tags and Profile Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Discord Server Tag & Profile Badge Directory",
+    title: "Discord Server Tag & Badge Directory",
     description:
-      "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.lol/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Server Tags and Profile Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
       },
     ],
   },
