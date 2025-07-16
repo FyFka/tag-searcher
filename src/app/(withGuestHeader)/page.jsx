@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 import { parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
 
 export const metadata = {
-  title: "Discord Server Tags & Profile Badges | 2025 Directory & Search",
+  title: "Discord Server Tags & Profile Badges",
   description:
-    "Explore the most up-to-date collection of Discord server tags and profile badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out.",
+    "Explore the most up-to-date collection of Discord server tags and profile badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out",
   keywords: [
     "discord",
     "discord server",
@@ -31,7 +31,7 @@ export const metadata = {
   openGraph: {
     url: "https://tagsearcher.lol/",
     type: "website",
-    title: "The Ultimate 2025 Discord Server Tag & Profile Badge Directory",
+    title: "Discord Server Tag & Profile Badge Directory",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
     images: [
@@ -45,7 +45,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Ultimate 2025 Discord Server Tag & Profile Badge Directory",
+    title: "Discord Server Tag & Profile Badge Directory",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
     images: [
@@ -57,7 +57,6 @@ export const metadata = {
       },
     ],
   },
-  alternates: { canonical: "https://tagsearcher.lol/" },
 };
 
 const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {

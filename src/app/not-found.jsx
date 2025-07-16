@@ -1,6 +1,11 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header/header";
 import Link from "next/link";
+import Image from "next/image";
+
+export const metadata = {
+  title: "Page not found",
+};
 
 export default function NotFound() {
   const smiles = ["🐸", "🫠", "💥", "🌚", "😵", "😶‍🌫️", "🤖", "👾", "🚫", "🔍", "📦", "🤷‍♂️", "🧙‍♂️", "👻", "😬"];
@@ -10,6 +15,7 @@ export default function NotFound() {
     <>
       <Header />
       <main className="flex flex-col items-center justify-center text-center px-4 py-24 gap-4 flex-grow bg-base-100">
+        <Image src="/not-found.webp" height={226} width={200} alt="404" />
         <h1 className="text-2xl md:text-4xl font-extrabold">Oops... this page ghosted us (404)</h1>
         <p className="text-base-content max-w-md text-lg">
           Looks like the page you're looking for doesn't exist. Maybe it exploded, maybe it was never real {smile}

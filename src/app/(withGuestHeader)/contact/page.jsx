@@ -4,6 +4,10 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Turnstile } from "next-turnstile";
 
+export const metadata = {
+  title: "Contact Us",
+};
+
 export default function ContactPage() {
   const {
     register,

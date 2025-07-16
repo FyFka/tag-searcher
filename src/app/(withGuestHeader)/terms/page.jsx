@@ -1,20 +1,5 @@
 export const metadata = {
-  title: "Discord Server Tags & Profile Badges | Terms and conditions",
-  twitter: {
-    card: "summary_large_image",
-    title: "The Ultimate 2025 Discord Server Tag & Profile Badge Directory",
-    description:
-      "Search, find, and explore the most complete collection of Discord server tags and profile badges for 2025. Customize your profile and discover new communities.",
-    images: [
-      {
-        url: "https://tagsearcher.lol/preview.webp",
-        width: 1200,
-        height: 630,
-        alt: "A display of various Discord Server Tags and Profile Badges available to search on TagSearcher.lol.",
-      },
-    ],
-  },
-  alternates: { canonical: "https://tagsearcher.lol/" },
+  title: "Terms and conditions",
 };
 
 export default function Terms() {
