@@ -12,26 +12,32 @@ export const metadata = {
   keywords: [
     "discord",
     "discord server",
+    "discord servers",
     "discord tag",
+    "discord tags",
     "tags discord",
-    "discord server finder",
+    "discord server tags",
     "find discord servers",
+    "search discord servers",
+    "discord server finder",
     "discord server search",
     "discord server directory",
-    "search discord servers by tag",
+    "public discord servers",
+    "browse discord servers",
+    "discord server browser",
+    "discord communities",
     "discord community finder",
     "discord tag search",
-    "discord server browser",
-    "discord server tags",
     "gaming discord servers",
     "anime discord servers",
-    "browse discord servers",
-    "public server list",
+    "discord server list",
+    "popular discord servers",
+    "2025 discord servers",
   ],
   openGraph: {
     url: "https://tagsearcher.lol/",
     type: "website",
-    title: "Discord Server Tag & Badge Directory",
+    title: "Search Discord Server Tags & Badges to Discover New Communities",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
@@ -45,7 +51,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Discord Server Tag & Badge Directory",
+    title: "Search Discord Server Tags & Badges to Discover New Communities",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [

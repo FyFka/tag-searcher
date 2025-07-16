@@ -1,11 +1,12 @@
 {
-  "id": "/?source=pwa",
+  "id": "/",
   "name": "Discord Server Tag Searcher",
   "short_name": "TagSearcher",
-  "description": "Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out.",
+  "description": "Find and explore Discord server tags and badges. Discover communities and personalize your profile in 2025.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "browser"],
   "background_color": "#15191e",
   "theme_color": "#605dff",
   "orientation": "portrait",
@@ -19,7 +20,8 @@
     {
       "src": "/favicon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-touch-icon.png",
