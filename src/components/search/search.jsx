@@ -95,7 +95,13 @@ export const Search = ({ refetchServers, totalServers, totalMembers, initSetup }
         </div>
       </div>
       <div className="flex gap-1 items-center">
-        <select onChange={handleChangeSortBy} name="Sort by" value={sortBy} className="select select-sm max-w-40">
+        <select
+          aria-label="Sort by"
+          onChange={handleChangeSortBy}
+          name="Sort by"
+          value={sortBy}
+          className="select select-sm max-w-40"
+        >
           <option value="relevant">Most Relevant</option>
           <option value="popular">Most Popular</option>
           <option value="visited">Most Visited</option>
