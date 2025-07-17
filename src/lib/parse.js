@@ -30,6 +30,12 @@ export const parseNSFW = (userNSFW) => {
   return true;
 };
 
+export const parseCharacters = (userCharacters) => {
+  const charNumber = parseInt(userCharacters, 10) || -1;
+  if (charNumber === -1 || (charNumber > 1 && charNumber <= 4)) return charNumber;
+  return -1;
+};
+
 export const getSortByType = (sortBy, search) => {
   const sortByMap = {
     visited: { visits: -1, membersCount: -1 },

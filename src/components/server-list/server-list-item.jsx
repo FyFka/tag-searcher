@@ -55,8 +55,6 @@ export const ServerListItem = ({ server, idx }) => {
             className="w-4 h-4 text-transparent"
             unoptimized
             priority={isPriority}
-            data-idx={idx}
-            fetchPriority={isPriority ? "high" : "auto"}
           />
         )}
         <span className="text-base">{server.tagName}</span>

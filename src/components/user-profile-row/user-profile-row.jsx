@@ -95,8 +95,9 @@ export const UserProfileRow = ({
                       width={12}
                       height={12}
                       src={`https://cdn.discordapp.com/${tagImg}.webp?size=32`}
-                      unoptimized
+                      fetchPriority="high"
                       priority
+                      unoptimized
                     />
                   )}
                   <span className="select-none indent-0 text-xs font-bold">{tagName}</span>

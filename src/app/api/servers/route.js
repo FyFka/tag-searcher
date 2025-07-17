@@ -1,7 +1,7 @@
 import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import cache from "@/lib/cache.js";
-import { parsePage, parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
+import { parsePage, parseSortBy, parseSearch, getSortByType, parseNSFW, parseCharacters } from "@/lib/parse";
 
 const serverList = async (req) => {
   try {
@@ -11,9 +11,10 @@ const serverList = async (req) => {
     const sortBy = parseSortBy(searchParams.get("sortBy"));
     const sort = getSortByType(sortBy, search);
     const withNSFW = parseNSFW(searchParams.get("NSFW"));
+    const characters = parseCharacters(searchParams.get("c"));
     const skip = (page - 1) * serverLimitPerPage;
 
-    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}`;
+    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}:${characters}:${Date.now()}`;
     const cached = cache.get(cacheKey);
 
     if (cached) {
@@ -22,10 +23,12 @@ const serverList = async (req) => {
 
     const connection = await client;
     const db = connection.db(dbName);
-    const query = search ? { $text: { $search: search } } : {};
+    const query = {
+      ...(search ? { $text: { $search: search } } : {}),
+      ...(withNSFW ? {} : { nsfw: withNSFW }),
+      ...(characters !== -1 ? { $expr: { $eq: [{ $strLenCP: "$tagName" }, characters] } } : {}),
+    };
     const projection = { _id: 0, __v: 0, inviteCode: 0, guildId: 0, categoryId: 0 };
-
-    if (!withNSFW) query.nsfw = withNSFW;
 
     const results = await db
       .collection("servertags")

@@ -15,12 +15,13 @@ export const ServerDashboard = ({ result }) => {
     search = dashboard.search,
     sortBy = dashboard.sortBy,
     NSFW = dashboard.NSFW,
+    characters = dashboard.characters,
     append = false,
   }) => {
     try {
       setServersLoading({ loading: true, force: !append });
 
-      const query = new URLSearchParams({ page, s: search, sortBy, NSFW }).toString();
+      const query = new URLSearchParams({ page, s: search, sortBy, NSFW, c: characters }).toString();
       const res = await fetch(`/api/servers?${query}`);
       const data = await res.json();
 
@@ -32,6 +33,7 @@ export const ServerDashboard = ({ result }) => {
         search,
         sortBy,
         NSFW,
+        characters,
       }));
     } catch (err) {
       console.error(err.message);
@@ -40,31 +42,33 @@ export const ServerDashboard = ({ result }) => {
     }
   };
 
-  const createQueryWithDefaultParams = (search, sortBy, NSFW) => {
-    const defaultParams = { search: "", sortBy: "relevant", NSFW: true };
+  const createQueryWithDefaultParams = (search, sortBy, NSFW, characters) => {
+    const defaultParams = { search: "", sortBy: "relevant", NSFW: true, characters: -1 };
     const params = {};
 
     if (search !== defaultParams.search) params.s = search;
     if (sortBy !== defaultParams.sortBy) params.sortBy = sortBy;
     if (NSFW !== defaultParams.NSFW) params.nsfw = NSFW;
+    if (characters !== defaultParams.characters) params.c = characters;
 
     return new URLSearchParams(params).toString();
   };
 
-  const forceRefreshServers = async (search, sortBy, NSFW, isPopState) => {
+  const forceRefreshServers = async (search, sortBy, NSFW, characters, isPopState) => {
     if (!isPopState) {
-      const query = createQueryWithDefaultParams(search, sortBy, NSFW);
+      const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters);
       window.history.pushState(null, "", `${pathname}?${query}`);
     }
 
-    await fetchServers({ page: 1, search, sortBy, NSFW });
+    window.scrollTo({ top: 0 });
+    await fetchServers({ page: 1, search, sortBy, NSFW, characters });
   };
 
   return (
     <>
       <Search
         refetchServers={forceRefreshServers}
-        initSetup={{ search: result.search, sortBy: result.sortBy, NSFW: result.NSFW }}
+        initSetup={{ search: result.search, sortBy: result.sortBy, NSFW: result.NSFW, characters: result.characters }}
       />
       <Servers
         servers={dashboard.servers}

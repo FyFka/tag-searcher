@@ -3,7 +3,7 @@ import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import { ServerDashboard } from "@/components/server-dashboard";
 import { notFound } from "next/navigation";
-import { parseSortBy, parseSearch, getSortByType, parseNSFW } from "@/lib/parse";
+import { parseSortBy, parseSearch, getSortByType, parseNSFW, parseCharacters } from "@/lib/parse";
 
 export const metadata = {
   title: "Search Discord Server Tags & Badges to Discover New Communities",
@@ -65,20 +65,23 @@ export const metadata = {
   },
 };
 
-const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
+const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw, userCharacters) => {
   try {
     const search = parseSearch(userSearch);
     const sortBy = parseSortBy(userSortBy);
     const sort = getSortByType(sortBy, search);
-    const withNSFW = parseNSFW(nsfw);
+    const withNSFW = parseNSFW(userNsfw);
+    const characters = parseCharacters(userCharacters);
 
     const connection = await client;
     const db = connection.db(dbName);
 
-    const query = search ? { $text: { $search: search } } : {};
+    const query = {
+      ...(search ? { $text: { $search: search } } : {}),
+      ...(withNSFW ? {} : { nsfw: withNSFW }),
+      ...(characters !== -1 ? { $expr: { $eq: [{ $strLenCP: "$tagName" }, characters] } } : {}),
+    };
     const projection = { _id: 0, __v: 0, inviteCode: 0, guildId: 0, categoryId: 0 };
-
-    if (!withNSFW) query.nsfw = withNSFW;
 
     const results = await db
       .collection("servertags")
@@ -89,10 +92,9 @@ const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
 
     const hasMore = results.length > serverLimitPerPage;
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
-
     const stats = await db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
 
-    return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW };
+    return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW, characters };
   } catch (e) {
     console.error("Error fetching collections:", e);
     return null;
@@ -100,8 +102,8 @@ const getServers = async (userSearch = "", userSortBy = "relevant", nsfw) => {
 };
 
 export default async function Home({ searchParams }) {
-  const { s, sortBy, nsfw } = await searchParams;
-  const result = await getServers(s, sortBy, nsfw);
+  const { s, sortBy, nsfw, c } = await searchParams;
+  const result = await getServers(s, sortBy, nsfw, c);
 
   if (!result) {
     return notFound();

@@ -9,6 +9,7 @@ import { SuggestedTags } from "./suggested-tags";
 export const Search = ({ refetchServers, initSetup }) => {
   const [search, setSearch] = useState(initSetup.search);
   const [sortBy, setSortBy] = useState(initSetup.sortBy);
+  const [characters, setCharacters] = useState(initSetup.characters);
   const [NSFW, setNSFW] = useState(initSetup.NSFW);
 
   useEffect(() => {
@@ -29,20 +30,26 @@ export const Search = ({ refetchServers, initSetup }) => {
   }, []);
 
   const debouncedRefetch = useMemo(
-    () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW), searchDebounce),
-    [refetchServers, sortBy, NSFW]
+    () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW, characters), searchDebounce),
+    [refetchServers, sortBy, NSFW, characters]
   );
 
   const handleChangeSortBy = (evt) => {
     const newSortBy = evt.target.value;
     setSortBy(newSortBy);
-    refetchServers(search, newSortBy, NSFW);
+    refetchServers(search, newSortBy, NSFW, characters);
+  };
+
+  const handleChangeCharacters = (evt) => {
+    const newCharacters = parseInt(evt.target.value) || -1;
+    setCharacters(newCharacters);
+    refetchServers(search, sortBy, NSFW, newCharacters);
   };
 
   const handleToggleNSFW = (evt) => {
     const newNSFW = evt.target.checked;
     setNSFW(newNSFW);
-    refetchServers(search, sortBy, newNSFW);
+    refetchServers(search, sortBy, newNSFW, characters);
   };
 
   const onSearchChange = (evt) => {
@@ -78,7 +85,7 @@ export const Search = ({ refetchServers, initSetup }) => {
           <SuggestedTags onSearchChange={onSearchChange} search={search} />
         </div>
       </div>
-      <div className="flex gap-1 items-center">
+      <div className="flex gap-1 items-center flex-wrap">
         <select
           aria-label="Sort by"
           onChange={handleChangeSortBy}
@@ -101,6 +108,44 @@ export const Search = ({ refetchServers, initSetup }) => {
           />
           <span className={`text-sm ${NSFWHighlight}`}>NSFW</span>
         </label>
+        <div className="filter flex items-center">
+          <input
+            className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm"
+            type="radio"
+            name="characters"
+            checked={characters === 2}
+            value={2}
+            onChange={handleChangeCharacters}
+            aria-label="2 Characters"
+          />
+          <input
+            className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm"
+            type="radio"
+            name="characters"
+            checked={characters === 3}
+            value={3}
+            onChange={handleChangeCharacters}
+            aria-label="3 Characters"
+          />
+          <input
+            className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm"
+            type="radio"
+            name="characters"
+            checked={characters === 4}
+            value={4}
+            onChange={handleChangeCharacters}
+            aria-label="4 Characters"
+          />
+          <input
+            className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm filter-reset"
+            type="radio"
+            name="metaframeworks"
+            checked={characters === -1}
+            value={-1}
+            onChange={handleChangeCharacters}
+            aria-label="All"
+          />
+        </div>
       </div>
     </form>
   );
