@@ -16,7 +16,6 @@ export const metadata = {
   title: { template: "%s | Discord Server Tag Searcher" },
   metadataBase: new URL("https://tagsearcher.lol"),
   openGraph: { siteName: "Discord Server Tag Searcher", type: "website", locale: "en_US" },
-  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   appleWebApp: { title: "Discord Server Tag Searcher", statusBarStyle: "default", capable: true },
   applicationName: "Discord Server Tag Searcher",
   icons: {
