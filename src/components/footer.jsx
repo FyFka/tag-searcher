@@ -22,17 +22,17 @@ export const Footer = () => {
         <div className="flex items-center justify-center gap-2 text-sm">
           <ul className="flex gap-3">
             <li>
-              <Link className="link" href="/terms">
+              <Link className="link" href="/terms" prefetch={false}>
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link className="link" href="/privacy">
+              <Link className="link" href="/privacy" prefetch={false}>
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link className="link" href="/contact">
+              <Link className="link" href="/contact" prefetch={false}>
                 Contact Us
               </Link>
             </li>
