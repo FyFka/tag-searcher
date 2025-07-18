@@ -65,7 +65,7 @@ export const metadata = {
   },
 };
 
-const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw, userCharacters) => {
+const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw = true, userCharacters = -1) => {
   try {
     const search = parseSearch(userSearch);
     const sortBy = parseSortBy(userSortBy);
@@ -83,16 +83,18 @@ const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw, us
     };
     const projection = { _id: 0, __v: 0, inviteCode: 0, guildId: 0, categoryId: 0 };
 
-    const results = await db
-      .collection("servertags")
-      .find(query, { projection })
-      .sort(sort)
-      .limit(serverLimitPerPage + 1)
-      .toArray();
+    const [results, stats] = await Promise.all([
+      db
+        .collection("servertags")
+        .find(query, { projection })
+        .sort(sort)
+        .limit(serverLimitPerPage + 1)
+        .toArray(),
+      db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } }),
+    ]);
 
     const hasMore = results.length > serverLimitPerPage;
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
-    const stats = await db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
 
     return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW, characters };
   } catch (e) {

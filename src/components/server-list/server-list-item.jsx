@@ -133,7 +133,7 @@ export const ServerListItem = ({ server, idx }) => {
         <div className="card-actions justify-end mt-2">
           <Link
             href={`/join/${server.profileId}`}
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             target="_blank"
             className="btn btn-primary"
             prefetch={false}

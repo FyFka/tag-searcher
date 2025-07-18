@@ -1,7 +1,6 @@
 import client from "@/lib/mongodb";
 import { dbName } from "@/config";
-import { notFound } from "next/navigation";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 const getInviteCode = async (profileId) => {
   try {

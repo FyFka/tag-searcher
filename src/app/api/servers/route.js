@@ -14,11 +14,14 @@ const serverList = async (req) => {
     const characters = parseCharacters(searchParams.get("c"));
     const skip = (page - 1) * serverLimitPerPage;
 
-    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}:${characters}:${Date.now()}`;
+    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}:${characters}`;
     const cached = cache.get(cacheKey);
 
     if (cached) {
-      return new Response(JSON.stringify(cached), { status: 200, headers: { "Content-Type": "application/json" } });
+      return new Response(JSON.stringify(cached), {
+        status: 200,
+        headers: { "Content-Type": "application/json", "X-Cache": "1" },
+      });
     }
 
     const connection = await client;

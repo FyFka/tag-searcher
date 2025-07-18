@@ -18,11 +18,13 @@ export const Search = ({ refetchServers, initSetup }) => {
       const s = params.get("s") || "";
       const sortBy = params.get("sortBy") || "relevant";
       const nsfw = params.get("nsfw") !== "false";
+      const characters = parseInt(params.get("c")) || -1;
 
       setSearch(s);
       setSortBy(sortBy);
       setNSFW(nsfw);
-      refetchServers(s, sortBy, nsfw, true);
+      setCharacters(characters);
+      refetchServers(s, sortBy, nsfw, characters, true);
     };
 
     window.addEventListener("popstate", onPopState);
