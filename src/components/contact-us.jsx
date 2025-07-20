@@ -90,6 +90,18 @@ export const ContactUs = () => {
           </label>
           {errors.message && <p className="text-error text-sm">{errors.message.message}</p>}
         </div>
+
+        {notification.type === "error" && (
+          <div className="badge badge-soft badge-error w-full">{notification.message}</div>
+        )}
+        {notification.type === "success" && (
+          <div className="badge badge-soft badge-success w-full">{notification.message}</div>
+        )}
+
+        <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full">
+          {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
+          {!isSubmitting && "Send Message"}
+        </button>
         <div className="flex items-center justify-end">
           <Turnstile
             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
@@ -103,18 +115,6 @@ export const ContactUs = () => {
             }}
           />
         </div>
-
-        {notification.type === "error" && (
-          <div className="badge badge-soft badge-error w-full">{notification.message}</div>
-        )}
-        {notification.type === "success" && (
-          <div className="badge badge-soft badge-success w-full">{notification.message}</div>
-        )}
-
-        <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full">
-          {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
-          {!isSubmitting && "Send Message"}
-        </button>
       </form>
     </div>
   );

@@ -6,9 +6,9 @@ import { notFound } from "next/navigation";
 import { parseSortBy, parseSearch, getSortByType, parseNSFW, parseCharacters } from "@/lib/parse";
 
 export const metadata = {
-  title: "Search Discord Server Tags & Badges to Discover New Communities",
+  title: "Search Discord Tags & Badges",
   description:
-    "Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out",
+    "Explore the most up-to-date 2025 Discord server tags and badges instantly search thousands of tags discover communities personalize your profile.",
   keywords: [
     "discord",
     "discord server",
@@ -37,7 +37,7 @@ export const metadata = {
   openGraph: {
     url: "https://tagsearcher.lol/",
     type: "website",
-    title: "Search Discord Server Tags & Badges to Discover New Communities",
+    title: "Search Discord Tags & Badges",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
@@ -51,7 +51,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Search Discord Server Tags & Badges to Discover New Communities",
+    title: "Search Discord Tags & Badges",
     description:
       "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
     images: [

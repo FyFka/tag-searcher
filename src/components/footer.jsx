@@ -3,8 +3,8 @@ import Link from "next/link";
 export const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="w-full bg-base-300/80 backdrop-blur-md border-t border-base-100/50 py-2 px-4">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 px-2 md:px-10 xl:px-14">
+    <footer className="sticky bottom-0 left-0 z-50 w-full bg-base-300/80 backdrop-blur-md border-t border-base-100/50 py-2">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-1 px-0 md:px-10 xl:px-14">
         <div className="flex-10">
           <p className="text-sm inline-block text-center">
             Made in {year} for the community | Not affiliated with{" "}

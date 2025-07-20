@@ -96,14 +96,14 @@ export const ServerListItem = ({ server, idx }) => {
           )}
         </figure>
 
-        <figure className="h-16 w-16 rounded-2xl absolute -bottom-8 left-4 border-4 border-base-100  bg-base-200 overflow-hidden">
+        <figure className="h-16 w-16 rounded-2xl absolute -bottom-8 left-4 border-4 border-base-100 bg-base-200 overflow-hidden">
           {server.avatar && (
             <Image
-              src={`https://cdn.discordapp.com/${server.avatar}?size=64`}
+              src={`https://cdn.discordapp.com/${server.avatar}?size=56`}
               className="w-full h-full text-transparent"
               alt={`${server.name} avatar`}
-              width={64}
-              height={64}
+              width={56}
+              height={56}
               unoptimized
               priority={isPriority}
             />
