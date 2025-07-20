@@ -3,6 +3,14 @@ module.exports = {
   siteUrl: process.env.SITE_URL || "https://tagsearcher.lol",
   generateRobotsTxt: true,
   exclude: ["/manifest.json"],
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        disallow: ["/join/*"], // <-- add any extra paths here
+      },
+    ],
+  },
   additionalPaths: async (config) => [
     {
       loc: "/",
