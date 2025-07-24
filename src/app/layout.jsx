@@ -36,13 +36,15 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="dark" className="bg-base-300 scroll-smooth">
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
-        <Script id="clarity" strategy="afterInteractive">
-          {`(function(c,l,a,r,i,t,y){
+        {clarityTagId && (
+          <Script strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "${clarityTagId}");`}
-        </Script>
+          </Script>
+        )}
       </body>
     </html>
   );
