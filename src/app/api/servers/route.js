@@ -20,7 +20,7 @@ const serverList = async (req) => {
     if (cached) {
       return new Response(JSON.stringify(cached), {
         status: 200,
-        headers: { "Content-Type": "application/json", "X-Cache": "1" },
+        headers: { "Content-Type": "application/json" },
       });
     }
 

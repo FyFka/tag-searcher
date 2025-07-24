@@ -1,9 +1,8 @@
 import { LRUCache } from "lru-cache";
-
-const cacheLife = 1000 * 60 * 15; // 15 minutes
+import { cacheLife, cacheMaxAmount } from "@/config";
 
 const options = {
-  max: 700,
+  max: cacheMaxAmount,
   ttl: cacheLife,
 };
 
