@@ -68,10 +68,10 @@ export const SubmitServer = () => {
         </div>
       </fieldset>
       {notification.type === "error" && (
-        <div className="badge badge-soft badge-error w-full">{notification.message}</div>
+        <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>
       )}
       {notification.type === "success" && (
-        <div className="badge badge-soft badge-success w-full">{notification.message}</div>
+        <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>
       )}
       <div className="flex gap-0.5 items-center w-full">
         <TriangleAlert className="inline-block mr-0.75 min-w-4 min-h-4" height={16} width={16} color="#ffd60a" />

@@ -46,7 +46,6 @@ export const ContactUs = () => {
         We're here to help! Whether you have questions, need assistance, or want to provide feedback, please don't
         hesitate to reach out. Our team is ready to support you and ensure you have the best experience possible.
       </p>
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="floating-label">
@@ -59,7 +58,6 @@ export const ContactUs = () => {
           </label>
           {errors.name && <p className="text-error text-sm">{errors.name.message}</p>}
         </div>
-
         <div>
           <label className="floating-label">
             <span>Email</span>
@@ -77,7 +75,6 @@ export const ContactUs = () => {
           </label>
           {errors.email && <p className="text-error text-sm">{errors.email.message}</p>}
         </div>
-
         <div>
           <label className="floating-label">
             <span>Message</span>
@@ -92,10 +89,10 @@ export const ContactUs = () => {
         </div>
 
         {notification.type === "error" && (
-          <div className="badge badge-soft badge-error w-full">{notification.message}</div>
+          <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>
         )}
         {notification.type === "success" && (
-          <div className="badge badge-soft badge-success w-full">{notification.message}</div>
+          <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>
         )}
 
         <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full">

@@ -34,7 +34,7 @@ export const AddServer = () => {
         <FloatingPortal>
           <FloatingOverlay lockScroll className="bg-base-300/80 flex items-center justify-center z-1000">
             <FloatingFocusManager context={context}>
-              <div className="fixed hidden md:flex flex-col items-center gap-1 top-16 right-16 z-50 group">
+              <div className="fixed hidden mdc:flex flex-col items-center gap-1 top-16 right-16 z-50 group">
                 <button
                   className="btn btn-neutral h-12 w-12 p-1 rounded-full"
                   onClick={handleCloseAddServer}
@@ -49,7 +49,7 @@ export const AddServer = () => {
                   <div className="flex justify-between gap-1">
                     <h2 className="font-extrabold font-mono text-xl msm:text-2xl mb-3">Add a Discord Server</h2>
                     <button
-                      className="btn btn-neutral h-9 w-9 p-0 rounded-full z-50 md:hidden group"
+                      className="btn btn-neutral h-9 w-9 p-0 rounded-full z-50 mdc:hidden group"
                       onClick={handleCloseAddServer}
                       type="button"
                     >
