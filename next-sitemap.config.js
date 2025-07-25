@@ -2,7 +2,7 @@
 module.exports = {
   siteUrl: process.env.SITE_URL || "https://tagsearcher.lol",
   generateRobotsTxt: true,
-  exclude: ["/manifest.json"],
+  exclude: ["/manifest.webmanifest"],
   robotsTxtOptions: {
     policies: [
       {
