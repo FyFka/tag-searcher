@@ -8,6 +8,7 @@
 
 @theme {
   --breakpoint-ms: 30rem;
+  --breakpoint-msm: 21.875rem;
 }
 
 @plugin "daisyui/theme" {
@@ -105,4 +106,8 @@ input:-webkit-autofill:focus {
   .liq-table {
     max-height: calc(var(--spacing) * 56);
   }
+}
+
+#turnstile-widget {
+  font-size: 0;
 }
