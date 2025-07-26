@@ -42,3 +42,4 @@ next-env.d.ts
 
 /public/*.txt
 /public/*.xml
+!/public/u1nqxy3revk533vy1yht33hrbakbkujm.txt
