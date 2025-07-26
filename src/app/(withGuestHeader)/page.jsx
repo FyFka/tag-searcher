@@ -34,35 +34,6 @@ export const metadata = {
     "popular discord servers",
     "2025 discord servers",
   ],
-  openGraph: {
-    url: "https://tagsearcher.lol/",
-    type: "website",
-    title: "Search Discord Tags & Badges",
-    description:
-      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
-    images: [
-      {
-        url: "https://tagsearcher.lol/preview.webp",
-        width: 1200,
-        height: 630,
-        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Search Discord Tags & Badges",
-    description:
-      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
-    images: [
-      {
-        url: "https://tagsearcher.lol/preview.webp",
-        width: 1200,
-        height: 630,
-        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
-      },
-    ],
-  },
 };
 
 const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw = true, userCharacters = -1) => {
