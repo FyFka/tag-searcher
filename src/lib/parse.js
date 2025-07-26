@@ -12,16 +12,16 @@ export const parseSearch = (search = "", maxLength = maxSearchLength) => {
 };
 
 export const parseSortBy = (userSortBy = "") => {
-  const userSortByPrep = userSortBy.toLowerCase();
+  const userSortByPrep = typeof userSortBy === "string" ? userSortBy.toLowerCase() : "";
 
   if (userSortByPrep === "newest") {
     return "newest";
   } else if (userSortByPrep === "visited") {
     return "visited";
-  } else if (userSortByPrep === "relevant") {
-    return "relevant";
-  } else {
+  } else if (userSortByPrep === "popular") {
     return "popular";
+  } else {
+    return "relevant";
   }
 };
 

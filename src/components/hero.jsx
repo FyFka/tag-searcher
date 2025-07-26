@@ -4,17 +4,17 @@ import { formatNumber } from "@/lib/utils";
 import { Globe, Heart } from "lucide-react";
 import { useMemo } from "react";
 
-export const Hero = ({ totalServers, totalMembers }) => {
+export const Hero = ({ totalServers, totalMembers, customDescription }) => {
   const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
   const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
 
+  const description = customDescription
+    ? customDescription
+    : `Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out.`;
   return (
     <div className="py-22 msm:py-26 text-center flex flex-col items-center gap-4 px-2 md:px-10 xl:px-14 bg-base-100 relative">
       <h1 className="font-extrabold text-4xl md:text-6xl font-mono z-50">Discord Server Tag Searcher</h1>
-      <h2 className="text-base max-w-[768px] z-50">
-        Explore the most up-to-date collection of Discord server tags and badges for 2025. Search thousands of tags,
-        discover new communities, and personalize your profile to stand out.
-      </h2>
+      <h2 className="text-base max-w-[768px] z-50">{description}</h2>
       <div className="flex gap-x-4 gap-y-1.5 gap items-center flex-row flex-wrap justify-center z-50">
         <div className="flex items-center gap-1.25">
           <Globe height={18} width={18} className="text-primary" />

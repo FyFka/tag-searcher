@@ -2,10 +2,12 @@
 
 import { Search } from "@/components/search/search";
 import { Servers } from "@/components/servers";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { createQueryWithDefaultParams } from "@/lib/utils";
 
-export const ServerDashboard = ({ result }) => {
+export const ServerDashboard = ({ result, fastRoute }) => {
+  const router = useRouter();
   const pathname = usePathname();
   const [dashboard, setDashboard] = useState({ ...result, page: 1 });
   const [serversLoading, setServersLoading] = useState({ loading: false, force: false });
@@ -21,7 +23,7 @@ export const ServerDashboard = ({ result }) => {
     try {
       setServersLoading({ loading: true, force: !append });
 
-      const query = new URLSearchParams({ page, s: search, sortBy, NSFW, c: characters }).toString();
+      const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters, page);
       const res = await fetch(`/api/servers?${query}`);
       const data = await res.json();
 
@@ -42,26 +44,20 @@ export const ServerDashboard = ({ result }) => {
     }
   };
 
-  const createQueryWithDefaultParams = (search, sortBy, NSFW, characters) => {
-    const defaultParams = { search: "", sortBy: "relevant", NSFW: true, characters: -1 };
-    const params = {};
-
-    if (search !== defaultParams.search) params.s = search;
-    if (sortBy !== defaultParams.sortBy) params.sortBy = sortBy;
-    if (NSFW !== defaultParams.NSFW) params.nsfw = NSFW;
-    if (characters !== defaultParams.characters) params.c = characters;
-
-    return new URLSearchParams(params).toString();
-  };
-
   const forceRefreshServers = async (search, sortBy, NSFW, characters, isPopState) => {
+    if (fastRoute) {
+      const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters);
+      router.push(`/?${query}`);
+      return;
+    }
+
     if (!isPopState) {
       const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters);
       window.history.pushState(null, "", `${pathname}?${query}`);
     }
 
-    window.scrollTo({ top: 0 });
     await fetchServers({ page: 1, search, sortBy, NSFW, characters });
+    window.scrollTo({ top: 0 });
   };
 
   return (

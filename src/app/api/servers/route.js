@@ -10,7 +10,7 @@ const serverList = async (req) => {
     const search = parseSearch(searchParams.get("s"));
     const sortBy = parseSortBy(searchParams.get("sortBy"));
     const sort = getSortByType(sortBy, search);
-    const withNSFW = parseNSFW(searchParams.get("NSFW"));
+    const withNSFW = parseNSFW(searchParams.get("nsfw"));
     const characters = parseCharacters(searchParams.get("c"));
     const skip = (page - 1) * serverLimitPerPage;
 

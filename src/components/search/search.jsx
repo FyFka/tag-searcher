@@ -141,7 +141,7 @@ export const Search = ({ refetchServers, initSetup }) => {
           <input
             className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm filter-reset"
             type="radio"
-            name="metaframeworks"
+            name="characters"
             checked={characters === -1}
             value={-1}
             onChange={handleChangeCharacters}
