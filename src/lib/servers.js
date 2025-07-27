@@ -2,6 +2,32 @@ import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
 import { parseSortBy, parseSearch, getSortByType, parseNSFW, parseCharacters } from "@/lib/parse";
 
+export const getTrendingTagsList = async () => {
+  try {
+    const connection = await client;
+    const db = connection.db(dbName);
+    const trendingTags = await db
+      .collection("fastroutes")
+      .find({}, { projection: { urlSegment: 1, tagName: 1, _id: 0 } })
+      .toArray();
+    return trendingTags;
+  } catch (err) {
+    return [];
+  }
+};
+
+export const getStats = async () => {
+  try {
+    const connection = await client;
+    const db = connection.db(dbName);
+    const stats = db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
+    return stats;
+  } catch (err) {
+    console.log(err.message);
+    return null;
+  }
+};
+
 export const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw = true, userCharacters = -1) => {
   try {
     const search = parseSearch(userSearch);
@@ -34,8 +60,8 @@ export const getServers = async (userSearch = "", userSortBy = "relevant", userN
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
 
     return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW, characters };
-  } catch (e) {
-    console.error("Error fetching collections:", e);
+  } catch (err) {
+    console.log(err.message);
     return null;
   }
 };
@@ -51,8 +77,8 @@ export const getFastRoute = async (segment) => {
     }
 
     return fastRoute;
-  } catch (e) {
-    console.error("Error fetching collections:", e);
+  } catch (err) {
+    console.log(err.message);
     return null;
   }
 };

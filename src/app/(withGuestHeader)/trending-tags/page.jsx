@@ -1,0 +1,49 @@
+import { Hero } from "@/components/hero";
+import { notFound } from "next/navigation";
+import { getStats, getTrendingTagsList } from "@/lib/servers";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Trending Tags list",
+  description:
+    "Explore our Trending Tags — curated tags with over large amount of active servers and high participation counts. Discover what gamers are joining and which servers are most active.",
+};
+
+export default async function TrendingTags() {
+  const [stats, trendingTags] = await Promise.all([getStats(), getTrendingTagsList()]);
+
+  if (!stats || !trendingTags || !trendingTags.length) {
+    return notFound();
+  }
+
+  const customDescription =
+    "Explore our Trending Tags — curated tags with over large amount of active servers and high participation counts. Discover what gamers are joining and which servers are most active.";
+  const customTitle = "Trending Tags list";
+  return (
+    <>
+      <Hero
+        totalMembers={stats.members}
+        totalServers={stats.servers}
+        customDescription={customDescription}
+        customTitle={customTitle}
+        linkToSearchPage
+      />
+      <ul className="grid relative grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 bg-base-300 py-4 px-2 md:px-10 xl:px-14">
+        {trendingTags.map((tag) => (
+          <li key={tag.urlSegment} className="w-full relative group overflow-hidden bg-base-100 rounded-box">
+            <Link
+              className="block font-semibold p-4 relative text-center z-30"
+              href={`/tag/${tag.urlSegment}`}
+              prefetch={false}
+            >
+              {tag.tagName}
+            </Link>
+            <p className="absolute top-0 lef-0 w-full h-full flex items-center justify-center font-extrabold text-5xl text-nowrap uppercase opacity-0 group-hover:opacity-15 z-10 select-none pointer-events-none transition-opacity duration-200">
+              View More
+            </p>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
