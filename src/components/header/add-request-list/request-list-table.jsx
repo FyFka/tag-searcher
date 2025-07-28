@@ -33,7 +33,7 @@ export const RequestListTable = ({ requests, loading }) => {
         )}
         {!loading &&
           requests.map((req, i) => (
-            <tr key={i}>
+            <tr className="text-nowrap" key={i}>
               <td>{formatDate(req.requestedAt)}</td>
               <td>{req.inviteCode}</td>
               <td>{req.status}</td>

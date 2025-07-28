@@ -6,7 +6,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Trending Tags list",
   description:
-    "Explore our Trending Tags — curated tags with over large amount of active servers and high participation counts. Discover what gamers are joining and which servers are most active.",
+    "Trending Tags list – curated tags with high server count or strong engagement. Discover what gamers are joining and the most active tags.",
 };
 
 export default async function TrendingTags() {
@@ -17,8 +17,8 @@ export default async function TrendingTags() {
   }
 
   const customDescription =
-    "Explore our Trending Tags — curated tags with over large amount of active servers and high participation counts. Discover what gamers are joining and which servers are most active.";
-  const customTitle = "Trending Tags list";
+    "Trending Tags list – curated tags with high server count or strong engagement. Discover what gamers are joining and the most active tags.";
+  const customTitle = "Trending Tags List";
   return (
     <>
       <Hero

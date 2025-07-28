@@ -6,15 +6,14 @@ import { getServers } from "@/lib/servers";
 export const metadata = {
   title: "Search Discord Tags & Badges",
   description:
-    "Explore the most up-to-date 2025 Discord server tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Explore the most up-to-date 2025 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
   keywords: [
     "discord",
-    "discord server",
     "discord servers",
     "discord tag",
     "discord tags",
     "tags discord",
-    "discord server tags",
+    "discord guild tags",
     "find discord servers",
     "search discord servers",
     "discord server finder",

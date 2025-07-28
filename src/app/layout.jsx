@@ -14,25 +14,25 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: { template: "%s | Discord Server Tag Searcher" },
+  title: { template: "%s | Discord Guild Tag Searcher" },
   metadataBase: new URL("https://tagsearcher.lol"),
   openGraph: {
     url: "https://tagsearcher.lol/",
     type: "website",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.lol/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.lol.",
       },
     ],
   },
-  appleWebApp: { title: "Discord Server Tag Searcher", statusBarStyle: "default", capable: true },
-  applicationName: "Discord Server Tag Searcher",
+  appleWebApp: { title: "Discord Guild Tag Searcher", statusBarStyle: "default", capable: true },
+  applicationName: "Discord Guild Tag Searcher",
   icons: {
     icon: [
       { url: "/favicon.ico", rel: "icon" },
@@ -46,13 +46,13 @@ export const metadata = {
     card: "summary_large_image",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord server tags and badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.lol/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Server Tags and Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.lol.",
       },
     ],
   },
