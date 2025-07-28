@@ -4,6 +4,7 @@ import { formatNumber } from "@/lib/utils";
 import { Globe, Heart } from "lucide-react";
 import { useMemo } from "react";
 import Link from "next/link";
+import { LightRays } from "./light-rays";
 
 export const Hero = ({ totalServers, totalMembers, customDescription, customTitle, linkToSearchPage }) => {
   const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
@@ -36,6 +37,18 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
             <span className="font-semibold">100%</span> satisfaction
           </span>
         </div>
+      </div>
+      <div className="absolute top-0 left-0 w-full h-full z-10">
+        <LightRays
+          raysOrigin="top-center"
+          raysSpeed={0.7}
+          lightSpread={1}
+          rayLength={1.5}
+          followMouse={true}
+          mouseInfluence={0.05}
+          noiseAmount={0}
+          distortion={0.05}
+        />
       </div>
       {linkToSearchPage && (
         <Link href="/" className="btn btn-primary w-full max-w-80 mt-1.5" prefetch={false}>
