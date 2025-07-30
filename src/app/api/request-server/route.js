@@ -76,7 +76,7 @@ const serverRequest = async (req) => {
 
     if (existing) {
       return new Response(
-        JSON.stringify({ message: "That server’s already on the list! No need to add it twice 😉", type: "error" }),
+        JSON.stringify({ message: "That server’s already on the list😉", type: "error" }),
         {
           status: 409,
           headers: { "Content-Type": "application/json" },
