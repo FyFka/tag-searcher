@@ -37,6 +37,7 @@ export const ServerListItem = ({ server, idx }) => {
 
   const beautifiedMembersCount = formatNumber(server.membersCount);
   const beautifiedMembersOnline = formatNumber(server.membersOnline);
+  const beautifiedVisits = formatNumber(server.visits);
 
   const isPriority = idx < 4;
   return (
@@ -130,7 +131,10 @@ export const ServerListItem = ({ server, idx }) => {
         </div>
         <p className="text-sm text-base-content/80 overflow-hidden line-clamp-3">{server.description}</p>
 
-        <div className="card-actions justify-end mt-2">
+        <div className="card-actions items-center justify-end mt-2">
+          <p className="text-sm text-base-content/60">
+            <span className="font-semibold">{beautifiedVisits}</span> visits
+          </p>
           <Link
             href={`/join/${server.profileId}`}
             rel="nofollow noopener noreferrer"
