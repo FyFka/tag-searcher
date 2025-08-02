@@ -7,6 +7,30 @@ export const metadata = {
   title: "Trending Tags list",
   description:
     "Trending Tags list – curated tags with high server count or strong engagement. Discover what gamers are joining and the most active tags.",
+  keywords: [
+    "discord",
+    "discord servers",
+    "discord tag",
+    "discord tags",
+    "tags discord",
+    "discord guild tags",
+    "find discord servers",
+    "search discord servers",
+    "discord server finder",
+    "discord server search",
+    "discord server directory",
+    "public discord servers",
+    "browse discord servers",
+    "discord server browser",
+    "discord communities",
+    "discord community finder",
+    "discord tag search",
+    "gaming discord servers",
+    "anime discord servers",
+    "discord server list",
+    "popular discord servers",
+    "2025 discord servers",
+  ],
 };
 
 export default async function TrendingTags() {

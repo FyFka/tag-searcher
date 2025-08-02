@@ -3,7 +3,7 @@ import { ServerDashboard } from "@/components/server-dashboard";
 import { notFound } from "next/navigation";
 import { getServers } from "@/lib/servers";
 
-export const revalidate = 86400; // 24 hours
+export const revalidate = 43200; // 12 hours
 
 export const metadata = {
   title: "Search Discord Tags & Badges",

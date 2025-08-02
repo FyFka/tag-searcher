@@ -1,5 +1,31 @@
 export const metadata = {
   title: "Terms and conditions",
+  description:
+    "Explore the most up-to-date 2025 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+  keywords: [
+    "discord",
+    "discord servers",
+    "discord tag",
+    "discord tags",
+    "tags discord",
+    "discord guild tags",
+    "find discord servers",
+    "search discord servers",
+    "discord server finder",
+    "discord server search",
+    "discord server directory",
+    "public discord servers",
+    "browse discord servers",
+    "discord server browser",
+    "discord communities",
+    "discord community finder",
+    "discord tag search",
+    "gaming discord servers",
+    "anime discord servers",
+    "discord server list",
+    "popular discord servers",
+    "2025 discord servers",
+  ],
 };
 
 export default function Terms() {
@@ -9,7 +35,6 @@ export default function Terms() {
         <h1 className="font-extrabold text-3xl md:text-4xl font-mono text-center">Terms and Conditions</h1>
         <p className="text-sm opacity-60">Last updated: July 15, 2025</p>
       </div>
-
       <div className="space-y-2">
         <p>
           These terms and conditions (“Agreement”) set forth the general terms and conditions of your use of the{" "}
@@ -30,7 +55,6 @@ export default function Terms() {
           is electronic and not physically signed.
         </p>
       </div>
-
       <h2 className="font-extrabold my-4 text-xl md:text-2xl font-mono">Table of Contents</h2>
       <ol className="list-decimal pl-6 space-y-1">
         <li>

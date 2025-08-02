@@ -1,6 +1,5 @@
 import client from "@/lib/mongodb";
 import { dbName, serverLimitPerPage } from "@/config";
-import cache from "@/lib/cache.js";
 import { parsePage, parseSortBy, parseSearch, getSortByType, parseNSFW, parseCharacters } from "@/lib/parse";
 
 const serverList = async (req) => {
@@ -13,16 +12,6 @@ const serverList = async (req) => {
     const withNSFW = parseNSFW(searchParams.get("nsfw"));
     const characters = parseCharacters(searchParams.get("c"));
     const skip = (page - 1) * serverLimitPerPage;
-
-    const cacheKey = `${search}:${page}:${sortBy}:${withNSFW}:${characters}`;
-    const cached = cache.get(cacheKey);
-
-    if (cached) {
-      return new Response(JSON.stringify(cached), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
 
     const connection = await client;
     const db = connection.db(dbName);
@@ -45,7 +34,6 @@ const serverList = async (req) => {
     const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
 
     const responseData = { servers, hasMore };
-    cache.set(cacheKey, responseData);
 
     return new Response(JSON.stringify(responseData), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (e) {
