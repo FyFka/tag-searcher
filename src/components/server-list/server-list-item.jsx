@@ -38,7 +38,7 @@ export const ServerListItem = ({ server, idx }) => {
   const beautifiedMembersCount = formatNumber(server.membersCount);
   const beautifiedMembersOnline = formatNumber(server.membersOnline);
   const beautifiedVisits = formatNumber(server.visits);
-
+  const description = server.description?.length > 0 ? server.description : "No description provided";
   const isPriority = idx < 4;
   return (
     <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
@@ -117,23 +117,22 @@ export const ServerListItem = ({ server, idx }) => {
         </figure>
       </div>
 
-      <div className="card-body gap-2 pt-10">
+      <div className="card-body gap-1.75 pt-10">
         <h3 className="card-title">{server.name}</h3>
+        <p className="text-sm text-base-content/80 overflow-hidden line-clamp-3">{description}</p>
         <div className="flex gap-0.5 justify-between">
-          <p className="flex gap-1 items-center text-sm text-base-content/60">
+          <p className="flex gap-1 items-center text-xs font-semibold text-base-content/60">
             <span className="status status-success"></span>
-            {beautifiedMembersOnline} online
+            <span className="font-bold text-base-content/70">{beautifiedMembersOnline}</span> <span>online</span>
           </p>
-          <p className="flex gap-1 items-center justify-end text-sm text-base-content/60">
+          <p className="flex gap-1 items-center justify-end text-xs font-semibold text-base-content/60">
             <span className="status bg-base-content/80"></span>
-            {beautifiedMembersCount} members
+            <span className="font-bold text-base-content/70">{beautifiedMembersCount}</span> <span>members</span>
           </p>
         </div>
-        <p className="text-sm text-base-content/80 overflow-hidden line-clamp-3">{server.description}</p>
-
         <div className="card-actions items-center justify-end mt-2">
-          <p className="text-sm text-base-content/60">
-            <span className="font-semibold">{beautifiedVisits}</span> visits
+          <p className="text-xs text-base-content/60 font-semibold">
+            <span className="font-bold text-base-content/70">{beautifiedVisits}</span> <span>visits</span>
           </p>
           <Link
             href={`/join/${server.profileId}`}
