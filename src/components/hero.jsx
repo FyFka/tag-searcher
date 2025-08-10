@@ -52,7 +52,7 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
       </div>
       {linkToSearchPage && (
         <Link href="/" className="btn btn-primary w-full max-w-80 mt-1.5 relative z-50" prefetch={false}>
-          Start searching
+          Find My Tag
         </Link>
       )}
     </div>
