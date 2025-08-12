@@ -73,8 +73,8 @@ export const ServerListItem = ({ server, idx }) => {
 
       {server.nsfw && (
         <div className="absolute top-4 right-3 z-20 opacity-65">
-          <div className="badge badge-error badge-sm">
-            <span className="text-sm font-semibold">NSFW</span>
+          <div className="badge badge-warning badge-sm">
+            <span className="text-sm font-bold">NSFW</span>
           </div>
         </div>
       )}
@@ -93,7 +93,7 @@ export const ServerListItem = ({ server, idx }) => {
             />
           )}
           {server.nsfw && (
-            <span className="absolute top-0 left-0 h-full backdrop-blur-sm w-[102%] -translate-x-[1%]"></span>
+            <span className="absolute top-0 left-0 h-full backdrop-blur-xl w-[102%] -translate-x-[1%]"></span>
           )}
         </figure>
 
@@ -117,7 +117,7 @@ export const ServerListItem = ({ server, idx }) => {
         </figure>
       </div>
 
-      <div className="card-body gap-1 pt-10">
+      <div className="card-body gap-2 pt-10">
         <h3 className="card-title">{server.name}</h3>
         <div className="flex gap-0.5 justify-between">
           <p className="flex gap-1 items-center text-sm text-base-content/60">
