@@ -34,7 +34,7 @@ const getFastRoutePaths = async () => {
 export default {
   siteUrl: process.env.SITE_URL || "https://tagsearcher.lol",
   generateRobotsTxt: true,
-  exclude: ["/manifest.webmanifest"],
+  sitemapBaseFileName: "map",
   robotsTxtOptions: {
     policies: [
       {
@@ -43,8 +43,8 @@ export default {
     ],
   },
   additionalPaths: async () => {
-    // const tagRoutes = await getFastRoutePaths();
-    // console.log(`[Sitemap] Generated ${tagRoutes.length} FastRoute paths`);
+    const tagRoutes = await getFastRoutePaths();
+    console.log(`[Sitemap] Generated ${tagRoutes.length} FastRoute paths`);
     return [
       {
         loc: "/",
@@ -52,7 +52,7 @@ export default {
         priority: 0.7,
         lastmod: new Date().toISOString(),
       },
-      // ...tagRoutes,
+      ...tagRoutes,
     ];
   },
 };
