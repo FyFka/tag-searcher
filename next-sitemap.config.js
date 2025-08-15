@@ -49,7 +49,7 @@ export default {
       {
         loc: "/",
         changefreq: "daily",
-        priority: 1.0,
+        priority: 0.7,
         lastmod: new Date().toISOString(),
       },
       ...tagRoutes,
