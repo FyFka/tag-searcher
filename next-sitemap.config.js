@@ -43,8 +43,8 @@ export default {
     ],
   },
   additionalPaths: async () => {
-    const tagRoutes = await getFastRoutePaths();
-    console.log(`[Sitemap] Generated ${tagRoutes.length} FastRoute paths`);
+    // const tagRoutes = await getFastRoutePaths();
+    // console.log(`[Sitemap] Generated ${tagRoutes.length} FastRoute paths`);
     return [
       {
         loc: "/",
@@ -52,7 +52,7 @@ export default {
         priority: 0.7,
         lastmod: new Date().toISOString(),
       },
-      ...tagRoutes,
+      // ...tagRoutes,
     ];
   },
 };
