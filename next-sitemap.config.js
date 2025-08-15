@@ -39,7 +39,6 @@ export default {
     policies: [
       {
         userAgent: "*",
-        disallow: ["/join/*"],
       },
     ],
   },
