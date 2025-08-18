@@ -38,8 +38,8 @@ export default function Terms() {
       <div className="space-y-2">
         <p>
           These terms and conditions (“Agreement”) set forth the general terms and conditions of your use of the{" "}
-          <a className="link" href="https://tagsearcher.lol">
-            tagsearcher.lol
+          <a className="link" href="https://tagsearcher.org">
+            tagsearcher.org
           </a>{" "}
           website (“Website” or “Service”) and any of its related products and services (collectively, “Services”).
         </p>
@@ -157,8 +157,8 @@ export default function Terms() {
       </h2>
       <p>If you have any questions, concerns, or complaints about this Agreement, please contact us via:</p>
       <p>
-        <a className="link" href="https://tagsearcher.lol/contact">
-          https://tagsearcher.lol/contact
+        <a className="link" href="https://tagsearcher.org/contact">
+          https://tagsearcher.org/contact
         </a>
       </p>
     </div>

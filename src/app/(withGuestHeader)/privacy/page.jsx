@@ -123,12 +123,12 @@ export default function Privacy() {
               <strong>Website</strong> refers to Discord Server Tag Searcher, accessible from{" "}
               <Link
                 className="link"
-                href="https://tagsearcher.lol/"
+                href="https://tagsearcher.org/"
                 rel="external nofollow noopener"
                 target="_blank"
                 prefetch={false}
               >
-                https://tagsearcher.lol/
+                https://tagsearcher.org/
               </Link>
             </p>
           </li>
@@ -460,12 +460,12 @@ export default function Privacy() {
             By visiting this page on our website:{" "}
             <Link
               className="link"
-              href="https://tagsearcher.lol/contact"
+              href="https://tagsearcher.org/contact"
               rel="external nofollow noopener"
               target="_blank"
               prefetch={false}
             >
-              https://tagsearcher.lol/contact
+              https://tagsearcher.org/contact
             </Link>
           </li>
         </ul>

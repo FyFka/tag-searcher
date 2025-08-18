@@ -32,9 +32,8 @@ const getFastRoutePaths = async () => {
 };
 
 export default {
-  siteUrl: process.env.SITE_URL || "https://tagsearcher.lol",
+  siteUrl: process.env.SITE_URL || "https://tagsearcher.org",
   generateRobotsTxt: true,
-  sitemapBaseFileName: "map",
   robotsTxtOptions: {
     policies: [
       {

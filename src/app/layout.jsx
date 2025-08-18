@@ -15,19 +15,19 @@ const montserrat = Montserrat({
 
 export const metadata = {
   title: { template: "%s | Discord Guild Tag Searcher" },
-  metadataBase: new URL("https://tagsearcher.lol"),
+  metadataBase: new URL("https://tagsearcher.org"),
   openGraph: {
-    url: "https://tagsearcher.lol/",
+    url: "https://tagsearcher.org/",
     type: "website",
     title: "Search Discord Tags & Badges",
     description:
       "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
-        url: "https://tagsearcher.lol/preview.webp",
+        url: "https://tagsearcher.org/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.org",
       },
     ],
   },
@@ -49,10 +49,10 @@ export const metadata = {
       "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
     images: [
       {
-        url: "https://tagsearcher.lol/preview.webp",
+        url: "https://tagsearcher.org/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.lol.",
+        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.org",
       },
     ],
   },
@@ -73,6 +73,12 @@ export default function RootLayout({ children }) {
     })(window, document, "clarity", "script", "${clarityTagId}");`}
           </Script>
         )}
+        <Script
+          strategy="beforeInteractive"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4437945775145697"
+          crossorigin="anonymous"
+        ></Script>
       </body>
     </html>
   );
