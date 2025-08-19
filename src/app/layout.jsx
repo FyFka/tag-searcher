@@ -1,6 +1,7 @@
 import { Open_Sans, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { Disclaimer } from "@/components/disclaimer/disclaimer";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
     })(window, document, "clarity", "script", "${clarityTagId}");`}
           </Script>
         )}
+        <Disclaimer />
       </body>
     </html>
   );

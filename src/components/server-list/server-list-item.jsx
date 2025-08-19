@@ -41,7 +41,7 @@ export const ServerListItem = ({ server, idx }) => {
 
   const isPriority = idx < 4;
   return (
-    <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative">
+    <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
