@@ -73,12 +73,6 @@ export default function RootLayout({ children }) {
     })(window, document, "clarity", "script", "${clarityTagId}");`}
           </Script>
         )}
-        <Script
-          strategy="beforeInteractive"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4437945775145697"
-          crossorigin="anonymous"
-        ></Script>
       </body>
     </html>
   );
