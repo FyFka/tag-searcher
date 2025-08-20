@@ -43,7 +43,6 @@ export default {
   },
   additionalPaths: async () => {
     const tagRoutes = await getFastRoutePaths();
-    console.log(`[Sitemap] Generated ${tagRoutes.length} FastRoute paths`);
     return [
       {
         loc: "/",
