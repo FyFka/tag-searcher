@@ -2,10 +2,8 @@
 const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
-  output: "standalone",
   experimental: {
     webpackMemoryOptimizations: true,
-    webpackBuildWorkers: true,
     serverSourceMaps: false,
   },
   eslint: {
