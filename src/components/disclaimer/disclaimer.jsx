@@ -33,6 +33,7 @@ export const Disclaimer = () => {
       <button
         onClick={handleAccept}
         className="btn btn-neutral absolute top-4 right-4 h-7 w-7 p-0 rounded-full z-50 group"
+        aria-label="Close"
         type="button"
       >
         <X className="opacity-85 group-hover:opacity-100" height={14} width={14} />
