@@ -11,8 +11,7 @@ import {
 } from "@floating-ui/react";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
-import { SubmitServer } from "@/components/header/submit-server";
-import { AddRequestList } from "@/components/header/add-request-list/add-request-list";
+import { AddServerModalContent } from "@/components/header/add-server-modal";
 
 export const AddServer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,10 +55,7 @@ export const AddServer = () => {
                       <X className="opacity-85 group-hover:opacity-100" height={16} width={16} />
                     </button>
                   </div>
-                  <div className="flex flex-col gap-4">
-                    <SubmitServer />
-                    <AddRequestList />
-                  </div>
+                  <AddServerModalContent />
                 </div>
               </div>
             </FloatingFocusManager>

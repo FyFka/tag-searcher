@@ -1,3 +1,5 @@
+"use client";
+
 import { Search as SearchIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { RequestListTable } from "@/components/header/add-request-list/request-list-table";
@@ -5,10 +7,9 @@ import { Pagination } from "@/components/header/add-request-list/pagination";
 import { debounce } from "@/lib/utils";
 import { maxSearchInviteCodeLength } from "@/config";
 
-export const AddRequestList = () => {
+export const AddRequestList = ({ page, setPage, refetchTrigger }) => {
   const [search, setSearch] = useState("");
   const [requests, setRequests] = useState([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +36,7 @@ export const AddRequestList = () => {
 
   useEffect(() => {
     debouncedFetch(page, search);
-  }, [search, debouncedFetch]);
+  }, [search, debouncedFetch, refetchTrigger]);
 
   const onSearchChange = (evt) => {
     const val = evt.target.value;

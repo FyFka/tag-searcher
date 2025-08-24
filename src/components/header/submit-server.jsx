@@ -5,7 +5,7 @@ import { useState } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
 import { Turnstile } from "next-turnstile";
 
-export const SubmitServer = () => {
+export const SubmitServer = ({ handleServerAdd }) => {
   const [inviteCode, setInviteCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
@@ -26,6 +26,7 @@ export const SubmitServer = () => {
         setNotification({ message: data.message, type: "error" });
       } else if (data.type === "success") {
         setNotification({ message: data.message, type: "success" });
+        handleServerAdd();
       } else {
         setNotification({ message: data.message || "Unexpected error", type: "error" });
       }
