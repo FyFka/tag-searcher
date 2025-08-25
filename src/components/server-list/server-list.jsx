@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { ServerListItem } from "@/components/server-list/server-list-item";
+import AdCard from "./server-list-ad-card";
 
 export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers }) => {
   const loaderRef = useRef(null);
@@ -31,6 +32,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       {servers.map((server, idx) => (
         <ServerListItem key={server.profileId} server={server} idx={idx} />
       ))}
+      {servers.length > 0 && <AdCard />}
       {isServersLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">
           <span className="loading loading-spinner loading-lg text-primary" />
