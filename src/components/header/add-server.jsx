@@ -51,6 +51,7 @@ export const AddServer = () => {
                       className="btn btn-neutral h-9 w-9 p-0 rounded-full z-50 mdc:hidden group"
                       onClick={handleCloseAddServer}
                       type="button"
+                      aria-label="Close"
                     >
                       <X className="opacity-85 group-hover:opacity-100" height={16} width={16} />
                     </button>
