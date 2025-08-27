@@ -9,6 +9,19 @@ export const debounce = (callback, wait) => {
   };
 };
 
+export const throttle = (callback, wait) => {
+  let timerFlag = null;
+
+  return (...args) => {
+    if (timerFlag === null) {
+      callback(...args);
+      timerFlag = setTimeout(() => {
+        timerFlag = null;
+      }, wait);
+    }
+  };
+};
+
 export const formatNumber = (num) => {
   if (typeof num !== "number") return "0";
   if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";

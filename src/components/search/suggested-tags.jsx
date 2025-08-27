@@ -1,5 +1,5 @@
 export const SuggestedTags = ({ onSearchChange, search }) => {
-  const suggestedSearchTags = [":3", "Aura", "୨ৎ", "69", "meow", ">ᴗ<", "cute"];
+  const suggestedSearchTags = ["meow", ":3", "cute", "୨ৎ", "Aura", ">ᴗ<", "sky"];
   const onSuggestedTagClick = (tag) => {
     onSearchChange({ target: { value: tag } });
   };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { ServerListItem } from "@/components/server-list/server-list-item";
+import { ServerListItem } from "@/components/server-card/server-card";
 import AdCard from "./server-list-ad-card";
 
 export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers }) => {

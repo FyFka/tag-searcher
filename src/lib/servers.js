@@ -28,7 +28,13 @@ export const getStats = async () => {
   }
 };
 
-export const getServers = async (userSearch = "", userSortBy = "relevant", userNsfw = true, userCharacters = -1) => {
+export const getServers = async (
+  userSearch = "",
+  userSortBy = "relevant",
+  userNsfw = true,
+  userCharacters = -1,
+  serversLimit = serverLimitPerPage
+) => {
   try {
     const search = parseSearch(userSearch);
     const sortBy = parseSortBy(userSortBy);
@@ -51,13 +57,13 @@ export const getServers = async (userSearch = "", userSortBy = "relevant", userN
         .collection("servertags")
         .find(query, { projection })
         .sort(sort)
-        .limit(serverLimitPerPage + 1)
+        .limit(serversLimit + 1)
         .toArray(),
       db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } }),
     ]);
 
-    const hasMore = results.length > serverLimitPerPage;
-    const servers = hasMore ? results.slice(0, serverLimitPerPage) : results;
+    const hasMore = results.length > serversLimit;
+    const servers = hasMore ? results.slice(0, serversLimit) : results;
 
     return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW, characters };
   } catch (err) {

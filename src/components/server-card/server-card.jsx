@@ -17,22 +17,19 @@ import {
   FloatingPortal,
 } from "@floating-ui/react";
 import { useState } from "react";
-import { ServerTagPreview } from "./server-tag-preview";
+import { ServerTagPreview } from "@/components/server-card/server-tag-preview";
 
 export const ServerListItem = ({ server, idx }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(4), flip(), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
-
   const click = useClick(context);
   const dismiss = useDismiss(context);
   const role = useRole(context);
-
   const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss, role]);
 
   const beautifiedMembersCount = formatNumber(server.membersCount);
@@ -64,7 +61,7 @@ export const ServerListItem = ({ server, idx }) => {
       {isOpen && (
         <FloatingPortal>
           <FloatingFocusManager context={context} modal={true}>
-            <div ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+            <div className="z-[100]" ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
               <ServerTagPreview tagImg={server.tagImg} tagName={server.tagName} />
             </div>
           </FloatingFocusManager>

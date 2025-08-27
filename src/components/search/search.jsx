@@ -4,7 +4,7 @@ import { Search as SearchIcon } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
 import { debounce } from "@/lib/utils";
 import { maxSearchLength, searchDebounce } from "@/config";
-import { SuggestedTags } from "./suggested-tags";
+import { SuggestedTags } from "@/components/search/suggested-tags";
 
 export const Search = ({ refetchServers, initSetup }) => {
   const [search, setSearch] = useState(initSetup.search);
