@@ -33,7 +33,7 @@ export const metadata = {
     "2025 discord servers",
   ],
   alternates: {
-    canonical: `https://tagsearcher.org`,
+    canonical: `https://tagsearcher.org/explore`,
   },
 };
 
