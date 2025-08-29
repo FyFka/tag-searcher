@@ -107,7 +107,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
                 onMouseMove={(evt) => evt.stopPropagation()}
                 onTouchStart={(evt) => evt.stopPropagation()}
               >
-                <div className="w-76 md:max-w-sm md:w-full">
+                <div className="w-76 md:w-sm">
                   <ServerListItem server={server} idx={0} />
                 </div>
               </div>
