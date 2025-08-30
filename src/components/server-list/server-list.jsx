@@ -27,12 +27,13 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
   }, [fetchNextServers]);
 
   const isServersLoading = serversLoading.loading;
+  const showAds = servers.length > 0 && !isServersLoading;
   return (
     <>
       {servers.map((server, idx) => (
         <ServerListItem key={server.profileId} server={server} idx={idx} />
       ))}
-      {servers.length > 0 && (
+      {showAds && (
         <>
           <NativeBanner
             id="container-a3853da0402d9b70eb6612e70db53061"
@@ -44,7 +45,6 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
           />
         </>
       )}
-
       {isServersLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">
           <span className="loading loading-spinner loading-lg text-primary" />
