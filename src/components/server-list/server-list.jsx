@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import { ServerListItem } from "@/components/server-card/server-card";
 import { NativeBanner } from "@/components/banners/native-banner";
 import { Banner } from "@/components/banners/banner";
-import Script from "next/script";
 
 export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers }) => {
   const loaderRef = useRef(null);
@@ -38,7 +37,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
         <>
           <NativeBanner id="container-a3853da0402d9b70eb6612e70db53061" />
           <Banner>
-            <Script type="text/javascript">
+            <script type="text/javascript">
               {`atOptions = {
 		'key' : '384fcc0fcb10ebda5dd48d69a7eb5c56',
 		'format' : 'iframe',
@@ -46,7 +45,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
 		'width' : 300,
 		'params' : {}
 	};`}
-            </Script>
+            </script>
           </Banner>
         </>
       )}
