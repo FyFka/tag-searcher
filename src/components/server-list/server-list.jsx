@@ -34,8 +34,14 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       ))}
       {servers.length > 0 && (
         <>
-          <NativeBanner id="container-a3853da0402d9b70eb6612e70db53061" />
-          <NativeBanner id="container-75ddb1c05461565f2401775c94246293" />
+          <NativeBanner
+            id="container-a3853da0402d9b70eb6612e70db53061"
+            src="//pl27496434.profitableratecpm.com/a3853da0402d9b70eb6612e70db53061/invoke.js"
+          />
+          <NativeBanner
+            id="container-75ddb1c05461565f2401775c94246293"
+            src="//pl27563472.revenuecpmgate.com/75ddb1c05461565f2401775c94246293/invoke.js"
+          />
         </>
       )}
 
