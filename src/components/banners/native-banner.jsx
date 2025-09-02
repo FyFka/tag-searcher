@@ -1,10 +1,10 @@
 import { Wind } from "lucide-react";
 
-export default function AdCard() {
+export const NativeBanner = ({ id }) => {
   return (
     <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
       <div className="relative z-30 min-h-64">
-        <div id="container-a3853da0402d9b70eb6612e70db53061"></div>
+        <div id={id}></div>
       </div>
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <div className="flex flex-col items-center justify-center p-6 text-center h-full w-full">
@@ -15,4 +15,4 @@ export default function AdCard() {
       </div>
     </div>
   );
-}
+};

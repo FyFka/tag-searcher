@@ -2,7 +2,9 @@
 
 import { useRef, useEffect } from "react";
 import { ServerListItem } from "@/components/server-card/server-card";
-import AdCard from "./server-list-ad-card";
+import { NativeBanner } from "@/components/banners/native-banner";
+import { Banner } from "@/components/banners/banner";
+import Script from "next/script";
 
 export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers }) => {
   const loaderRef = useRef(null);
@@ -32,7 +34,23 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       {servers.map((server, idx) => (
         <ServerListItem key={server.profileId} server={server} idx={idx} />
       ))}
-      {servers.length > 0 && <AdCard />}
+      {servers.length > 0 && (
+        <>
+          <NativeBanner id="container-a3853da0402d9b70eb6612e70db53061" />
+          <Banner>
+            <Script type="text/javascript">
+              {`atOptions = {
+		'key' : '384fcc0fcb10ebda5dd48d69a7eb5c56',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};`}
+            </Script>
+          </Banner>
+        </>
+      )}
+
       {isServersLoading && (
         <div className="min-h-96 col-span-full flex justify-center py-4">
           <span className="loading loading-spinner loading-lg text-primary" />
