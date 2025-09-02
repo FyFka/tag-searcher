@@ -37,6 +37,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
         <>
           <NativeBanner id="container-a3853da0402d9b70eb6612e70db53061" />
           <Banner>
+            <div id="384fcc0fcb10ebda5dd48d69a7eb5c56"></div>
             <script type="text/javascript">
               {`atOptions = {
 		'key' : '384fcc0fcb10ebda5dd48d69a7eb5c56',
