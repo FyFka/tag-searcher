@@ -3,7 +3,6 @@
 import { useRef, useEffect } from "react";
 import { ServerListItem } from "@/components/server-card/server-card";
 import { NativeBanner } from "@/components/banners/native-banner";
-import { Banner } from "@/components/banners/banner";
 
 export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers }) => {
   const loaderRef = useRef(null);
