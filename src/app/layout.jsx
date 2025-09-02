@@ -70,6 +70,11 @@ export default function RootLayout({ children }) {
           data-cfasync="false"
           src="//pl27496434.profitableratecpm.com/a3853da0402d9b70eb6612e70db53061/invoke.js"
         ></Script>
+        <Script
+          async="async"
+          data-cfasync="false"
+          src="//pl27563472.revenuecpmgate.com/75ddb1c05461565f2401775c94246293/invoke.js"
+        ></Script>
         {clarityTagId && (
           <Script strategy="afterInteractive">
             {`(function(c,l,a,r,i,t,y){

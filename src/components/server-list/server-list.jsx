@@ -36,21 +36,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       {servers.length > 0 && (
         <>
           <NativeBanner id="container-a3853da0402d9b70eb6612e70db53061" />
-          <Banner>
-            <script type="text/javascript">
-              {`atOptions = {
-		'key' : '384fcc0fcb10ebda5dd48d69a7eb5c56',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};`}
-            </script>
-            <script
-              strategy="afterInteractive"
-              src="//www.highperformanceformat.com/384fcc0fcb10ebda5dd48d69a7eb5c56/invoke.js"
-            ></script>
-          </Banner>
+          <NativeBanner id="container-75ddb1c05461565f2401775c94246293" />
         </>
       )}
 
