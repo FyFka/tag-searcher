@@ -19,30 +19,33 @@ export const Footer = () => {
             </Link>
           </p>
         </div>
-        <div className="flex items-center justify-center gap-2 text-sm">
-          <ul className="flex gap-x-3 gap-y-1 flex-wrap items-center justify-center">
-            <li>
-              <Link className="link" href="/trending-tags" prefetch={false}>
-                Trending Tags
-              </Link>
-            </li>
-            <li>
-              <Link className="link" href="/terms" prefetch={false}>
-                Terms of Service
-              </Link>
-            </li>
-            <li>
-              <Link className="link" href="/privacy" prefetch={false}>
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link className="link" href="/contact" prefetch={false}>
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
+        <ul className="flex gap-x-3 gap-y-1 flex-wrap items-center justify-center text-sm">
+          <li>
+            <Link className="link" href="/explore" prefetch={false}>
+              Explore Tags
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/trending-tags" prefetch={false}>
+              Trending Tags
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/terms" prefetch={false}>
+              Terms of Service
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/privacy" prefetch={false}>
+              Privacy Policy
+            </Link>
+          </li>
+          <li>
+            <Link className="link" href="/contact" prefetch={false}>
+              Contact Us
+            </Link>
+          </li>
+        </ul>
       </div>
     </footer>
   );
