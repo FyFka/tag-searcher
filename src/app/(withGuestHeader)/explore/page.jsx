@@ -5,9 +5,9 @@ import { Explore } from "@/components/explore/explore";
 export const revalidate = 64800; // 12 hours
 
 export const metadata = {
-  title: "Search Discord Tags & Badges",
+  title: "Explore Discord Tags & Badges",
   description:
-    "Explore the most up-to-date 2025 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Explore the most up-to-date 2025 discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
   keywords: [
     "discord",
     "discord servers",
