@@ -1,14 +1,14 @@
 "use client";
 
 import { formatNumber } from "@/lib/utils";
-import { Globe, Heart } from "lucide-react";
-import { useMemo } from "react";
+import { Globe, Heart, Zap } from "lucide-react";
 import Link from "next/link";
 import { LightRays } from "./light-rays";
 
-export const Hero = ({ totalServers, totalMembers, customDescription, customTitle, linkToSearchPage }) => {
-  const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
-  const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
+export const Hero = ({ totalServers, totalMembers, totalVisits, customDescription, customTitle, linkToSearchPage }) => {
+  const beautifiedServers = formatNumber(totalServers);
+  const beautifiedMembers = formatNumber(totalMembers);
+  const beautifiedVisits = formatNumber(totalVisits);
 
   const title = customTitle ? customTitle : "Discord Tags Searcher";
   const description = customDescription
@@ -23,6 +23,12 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
           <Globe height={18} width={18} className="text-primary" />
           <span className="text-nowrap">
             <span className="font-semibold">{beautifiedServers}</span> servers
+          </span>
+        </div>
+        <div className="flex items-center gap-1.25">
+          <Zap height={18} width={18} className="text-warning" />
+          <span className="text-nowrap">
+            <span className="font-semibold">{beautifiedVisits}</span> visits
           </span>
         </div>
         <div className="flex items-center gap-1.25">
@@ -52,7 +58,7 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
       </div>
       {linkToSearchPage && (
         <Link href="/" className="btn btn-primary w-full max-w-80 mt-1.5 relative z-50" prefetch={false}>
-          Find Discord Tags
+          Find Discord Tag
         </Link>
       )}
     </div>

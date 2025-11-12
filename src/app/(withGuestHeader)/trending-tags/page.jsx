@@ -36,6 +36,7 @@ export default async function TrendingTags() {
       <Hero
         totalMembers={stats.members}
         totalServers={stats.servers}
+        totalVisits={stats.visits}
         customDescription={customDescription}
         customTitle={customTitle}
         linkToSearchPage

@@ -48,6 +48,7 @@ export default async function FastRouteServerTag({ params }) {
       <Hero
         totalMembers={result.stats.members}
         totalServers={result.stats.servers}
+        totalVisits={result.stats.visits}
         customDescription={customDescription}
       />
       <ServerDashboard result={result} fastRoute />

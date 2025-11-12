@@ -36,7 +36,7 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
-      <Hero totalMembers={result.stats.members} totalServers={result.stats.servers} />
+      <Hero totalMembers={result.stats.members} totalServers={result.stats.servers} totalVisits={result.stats.visits} />
       <ServerDashboard result={result} />
     </>
   );

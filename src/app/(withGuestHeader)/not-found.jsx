@@ -1,5 +1,3 @@
-import { Footer } from "@/components/footer/footer";
-import { Header } from "@/components/header/header";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -13,8 +11,7 @@ export default function NotFound() {
 
   return (
     <>
-      <Header />
-      <main className="flex flex-col items-center justify-center text-center px-4 py-24 gap-4 grow">
+      <div className="flex flex-col items-center justify-center text-center px-4 py-24 gap-4">
         <Image src="/not-found.webp" height={225} width={225} alt="404" priority fetchPriority="high" />
         <h1 className="text-2xl md:text-4xl font-extrabold">Oops... this page ghosted us (404)</h1>
         <p className="text-base-content max-w-md text-lg">
@@ -23,8 +20,7 @@ export default function NotFound() {
         <Link href="/" className="btn btn-primary mt-2">
           Take me home
         </Link>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }
