@@ -5,6 +5,10 @@ import { isRateLimited } from "@/lib/rate-limiter";
 import { CaptchaRedirectJoin } from "@/components/captcha-redirect-join/captcha-redirect-join";
 import { headers } from "next/headers";
 
+export const metadata = {
+  title: "Woah, that's a bit too spicy!",
+};
+
 const getInviteCode = async (profileId) => {
   try {
     const connection = await client;
@@ -28,8 +32,7 @@ export default async function Redirect({ params }) {
   const { profileId } = await params;
 
   const heads = await headers();
-  const ip = heads.get("x-forwarded-for") ?? heads.get("remote-addr");
-  console.log(ip);
+  const ip = heads.get("x-forwarded-for") || heads.get("remote-addr") || heads.get("srcIp");
   const limited = await isRateLimited(ip);
 
   if (!limited) {

@@ -3,10 +3,6 @@ import { Footer } from "@/components/footer/footer";
 import { Header } from "@/components/header/header";
 import Image from "next/image";
 
-export const metadata = {
-  title: "Woah, that's a bit too spicy!",
-};
-
 export const CaptchaRedirectJoin = ({ profileId }) => {
   return (
     <>
