@@ -15,25 +15,25 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: { template: "%s | Discord Guild Tag Searcher" },
+  title: { template: "%s | Discord Tags Searcher" },
   metadataBase: new URL("https://tagsearcher.org"),
   openGraph: {
     url: "https://tagsearcher.org/",
     type: "website",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2026. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.org/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.org",
+        alt: "A display of various Discord Tags and Badges available to search on TagSearcher.org",
       },
     ],
   },
-  appleWebApp: { title: "Discord Guild Tag Searcher", statusBarStyle: "default", capable: true },
-  applicationName: "Discord Guild Tag Searcher",
+  appleWebApp: { title: "Discord Tags Searcher", statusBarStyle: "default", capable: true },
+  applicationName: "Discord Tags Searcher",
   icons: {
     icon: [
       { url: "/favicon.ico", rel: "icon" },
@@ -47,13 +47,13 @@ export const metadata = {
     card: "summary_large_image",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2026. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.org/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Guild Tags and Badges available to search on TagSearcher.org",
+        alt: "A display of various Discord Tags and Badges available to search on TagSearcher.org",
       },
     ],
   },

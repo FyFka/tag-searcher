@@ -8,7 +8,7 @@ export const metadata = {
     "Discord guilds list",
     "Discord server tags",
     "Discord badges",
-    "Discord guild tags",
+    "Discord tags",
     "Server tag directory",
     "Username badges 2026",
     "Discord server icons",

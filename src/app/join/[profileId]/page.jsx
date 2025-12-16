@@ -1,32 +1,62 @@
-import client from "@/lib/mongodb";
-import { dbName } from "@/config";
-import { notFound, redirect } from "next/navigation";
+"use client";
 
-const getInviteCode = async (profileId) => {
-  try {
-    const connection = await client;
-    const db = connection.db(dbName);
+import { useState } from "react";
+import { Turnstile } from "next-turnstile";
 
-    const res = await db
-      .collection("servertags")
-      .findOneAndUpdate(
-        { profileId },
-        { $inc: { visits: 1 } },
-        { projection: { inviteCode: 1 }, returnDocument: "after" }
-      );
+export default function JoinPage({ params }) {
+  const { profileId } = params;
+  const [turnstileToken, setTurnstileToken] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    return res?.inviteCode ?? null;
-  } catch (e) {
-    console.error("Error fetching collections:", e);
-    return null;
-  }
-};
-export default async function Redirect({ params }) {
-  const { profileId } = await params;
+  const handleJoin = async () => {
+    if (!turnstileToken) {
+      setError("Please complete the captcha first");
+      return;
+    }
 
-  const InviteCode = await getInviteCode(profileId);
+    setLoading(true);
+    setError(null);
 
-  if (!InviteCode) return notFound();
+    try {
+      const res = await fetch(`/api/get-invite/${profileId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ turnstileToken }),
+      });
 
-  return redirect(`https://discord.com/invite/${InviteCode}`);
+      const data = await res.json();
+
+      if (!res.ok || !data.inviteCode) {
+        setError(data.error || "Failed to get invite");
+        setLoading(false);
+        return;
+      }
+
+      window.location.href = `https://discord.com/invite/${data.inviteCode}`;
+    } catch (err) {
+      console.error(err);
+      setError("Unexpected error");
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-3xl font-bold mb-4">Join our Discord</h1>
+      {error && <div className="text-red-500 mb-2">{error}</div>}
+
+      <button onClick={handleJoin} disabled={loading} className="btn btn-primary mb-4">
+        {loading ? "Redirecting..." : "Join Discord"}
+      </button>
+
+      <Turnstile
+        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        onVerify={(token) => {
+          setTurnstileToken(token);
+          setError(null);
+        }}
+      />
+    </div>
+  );
 }

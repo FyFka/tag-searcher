@@ -10,13 +10,13 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
   const beautifiedServers = useMemo(() => formatNumber(totalServers), [totalServers]);
   const beautifiedMembers = useMemo(() => formatNumber(totalMembers), [totalMembers]);
 
-  const title = customTitle ? customTitle : "Discord Guild Tag Searcher";
+  const title = customTitle ? customTitle : "Discord Tags Searcher";
   const description = customDescription
     ? customDescription
-    : `Explore the most up-to-date collection of Discord guild tags and badges for 2026. Search thousands of tags, discover new communities, and personalize your profile to stand out.`;
+    : `Explore the most up-to-date collection of Discord tags and badges. Search thousands of tags, discover new servers, and personalize your profile to stand out.`;
   return (
     <div className="py-22 msm:py-26 text-center flex flex-col items-center gap-4 px-2 md:px-10 xl:px-14 bg-base-100 relative">
-      <h1 className="font-extrabold text-4xl md:text-6xl font-mono z-50">{title}</h1>
+      <h1 className="font-extrabold text-4xl md:text-6xl xl:text-7xl font-mono z-50">{title}</h1>
       <h2 className="text-base max-w-3xl z-50">{description}</h2>
       <div className="flex gap-x-4 gap-y-1.5 gap items-center flex-row flex-wrap justify-center z-50">
         <div className="flex items-center gap-1.25">

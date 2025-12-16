@@ -23,7 +23,7 @@ export const generateMetadata = async ({ params }) => {
         `Discord server tag ${tag}`,
         `Discord badge ${tag}`,
         `Discord profile badge ${tag}`,
-        `Discord guild tag ${tag}`,
+        `Discord tag ${tag}`,
         "Server tag directory",
         `Username badge ${tag} 2026`,
         "Discord tag list",

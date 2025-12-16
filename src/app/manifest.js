@@ -1,10 +1,9 @@
 export default function manifest() {
   return {
     id: "/",
-    name: "Discord Guild Tag Searcher",
+    name: "Discord Tags Searcher",
     short_name: "TagSearcher",
-    description:
-      "Find and explore Discord guild tags and badges. Discover communities and personalize your profile in 2026.",
+    description: "Find and explore Discord tags and badges. Discover communities and personalize your profile in 2026.",
     start_url: "/",
     scope: "/",
     display: "standalone",
