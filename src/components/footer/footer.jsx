@@ -40,7 +40,7 @@ export const Footer = () => {
             >
               Discord
             </Link>
-            . Discover servers, tags, badges, and join communities easily.
+            . Discover and find servers, tags, badges, and join communities easily.
           </p>
         </div>
 
