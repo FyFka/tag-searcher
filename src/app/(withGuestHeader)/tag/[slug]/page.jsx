@@ -30,9 +30,6 @@ export const generateMetadata = async ({ params }) => {
         `Discord server ${tag} icons`,
         `Discord servers related to ${tag}`,
       ],
-      alternates: {
-        canonical: `https://tagsearcher.org/tag/${slug}`,
-      },
     };
   } catch (error) {
     return {

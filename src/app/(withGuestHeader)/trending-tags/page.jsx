@@ -19,9 +19,6 @@ export const metadata = {
     "Discord server icons",
     "Discord servers",
   ],
-  alternates: {
-    canonical: `https://tagsearcher.org/trending-tags`,
-  },
 };
 
 export default async function TrendingTags() {

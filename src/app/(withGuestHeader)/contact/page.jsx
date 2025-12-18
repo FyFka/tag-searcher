@@ -16,9 +16,6 @@ export const metadata = {
     "Discord server icons",
     "Discord servers",
   ],
-  alternates: {
-    canonical: `https://tagsearcher.org/contact`,
-  },
 };
 
 export default function ContactPage() {

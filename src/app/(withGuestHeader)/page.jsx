@@ -19,9 +19,6 @@ export const metadata = {
     "Discord server icons",
     "Discord servers",
   ],
-  alternates: {
-    canonical: `https://tagsearcher.org`,
-  },
 };
 
 export default async function Home({ searchParams }) {
