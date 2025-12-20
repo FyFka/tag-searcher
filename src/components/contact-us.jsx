@@ -54,6 +54,7 @@ export const ContactUs = () => {
               {...register("name", { required: "Name is required" })}
               className={`input input-bordered w-full ${errors.name ? "border-error" : ""}`}
               placeholder="Your name"
+              autoComplete="name"
             />
           </label>
           {errors.name && <p className="text-error text-sm">{errors.name.message}</p>}
@@ -70,6 +71,7 @@ export const ContactUs = () => {
                 },
               })}
               className={`input input-bordered w-full ${errors.email ? "border-error" : ""}`}
+              autoComplete="email"
               placeholder="you@example.com"
             />
           </label>

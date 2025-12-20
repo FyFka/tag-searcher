@@ -2,12 +2,18 @@
 
 import Link from "next/link";
 import { Feedback } from "./feedback";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-export const Footer = ({ defaultCollapsed = false }) => {
+export const Footer = () => {
   const year = new Date().getFullYear();
-  const [collapsed, setCollapsed] = useState(defaultCollapsed);
+  const [collapsed, setCollapsed] = useState(true);
+
+  useEffect(() => {
+    if (globalThis.innerWidth > 768) {
+      setCollapsed(false);
+    }
+  }, []);
 
   const toggleFooter = () => {
     const footerCollapsed = !collapsed;
@@ -79,7 +85,11 @@ export const Footer = ({ defaultCollapsed = false }) => {
 
       <div className="max-w-7xl mx-auto px-4 pt-2 md:px-10 xl:px-14 flex justify-between items-center">
         <span className="text-sm opacity-60">© {year} TagSearcher. All rights reserved.</span>
-        <button className="btn btn-sm btn-ghost flex items-center gap-1" onClick={toggleFooter}>
+        <button
+          className="btn btn-sm btn-ghost flex items-center gap-1"
+          aria-label="Toggle footer"
+          onClick={toggleFooter}
+        >
           <ChevronDown
             className={`w-4 h-4 transition-transform duration-300 ${collapsed ? "rotate-180" : "rotate-0"}`}
           />

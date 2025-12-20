@@ -53,7 +53,7 @@ export const ServerDashboard = ({ result, fastRoute }) => {
 
     if (!isPopState) {
       const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters);
-      globalThis.history.pushState(null, "", `${pathname}?${query}`);
+      router.push(`${pathname}?${query}`);
     }
 
     await fetchServers({ page: 1, search, sortBy, NSFW, characters });
