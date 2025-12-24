@@ -35,7 +35,7 @@ export const SubmitServer = ({ handleServerAdd }) => {
     } finally {
       setLoading(false);
       setTurnstileToken(null);
-      window.turnstile?.reset();
+      globalThis.turnstile?.reset();
     }
   };
 

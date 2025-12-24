@@ -5,11 +5,11 @@ import Image from "next/image";
 
 export const Logo = () => {
   const handleClickOnLogo = (evt) => {
-    if (window.location.pathname === "/") {
+    if (globalThis.location.pathname === "/") {
       evt.preventDefault();
-      window.history.pushState(null, "", "/");
-      window.scrollTo({ top: 0 });
-      window.dispatchEvent(new PopStateEvent("popstate"));
+      globalThis.history.pushState(null, "", "/");
+      globalThis.scrollTo({ top: 0 });
+      globalThis.dispatchEvent(new PopStateEvent("popstate"));
     }
   };
 

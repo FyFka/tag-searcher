@@ -53,11 +53,11 @@ export const ServerDashboard = ({ result, fastRoute }) => {
 
     if (!isPopState) {
       const query = createQueryWithDefaultParams(search, sortBy, NSFW, characters);
-      window.history.pushState(null, "", `${pathname}?${query}`);
+      globalThis.history.pushState(null, "", `${pathname}?${query}`);
     }
 
     await fetchServers({ page: 1, search, sortBy, NSFW, characters });
-    window.scrollTo({ top: 0 });
+    globalThis.scrollTo({ top: 0 });
   };
 
   return (

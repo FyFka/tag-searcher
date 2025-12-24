@@ -42,14 +42,16 @@ export const Disclaimer = () => {
       <div className="flex flex-col gap-1">
         <p className="text-sm">{text}</p>
         {!isMore && (
-          <span onClick={handleToggleMore} className="link text-sm">
-            Learn more
+          <span className="text-sm">
+            <button onClick={handleToggleMore} className="link text-sm inline rounded-lg">
+              Learn more
+            </button>
           </span>
         )}
       </div>
-      <div onClick={handleAccept} className="btn btn-neutral gap-1 btn-sm msm:btn-md">
+      <button onClick={handleAccept} className="btn btn-neutral gap-1 btn-sm msm:btn-md">
         Got it
-      </div>
+      </button>
     </aside>
   );
 };

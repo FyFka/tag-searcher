@@ -14,7 +14,7 @@ export const Search = ({ refetchServers, initSetup }) => {
 
   useEffect(() => {
     const onPopState = () => {
-      const params = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams(globalThis.location.search);
       const s = params.get("s") || "";
       const sortBy = params.get("sortBy") || "relevant";
       const nsfw = params.get("nsfw") !== "false";
@@ -27,8 +27,8 @@ export const Search = ({ refetchServers, initSetup }) => {
       refetchServers(s, sortBy, nsfw, characters, true);
     };
 
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
+    globalThis.addEventListener("popstate", onPopState);
+    return () => globalThis.removeEventListener("popstate", onPopState);
   }, []);
 
   const debouncedRefetch = useMemo(

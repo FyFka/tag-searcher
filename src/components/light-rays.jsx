@@ -94,7 +94,7 @@ export const LightRays = ({
       if (!containerRef.current) return;
 
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 2),
+        dpr: Math.min(globalThis.devicePixelRatio, 2),
         alpha: true,
       });
       rendererRef.current = renderer;
@@ -239,7 +239,7 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.dpr = Math.min(globalThis.devicePixelRatio, 2);
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
@@ -280,7 +280,7 @@ void main() {
         }
       };
 
-      window.addEventListener("resize", updatePlacement);
+      globalThis.addEventListener("resize", updatePlacement);
       updatePlacement();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -290,7 +290,7 @@ void main() {
           animationIdRef.current = null;
         }
 
-        window.removeEventListener("resize", updatePlacement);
+        globalThis.removeEventListener("resize", updatePlacement);
 
         if (renderer) {
           try {
@@ -384,8 +384,8 @@ void main() {
     };
 
     if (followMouse) {
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
+      globalThis.addEventListener("mousemove", handleMouseMove);
+      return () => globalThis.removeEventListener("mousemove", handleMouseMove);
     }
   }, [followMouse]);
 
