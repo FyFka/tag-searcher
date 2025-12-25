@@ -38,7 +38,7 @@ export const ServerListItem = ({ server, idx }) => {
   const description = server.description?.length > 0 ? server.description : "No description provided";
   const isPriority = idx < 4;
   return (
-    <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
+    <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
@@ -61,7 +61,7 @@ export const ServerListItem = ({ server, idx }) => {
       {isOpen && (
         <FloatingPortal>
           <FloatingFocusManager context={context} modal={true}>
-            <div className="z-[100]" ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+            <div className="z-100" ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
               <ServerTagPreview tagImg={server.tagImg} tagName={server.tagName} />
             </div>
           </FloatingFocusManager>

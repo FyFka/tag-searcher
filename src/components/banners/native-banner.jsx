@@ -9,7 +9,7 @@ export const NativeBanner = ({
 }) => {
   return (
     <>
-      <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
+      <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
         <div className="relative z-30 min-h-64">
           <div id={id}></div>
         </div>

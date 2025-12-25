@@ -5,7 +5,7 @@ export default async function RootLayout({ children }) {
   return (
     <>
       <Header />
-      <main className="flex-grow relative">{children}</main>
+      <main className="grow relative">{children}</main>
       <Footer />
     </>
   );

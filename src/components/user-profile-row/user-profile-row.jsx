@@ -87,7 +87,7 @@ export const UserProfileRow = ({
             )}
             {tagName && (
               <span className="ml-1 align-middle">
-                <span className="inline-flex items-center max-w-[60px] leading-4 px-1 rounded-sm bg-[#313b47]">
+                <span className="inline-flex items-center max-w-15 leading-4 px-1 rounded-sm bg-[#313b47]">
                   {tagImg && (
                     <Image
                       alt={`[${tagName}]`}

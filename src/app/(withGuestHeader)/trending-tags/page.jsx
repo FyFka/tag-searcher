@@ -59,7 +59,7 @@ export default async function TrendingTags() {
         {trendingTags.map((tag) => (
           <li
             key={tag.urlSegment}
-            className="w-full relative group overflow-hidden bg-base-100 rounded-box border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]"
+            className="w-full relative group overflow-hidden bg-base-100 rounded-box border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]"
           >
             <Link
               className="block font-semibold p-2 relative text-center z-30"

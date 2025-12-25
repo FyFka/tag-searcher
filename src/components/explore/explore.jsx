@@ -81,7 +81,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
         <button
           ref={refs.setReference}
           {...getReferenceProps()}
-          className="btn md:btn-xl btn-sm md:px-6.5 border-1 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] flex items-center gap-1 md:gap-2 rounded-full bg-base-100 font-semibold overflow-hidden cursor-pointer hover:bg-base-200 transition-colors relative shimmer"
+          className="btn md:btn-xl btn-sm md:px-6.5 border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] flex items-center gap-1 md:gap-2 rounded-full bg-base-100 font-semibold overflow-hidden cursor-pointer hover:bg-base-200 transition-colors relative shimmer"
         >
           {server.tagImg && (
             <Image
