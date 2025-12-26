@@ -7,7 +7,7 @@ export const revalidate = 64800; // 12 hours
 export const metadata = {
   title: "Explore Discord Tags & Badges",
   description:
-    "Explore the most up-to-date 2025 discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Explore the most up-to-date 2026 discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
   keywords: [
     "discord",
     "discord servers",
@@ -30,7 +30,7 @@ export const metadata = {
     "anime discord servers",
     "discord server list",
     "popular discord servers",
-    "2025 discord servers",
+    "2026 discord servers",
   ],
   alternates: {
     canonical: `https://tagsearcher.org/explore`,

@@ -73,7 +73,7 @@ export const Search = ({ refetchServers, initSetup }) => {
     >
       <div className="flex gap-2 flex-col md:flex-row">
         <div className="relative flex-10">
-          <label className="input w-full pr-32 md:pr-40 lg:pr-[300px]">
+          <label className="input w-full pr-32 md:pr-40 lg:pr-75">
             <SearchIcon width={22} height={22} />
             <input
               onChange={onSearchChange}
@@ -100,7 +100,7 @@ export const Search = ({ refetchServers, initSetup }) => {
           <option value="visited">Most Visited</option>
           <option value="newest">Newest</option>
         </select>
-        <label className="label px-2.5 py-1.25 bg-base-100 border-1 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
+        <label className="label px-2.5 py-1.25 bg-base-100 border border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
           <input
             onChange={handleToggleNSFW}
             name="NSFW toggle"
@@ -145,7 +145,7 @@ export const Search = ({ refetchServers, initSetup }) => {
             checked={characters === -1}
             value={-1}
             onChange={handleChangeCharacters}
-            aria-label="All"
+            aria-label="x"
           />
         </div>
       </div>

@@ -43,8 +43,8 @@ export const AddServer = () => {
                 </button>
                 <span className="text-sm font-semibold opacity-75 group-hover:opacity-100">ESC</span>
               </div>
-              <div ref={refs.setFloating} {...getFloatingProps()} className="p-1 max-h-full w-full max-w-[650px]">
-                <div className="relative bg-base-300 py-7 px-6 rounded-lg shadow-lg border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border-1 z-50">
+              <div ref={refs.setFloating} {...getFloatingProps()} className="p-1 max-h-full w-full max-w-162.5">
+                <div className="relative bg-base-300 py-7 px-6 rounded-lg shadow-lg border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border z-50">
                   <div className="flex justify-between gap-1">
                     <h2 className="font-extrabold font-mono text-xl msm:text-2xl mb-3">Add a Discord Server</h2>
                     <button

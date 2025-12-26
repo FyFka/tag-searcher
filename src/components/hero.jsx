@@ -13,7 +13,7 @@ export const Hero = ({ totalServers, totalMembers, customDescription, customTitl
   const title = customTitle ? customTitle : "Discord Guild Tag Searcher";
   const description = customDescription
     ? customDescription
-    : `Explore the most up-to-date collection of Discord guild tags and badges for 2025. Search thousands of tags, discover new communities, and personalize your profile to stand out.`;
+    : `Explore the most up-to-date collection of Discord guild tags and badges for 2026. Search thousands of tags, discover new communities, and personalize your profile to stand out.`;
   return (
     <div className="py-22 msm:py-26 text-center flex flex-col items-center gap-4 px-2 md:px-10 xl:px-14 bg-base-100 relative">
       <h1 className="font-extrabold text-4xl md:text-6xl font-mono z-50">{title}</h1>

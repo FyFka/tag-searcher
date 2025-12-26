@@ -22,7 +22,7 @@ export const metadata = {
     type: "website",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.org/preview.webp",
@@ -47,7 +47,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Search Discord Tags & Badges",
     description:
-      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2025. Customize your profile and discover new communities.",
+      "Search, find, and explore the most complete collection of Discord guild tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
         url: "https://tagsearcher.org/preview.webp",

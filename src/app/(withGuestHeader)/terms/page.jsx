@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Terms and conditions",
   description:
-    "Explore the most up-to-date 2025 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Explore the most up-to-date 2026 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
   keywords: [
     "discord",
     "discord servers",
@@ -24,7 +24,7 @@ export const metadata = {
     "anime discord servers",
     "discord server list",
     "popular discord servers",
-    "2025 discord servers",
+    "2026 discord servers",
   ],
   alternates: {
     canonical: `https://tagsearcher.org/terms`,

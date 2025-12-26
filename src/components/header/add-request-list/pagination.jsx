@@ -64,11 +64,11 @@ export const Pagination = ({ totalPages, currentPage, onPageChange, loading }) =
   if (currentPage < totalPages - 2) pages.push(renderEllipsisOrInput("right"));
   if (totalPages > 1) pages.push(renderPageButton(totalPages));
 
-  if (totalPages <= 1) return <div className="h-[34px]"></div>;
+  if (totalPages <= 1) return <div className="h-8.5"></div>;
 
   return (
     <div
-      className={`overflow-hidden rounded-lg border-1 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)]`}
+      className={`overflow-hidden rounded-lg border border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)]`}
     >
       {pages}
     </div>

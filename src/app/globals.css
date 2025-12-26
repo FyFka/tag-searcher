@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  exclude: properties;
+}
 
 @theme inline {
   --font-sans: var(--font-open-sans);

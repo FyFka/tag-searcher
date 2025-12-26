@@ -16,7 +16,7 @@ export const Logo = () => {
   return (
     <Link onClick={handleClickOnLogo} href="/" className="flex items-center flex-row gap-2" prefetch={false}>
       <Image
-        className="h-[33px] w-[40px] msm:h-[38px] msm:w-[45px]"
+        className="h-8.25 w-10 msm:h-9.5 msm:w-11.25"
         src="/logo.webp"
         height={38}
         width={45}

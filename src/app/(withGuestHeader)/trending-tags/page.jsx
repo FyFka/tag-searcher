@@ -29,7 +29,7 @@ export const metadata = {
     "anime discord servers",
     "discord server list",
     "popular discord servers",
-    "2025 discord servers",
+    "2026 discord servers",
   ],
   alternates: {
     canonical: `https://tagsearcher.org/trending-tags`,
