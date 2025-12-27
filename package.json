@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --experimental-app-only --turbo",
-    "postbuild": "next-sitemap",
-    "start": "next start",
+    "dev": "bun --bun next dev",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "postbuild": "bun --bun next-sitemap",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,13 +23,17 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "babel-plugin-react-compiler": "^1.0.0",
     "daisyui": "^5.5.14",
     "tailwindcss": "^4.1.18"
   },
-  "engines": {
-    "node": ">=20"
-  },
-  "type": "module",
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ],
   "browserslist": "> 1%"
 }
