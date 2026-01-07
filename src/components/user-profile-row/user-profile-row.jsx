@@ -100,7 +100,7 @@ export const UserProfileRow = ({
                       unoptimized
                     />
                   )}
-                  <span className="select-none indent-0 text-xs font-bold">{tagName}</span>
+                  <span className="select-none indent-0 text-xs font-bold tracking-[0.25px]">{tagName}</span>
                 </span>
               </span>
             )}

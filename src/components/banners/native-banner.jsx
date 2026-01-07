@@ -5,7 +5,7 @@ export const NativeBanner = ({
   id,
   src,
   title = "No ads here 👀",
-  description = "Looks like AdBlock did its thing.",
+  description = "Looks like AdBlock did its thing or nothing was worthy of you.",
 }) => {
   return (
     <>
@@ -16,8 +16,8 @@ export const NativeBanner = ({
         <div className="absolute top-0 left-0 w-full h-full z-10">
           <div className="flex flex-col items-center justify-center p-6 text-center h-full w-full">
             <Wind className="w-10 h-10 mb-2 text-primary" />
-            <h3 className="text-lg font-semibold text-white">{title}</h3>
-            <p className="text-gray-400 text-sm mt-1">{description}</p>
+            <span className="text-lg font-semibold text-white">{title}</span>
+            <p className="text-gray-400 text-sm mt-1 max-w-65">{description}</p>
           </div>
         </div>
       </div>

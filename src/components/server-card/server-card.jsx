@@ -21,6 +21,7 @@ import { ServerTagPreview } from "@/components/server-card/server-tag-preview";
 
 export const ServerListItem = ({ server, idx }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
@@ -68,14 +69,6 @@ export const ServerListItem = ({ server, idx }) => {
         </FloatingPortal>
       )}
 
-      {server.nsfw && (
-        <div className="absolute top-4 right-3 z-20 opacity-65">
-          <div className="badge badge-warning badge-sm">
-            <span className="text-sm font-bold">NSFW</span>
-          </div>
-        </div>
-      )}
-
       <div className="relative">
         <figure className="h-40 w-full overflow-hidden bg-primary relative">
           {server.banner && (
@@ -90,7 +83,15 @@ export const ServerListItem = ({ server, idx }) => {
             />
           )}
           {server.nsfw && (
-            <span className="absolute top-0 left-0 h-full backdrop-blur-xl w-[102%] -translate-x-[1%]"></span>
+            <div
+              className={`absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md transition-opacity duration-600 ${
+                revealed ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"
+              }`}
+              onClick={() => setRevealed(true)}
+            >
+              <span className="text-white font-semibold text-sm uppercase mb-1 pointer-events-none">NSFW</span>
+              <span className="text-white/60 text-xs pointer-events-none">Click to reveal</span>
+            </div>
           )}
         </figure>
 
