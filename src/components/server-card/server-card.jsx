@@ -84,13 +84,13 @@ export const ServerListItem = ({ server, idx }) => {
           )}
           {server.nsfw && (
             <div
-              className={`absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md transition-opacity duration-600 ${
+              className={`absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md transition-opacity ease-in-out duration-600 ${
                 revealed ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"
               }`}
               onClick={() => setRevealed(true)}
             >
-              <span className="text-white font-semibold text-sm uppercase mb-1 pointer-events-none">NSFW</span>
-              <span className="text-white/60 text-xs pointer-events-none">Click to reveal</span>
+              <span className="text-white font-semibold text-sm uppercase pointer-events-none">NSFW</span>
+              <span className="text-white/50 text-xs pointer-events-none">Click to reveal</span>
             </div>
           )}
         </figure>
