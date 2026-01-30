@@ -7,30 +7,18 @@ export const revalidate = 64800; // 12 hours
 export const metadata = {
   title: "Explore Discord Tags & Badges",
   description:
-    "Explore the most up-to-date 2026 discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Browse and explore Discord server tags. Discover communities by tag and join Discord servers directly from the list.",
   keywords: [
-    "discord",
-    "discord servers",
-    "discord tag",
-    "discord tags",
-    "tags discord",
-    "discord guild tags",
-    "find discord servers",
-    "search discord servers",
-    "discord server finder",
-    "discord server search",
-    "discord server directory",
-    "public discord servers",
-    "browse discord servers",
-    "discord server browser",
-    "discord communities",
-    "discord community finder",
-    "discord tag search",
-    "gaming discord servers",
-    "anime discord servers",
-    "discord server list",
-    "popular discord servers",
-    "2026 discord servers",
+    "Discord special name",
+    "Discord channel symbols",
+    "Discord guilds list",
+    "Discord server tags",
+    "Discord badges",
+    "Discord guild tags",
+    "Server tag directory",
+    "Username badges 2026",
+    "Discord server icons",
+    "Discord servers",
   ],
   alternates: {
     canonical: `https://tagsearcher.org/explore`,
@@ -38,11 +26,23 @@ export const metadata = {
 };
 
 export default async function ExploreHome() {
-  const result = await getServers("", "newest", true, -1, 968);
+  const result = await getServers("", "newest", true, -1, 1680);
 
   if (!result) {
     return notFound();
   }
 
-  return <Explore servers={result.servers} />;
+  return (
+    <div>
+      <div>
+        <Explore servers={result.servers} />
+        <div className="absolute -z-10 w-full h-full flex flex-col items-center text-center">
+          <h1 className="font-extrabold text-2xl md:text-4xl lg:text-6xl font-mono text-center py-6 opacity-40 select-none">
+            Explore Discord Tags
+          </h1>
+          <p className="opacity-25 select-none">TagSearcher is the place where you can list/find discord tags</p>
+        </div>
+      </div>
+    </div>
+  );
 }

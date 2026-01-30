@@ -33,7 +33,7 @@ export const Search = ({ refetchServers, initSetup }) => {
 
   const debouncedRefetch = useMemo(
     () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW, characters), searchDebounce),
-    [refetchServers, sortBy, NSFW, characters]
+    [refetchServers, sortBy, NSFW, characters],
   );
 
   const handleChangeSortBy = (evt) => {

@@ -11,11 +11,17 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
+
         if (first.isIntersecting && hasMore && !serversLoading.loading) {
-          fetchNextServers();
+          const trashHold = window.innerWidth < 768 ? 100 : 220;
+          const scrollPosition = window.innerHeight + window.scrollY;
+          const threshold = document.body.offsetHeight - trashHold;
+          const nearBottom = scrollPosition >= threshold;
+
+          if (!nearBottom) fetchNextServers();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     const current = loaderRef.current;
@@ -27,7 +33,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
   }, [fetchNextServers]);
 
   const isServersLoading = serversLoading.loading;
-  const showAds = servers.length > 0 && !isServersLoading;
+  const showAds = servers.length > 0;
   return (
     <>
       {servers.map((server, idx) => (
@@ -50,7 +56,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
           <span className="loading loading-spinner loading-lg text-primary" />
         </div>
       )}
-      <div ref={loaderRef} className="absolute bottom-0 left-0 h-96 w-full -z-50" />
+      <div ref={loaderRef} className="absolute bottom-0 left-0 h-64 w-full -z-50 bg-amber-400" />
     </>
   );
 };

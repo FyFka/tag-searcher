@@ -56,7 +56,6 @@ export const UserProfileRow = ({
   const highlightRootClass = highlight ? "bg-base-100 hover:bg-base-100/65" : "hover:bg-base-100";
   const highlightTextClass = highlight ? "opacity-100" : "group-hover:opacity-100";
   const RootElement = editable ? "button" : "div";
-
   return (
     <RootElement
       onClick={() => editable && setEditing(true)}

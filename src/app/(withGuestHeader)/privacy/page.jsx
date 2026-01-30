@@ -3,30 +3,18 @@ import Link from "next/link";
 export const metadata = {
   title: "Privacy Policy",
   description:
-    "Explore the most up-to-date 2026 Discord guild tags and badges instantly search thousands of tags discover communities personalize your profile.",
+    "Read TagSearcher's Privacy Policy to learn how we collect, use, store, and protect your information when you use our website and services.",
   keywords: [
-    "discord",
-    "discord servers",
-    "discord tag",
-    "discord tags",
-    "tags discord",
-    "discord guild tags",
-    "find discord servers",
-    "search discord servers",
-    "discord server finder",
-    "discord server search",
-    "discord server directory",
-    "public discord servers",
-    "browse discord servers",
-    "discord server browser",
-    "discord communities",
-    "discord community finder",
-    "discord tag search",
-    "gaming discord servers",
-    "anime discord servers",
-    "discord server list",
-    "popular discord servers",
-    "2026 discord servers",
+    "Discord special name",
+    "Discord channel symbols",
+    "Discord guilds list",
+    "Discord server tags",
+    "Discord badges",
+    "Discord guild tags",
+    "Server tag directory",
+    "Username badges 2026",
+    "Discord server icons",
+    "Discord servers",
   ],
   alternates: {
     canonical: `https://tagsearcher.org/privacy`,
@@ -38,7 +26,7 @@ export default function Privacy() {
     <div className="px-1 md:px-0 py-4 max-w-4xl mx-auto">
       <div className="flex justify-between items-center mb-4 flex-col md:flex-row">
         <h1 className="font-extrabold text-3xl md:text-4xl font-mono text-center">Privacy Policy</h1>
-        <p className="text-sm opacity-60">Last updated: July 15, 2025</p>
+        <p className="text-sm opacity-80">Last updated: July 15, 2025</p>
       </div>
       <div className="space-y-1">
         <p>

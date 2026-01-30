@@ -1,4 +1,5 @@
 "use client";
+
 import { ThiingsGrid } from "@/components/things-grid/thiings-grid";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
@@ -129,7 +130,7 @@ export const Explore = ({ servers = [] }) => {
     return () => globalThis.removeEventListener("resize", handleResize);
   }, []);
 
-  const gridSize = isMobile ? 145 : 200;
+  const gridSize = isMobile ? 135 : 165;
   return (
     <ThiingsGrid
       gridSize={gridSize}
