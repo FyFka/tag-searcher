@@ -1,6 +1,9 @@
 import client from "@/lib/mongodb";
 import { dbName } from "@/config";
 import { notFound, redirect } from "next/navigation";
+import { isRateLimited } from "@/lib/rate-limiter";
+import { CaptchaRedirectJoin } from "@/components/captcha-redirect-join/captcha-redirect-join";
+import { headers } from "next/headers";
 
 const getInviteCode = async (profileId) => {
   try {
@@ -24,9 +27,18 @@ const getInviteCode = async (profileId) => {
 export default async function Redirect({ params }) {
   const { profileId } = await params;
 
-  const InviteCode = await getInviteCode(profileId);
+  const heads = await headers();
+  const ip = heads.get("x-forwarded-for") ?? heads.get("remote-addr");
+  console.log(ip);
+  const limited = await isRateLimited(ip);
 
-  if (!InviteCode) return notFound();
+  if (!limited) {
+    const inviteCode = await getInviteCode(profileId);
 
-  return redirect(`https://discord.com/invite/${InviteCode}`);
+    if (!inviteCode) return notFound();
+
+    return redirect(`https://discord.com/invite/${inviteCode}`);
+  }
+
+  return <CaptchaRedirectJoin profileId={profileId} />;
 }

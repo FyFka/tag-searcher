@@ -88,9 +88,9 @@ export const parseInviteCodeFromUrl = (url) => {
   const re = new RegExp(
     `(https?://)?(www\\.)?${matchedDomain.replace(
       /\./g,
-      "\\."
+      "\\.",
     )}/(?:invite/)?([a-zA-Z0-9_-]{1,${maxSearchInviteCodeLength}})`,
-    "i"
+    "i",
   );
 
   const match = val.match(re);
