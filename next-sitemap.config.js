@@ -42,6 +42,7 @@ export default {
       },
     ],
   },
+  exclude: ["/manifest.webmanifest"],
   additionalPaths: async () => {
     const tagRoutes = await getFastRoutePaths();
     return [
