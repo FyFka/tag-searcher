@@ -2,18 +2,12 @@
 
 import Link from "next/link";
 import { Feedback } from "./feedback";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
-  const [collapsed, setCollapsed] = useState(true);
-
-  useEffect(() => {
-    if (globalThis.innerWidth > 768) {
-      setCollapsed(false);
-    }
-  }, []);
+  const [collapsed, setCollapsed] = useState(false);
 
   const toggleFooter = () => {
     const footerCollapsed = !collapsed;
