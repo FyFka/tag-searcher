@@ -63,6 +63,9 @@ export default function RootLayout({ children }) {
   const clarityTagId = process.env.NEXT_PUBLIC_CLARITY_TAG_ID || "";
   return (
     <html lang="en" data-theme="dark" className="bg-base-300 scroll-smooth min-w-80">
+      <head>
+        <link rel="preconnect" href="https://www.clarity.ms" />
+      </head>
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
         {clarityTagId && (
