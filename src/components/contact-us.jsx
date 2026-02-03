@@ -96,11 +96,12 @@ export const ContactUs = () => {
         {notification.type === "success" && (
           <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>
         )}
-
-        <button type="submit" disabled={isSubmitting} className="btn btn-primary w-full">
-          {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
-          {!isSubmitting && "Send Message"}
-        </button>
+        <div className="flex items-center justify-end">
+          <button type="submit" disabled={isSubmitting} className="btn btn-primary">
+            {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
+            {!isSubmitting && "Send Message"}
+          </button>
+        </div>
         <div className="flex items-center justify-end">
           <Turnstile
             siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}

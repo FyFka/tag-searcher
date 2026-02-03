@@ -52,7 +52,7 @@ function throttle(func, limit, options = {}) {
 function getDistance(p1, p2) {
   const dx = p2.x - p1.x;
   const dy = p2.y - p1.y;
-  return Math.sqrt(dx * dx + dy * dy);
+  return Math.hypot(dx * dx + dy * dy);
 }
 
 export class ThiingsGrid extends Component {
@@ -215,7 +215,7 @@ export class ThiingsGrid extends Component {
 
     if (deltaTime >= UPDATE_INTERVAL) {
       const { velocity } = this.state;
-      const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+      const speed = Math.hypot(velocity.x * velocity.x + velocity.y * velocity.y);
 
       if (speed < MIN_VELOCITY) {
         this.setState({ velocity: { x: 0, y: 0 } });
@@ -240,7 +240,7 @@ export class ThiingsGrid extends Component {
             y: prevState.velocity.y * deceleration,
           },
         }),
-        this.debouncedUpdateGridItems
+        this.debouncedUpdateGridItems,
       );
 
       this.lastUpdateTime = currentTime;
@@ -290,7 +290,7 @@ export class ThiingsGrid extends Component {
         x: acc.x + vel.x / velocityHistory.length,
         y: acc.y + vel.y / velocityHistory.length,
       }),
-      { x: 0, y: 0 }
+      { x: 0, y: 0 },
     );
 
     this.setState(
@@ -303,7 +303,7 @@ export class ThiingsGrid extends Component {
         lastMoveTime: currentTime,
         velocityHistory,
       },
-      this.updateGridItems
+      this.updateGridItems,
     );
 
     this.lastPos = { x: p.x, y: p.y };
@@ -375,7 +375,7 @@ export class ThiingsGrid extends Component {
         },
         velocity: { x: 0, y: 0 }, // Reset velocity when scrolling
       }),
-      this.debouncedUpdateGridItems
+      this.debouncedUpdateGridItems,
     );
   };
 

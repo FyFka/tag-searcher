@@ -131,7 +131,6 @@ export default function Privacy() {
       <h2 className="font-extrabold my-4 text-xl md:text-2xl font-mono">Collecting and Using Your Personal Data</h2>
       <h3 className="font-bold my-1.75 text-lg md:text-xl font-mono">Types of Data Collected</h3>
       <h4 className="font-bold my-1.5 font-mono">Personal Data</h4>
-
       <div className="space-y-1">
         <p>
           While using Our Service, We may ask You to provide Us with certain personally identifiable information that

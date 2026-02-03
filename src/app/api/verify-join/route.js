@@ -33,8 +33,8 @@ const verifyJoin = async (req) => {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e.message);
     const res = {
       message: "Failed to get invite code, if this problem persists invite code may be invalid",
       hasError: true,

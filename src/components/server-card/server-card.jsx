@@ -18,6 +18,7 @@ import {
 } from "@floating-ui/react";
 import { useState } from "react";
 import { ServerTagPreview } from "@/components/server-card/server-tag-preview";
+import { OptionalImage } from "@/components/optional-image";
 
 export const ServerListItem = ({ server, idx }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,11 +73,11 @@ export const ServerListItem = ({ server, idx }) => {
       <div className="relative">
         <figure className="h-40 w-full overflow-hidden bg-primary relative">
           {server.banner && (
-            <Image
+            <OptionalImage
               src={`https://cdn.discordapp.com/${server.banner}.webp?size=480`}
               alt={`${server.name} banner`}
-              width={500}
-              height={500}
+              width={480}
+              height={480}
               className="w-full h-full object-cover object-center text-transparent"
               unoptimized
               priority={isPriority}
@@ -84,20 +85,20 @@ export const ServerListItem = ({ server, idx }) => {
           )}
           {server.nsfw && (
             <div
-              className={`absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md transition-opacity ease-in-out duration-600 ${
+              className={`absolute top-0 left-0 h-full w-full flex flex-col items-center justify-center bg-black/40 backdrop-blur-md transition-opacity ease-in-out duration-500 ${
                 revealed ? "opacity-0 pointer-events-none" : "opacity-100 cursor-pointer"
               }`}
               onClick={() => setRevealed(true)}
             >
-              <span className="text-white font-semibold text-sm uppercase pointer-events-none">NSFW</span>
-              <span className="text-white/50 text-xs pointer-events-none">Click to reveal</span>
+              <span className="text-white font-semibold uppercase pointer-events-none">NSFW</span>
+              <span className="text-white/60 text-xs pointer-events-none">Click to reveal</span>
             </div>
           )}
         </figure>
 
         <figure className="h-16 w-16 rounded-2xl absolute -bottom-8 left-4 border-4 border-base-100 bg-base-200 overflow-hidden">
           {server.avatar && (
-            <Image
+            <OptionalImage
               src={`https://cdn.discordapp.com/${server.avatar}?size=56`}
               className="w-full h-full text-transparent"
               alt={`${server.name} avatar`}
@@ -115,22 +116,22 @@ export const ServerListItem = ({ server, idx }) => {
         </figure>
       </div>
 
-      <div className="card-body gap-1.75 pt-10">
+      <div className="card-body gap-2 pt-10">
         <h3 className="card-title">{server.name}</h3>
         <p className="text-sm text-base-content/80 overflow-hidden line-clamp-3">{description}</p>
         <div className="flex gap-0.5 justify-between">
-          <p className="flex gap-1 items-center text-xs font-semibold text-base-content/60">
+          <p className="flex gap-1 items-center text-xs font-semibold text-base-content/70">
             <span className="status status-success"></span>
-            <span className="font-bold text-base-content/70">{beautifiedMembersOnline}</span> <span>online</span>
+            <span className="font-bold text-base-content/75">{beautifiedMembersOnline}</span> <span>online</span>
           </p>
-          <p className="flex gap-1 items-center justify-end text-xs font-semibold text-base-content/60">
+          <p className="flex gap-1 items-center justify-end text-xs font-semibold text-base-content/70">
             <span className="status bg-base-content/80"></span>
-            <span className="font-bold text-base-content/70">{beautifiedMembersCount}</span> <span>members</span>
+            <span className="font-bold text-base-content/75">{beautifiedMembersCount}</span> <span>members</span>
           </p>
         </div>
         <div className="card-actions items-center justify-end mt-2">
-          <p className="text-xs text-base-content/60 font-semibold">
-            <span className="font-bold text-base-content/70">{beautifiedVisits}</span> <span>visits</span>
+          <p className="text-xs text-base-content/70 font-semibold">
+            <span className="font-bold text-base-content/75">{beautifiedVisits}</span> <span>visits</span>
           </p>
           <Link
             href={`/join/${server.profileId}`}

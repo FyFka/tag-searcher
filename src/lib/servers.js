@@ -22,8 +22,8 @@ export const getStats = async () => {
     const db = connection.db(dbName);
     const stats = db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
     return stats;
-  } catch (err) {
-    console.log(err.message);
+  } catch (e) {
+    console.log(e.message);
     return null;
   }
 };
@@ -33,7 +33,7 @@ export const getServers = async (
   userSortBy = "relevant",
   userNsfw = true,
   userCharacters = -1,
-  serversLimit = serverLimitPerPage
+  serversLimit = serverLimitPerPage,
 ) => {
   try {
     const search = parseSearch(userSearch);
@@ -66,8 +66,8 @@ export const getServers = async (
     const servers = hasMore ? results.slice(0, serversLimit) : results;
 
     return { servers, stats, hasMore, search, sortBy, NSFW: withNSFW, characters };
-  } catch (err) {
-    console.log(err.message);
+  } catch (e) {
+    console.log(e.message);
     return null;
   }
 };
@@ -83,8 +83,8 @@ export const getFastRoute = async (segment) => {
     }
 
     return fastRoute;
-  } catch (err) {
-    console.log(err.message);
+  } catch (e) {
+    console.log(e.message);
     return null;
   }
 };

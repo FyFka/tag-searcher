@@ -69,7 +69,7 @@ export const Search = ({ refetchServers, initSetup }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="sticky top-16 left-0 backdrop-blur-md bg-base-300/90 z-50 flex flex-col gap-1 py-2 px-2 md:px-10 xl:px-14"
+      className="sticky top-16 left-0 backdrop-blur-md bg-base-300/80 z-50 flex flex-col gap-1 py-2 px-2 md:px-10 xl:px-14"
     >
       <div className="flex gap-2 flex-col md:flex-row">
         <div className="relative flex-10">
@@ -93,7 +93,7 @@ export const Search = ({ refetchServers, initSetup }) => {
           onChange={handleChangeSortBy}
           name="Sort by"
           value={sortBy}
-          className="select select-sm max-w-40"
+          className="select select-sm max-w-40 cursor-pointer"
         >
           <option value="relevant">Most Relevant</option>
           <option value="popular">Most Popular</option>

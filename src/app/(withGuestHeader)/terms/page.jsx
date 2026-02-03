@@ -81,7 +81,6 @@ export default function Terms() {
           </a>
         </li>
       </ol>
-
       <h2 id="age-requirement" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         Age Requirement
       </h2>
@@ -89,7 +88,6 @@ export default function Terms() {
         You must be at least 13 years of age to use the Website and Services. By using the Website and agreeing to this
         Agreement, you represent and warrant that you are at least 13 years of age.
       </p>
-
       <h2 id="user-content" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         User Content
       </h2>
@@ -102,7 +100,6 @@ export default function Terms() {
         provide the Services. You do not grant us the right to use your Content for marketing or other commercial
         purposes unless you explicitly allow it.
       </p>
-
       <h2 id="backups" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         Backups
       </h2>
@@ -110,7 +107,6 @@ export default function Terms() {
         We are not responsible for the loss of Content stored on the Website. You are solely responsible for maintaining
         backups. Although we may retain backups for internal purposes, we do not guarantee their availability.
       </p>
-
       <h2 id="links-to-other-resources" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         Links to Other Resources
       </h2>
@@ -119,7 +115,6 @@ export default function Terms() {
         responsibility on our part. We are not liable for the content or practices of any linked websites. Use
         third-party resources at your own risk.
       </p>
-
       <h2 id="changes-and-amendments" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         Changes and Amendments
       </h2>
@@ -139,7 +134,6 @@ export default function Terms() {
         By accessing and using the Website and Services, you confirm that you have read and agreed to these terms. If
         you do not accept this Agreement, you are not authorized to use the Website.
       </p>
-
       <h2 id="contacting-us" className="font-extrabold my-4 text-xl md:text-2xl font-mono">
         Contacting Us
       </h2>

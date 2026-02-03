@@ -4,7 +4,6 @@ import { ThiingsGrid } from "@/components/things-grid/thiings-grid";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { ServerListItem } from "@/components/server-card/server-card";
-
 import {
   useClick,
   useDismiss,

@@ -23,7 +23,7 @@ export const RedirectJoin = ({ profileId }) => {
       const data = await res.json();
 
       if (res.ok && data.inviteCode) {
-        window.location.href = `https://discord.com/invite/${data.inviteCode}`;
+        globalThis.location.href = `https://discord.com/invite/${data.inviteCode}`;
       } else {
         throw new Error(data.message || "Verification failed. Please try again.");
       }
@@ -44,7 +44,7 @@ export const RedirectJoin = ({ profileId }) => {
         onVerify={handleVerify}
       />
       {loading && <p className="font-semibold">Verifying...</p>}
-      {error && <p className="text-red-500 font-semibold">{error}</p>}
+      {error && <p className="text-error font-semibold">{error}</p>}
     </div>
   );
 };

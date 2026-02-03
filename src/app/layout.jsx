@@ -1,7 +1,7 @@
 import { Open_Sans, Montserrat } from "next/font/google";
 import Script from "next/script";
-import "./globals.css";
 import { Disclaimer } from "@/components/disclaimer/disclaimer";
+import "./globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -62,7 +62,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const clarityTagId = process.env.NEXT_PUBLIC_CLARITY_TAG_ID || "";
   return (
-    <html lang="en" data-theme="dark" className="bg-base-300 scroll-smooth">
+    <html lang="en" data-theme="dark" className="bg-base-300 scroll-smooth min-w-80">
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
         {children}
         {clarityTagId && (

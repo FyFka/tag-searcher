@@ -31,14 +31,12 @@ export default async function ExploreHome() {
 
   return (
     <div>
-      <div>
-        <Explore servers={result.servers} />
-        <div className="absolute -z-10 w-full h-full flex flex-col items-center text-center">
-          <h1 className="font-extrabold text-2xl md:text-4xl lg:text-6xl font-mono text-center py-6 opacity-40 select-none">
-            Explore Discord Tags
-          </h1>
-          <p className="opacity-25 select-none">TagSearcher is the place where you can list/find discord tags</p>
-        </div>
+      <Explore servers={result.servers} />
+      <div className="absolute -z-10 w-full h-full flex flex-col items-center text-center">
+        <h1 className="font-extrabold text-2xl md:text-4xl lg:text-6xl font-mono text-center py-6 opacity-40 select-none">
+          Explore Discord Tags
+        </h1>
+        <p className="opacity-25 select-none">TagSearcher is the place where you can list/find discord tags</p>
       </div>
     </div>
   );

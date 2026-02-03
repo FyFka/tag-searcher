@@ -56,7 +56,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
           <span className="loading loading-spinner loading-lg text-primary" />
         </div>
       )}
-      <div ref={loaderRef} className="absolute bottom-0 left-0 h-64 w-full -z-50 bg-amber-400" />
+      <div ref={loaderRef} className="absolute bottom-0 left-0 h-64 w-full -z-50" />
     </>
   );
 };

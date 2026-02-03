@@ -11,11 +11,7 @@ export const getFromLocalStorage = (key) => {
 };
 
 export const setToLocalStorage = (key, value) => {
-  try {
-    const wholeKey = `${userStoragePrefix}:${key}`;
-    localStorage.setItem(wholeKey, value);
-    return true;
-  } catch (err) {
-    return false;
-  }
+  const wholeKey = `${userStoragePrefix}:${key}`;
+  localStorage.setItem(wholeKey, value);
+  return true;
 };

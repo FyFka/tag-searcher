@@ -15,7 +15,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="z-40 w-full bg-base-300/90 backdrop-blur-md border-t border-base-100/50 transition-all duration-300 py-6">
+    <footer className="z-40 w-full bg-base-300/90 backdrop-blur-md border-t border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] transition-all duration-300 py-6">
       <div
         className={`max-w-7xl mx-auto px-4 md:px-10 xl:px-14 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-4 xl:gap-8 overflow-hidden transition-all duration-300 ${
           collapsed ? "max-h-0 opacity-0" : "max-h-200 opacity-100"

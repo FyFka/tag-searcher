@@ -29,10 +29,10 @@ const getInviteCode = async (profileId) => {
   }
 };
 export default async function Redirect({ params }) {
-  const { profileId } = await params;
+  const [h, p] = await Promise.all([headers(), params]);
+  const { profileId } = p;
 
-  const heads = await headers();
-  const ip = heads.get("x-forwarded-for") || heads.get("remote-addr") || heads.get("srcIp");
+  const ip = h.get("x-forwarded-for") || h.get("remote-addr") || h.get("srcIp");
   const limited = await isRateLimited(ip);
 
   if (!limited) {
