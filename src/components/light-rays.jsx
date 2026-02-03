@@ -397,9 +397,10 @@ void main() {
       <Image
         src="/hero.webp"
         alt="Background"
-        className="absolute top-0 left-0 w-full h-full object-cover opacity-40"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-45"
         fill
         priority
+        fetchPriority="high"
       />
     </div>
   );
