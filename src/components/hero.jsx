@@ -1,7 +1,7 @@
 "use client";
 
 import { formatNumber } from "@/lib/utils";
-import { Globe, Heart, Zap } from "lucide-react";
+import { Globe, Heart, User, Zap } from "lucide-react";
 import Link from "next/link";
 import { LightRays } from "./light-rays";
 
@@ -32,7 +32,7 @@ export const Hero = ({ totalServers, totalMembers, totalVisits, customDescriptio
           </span>
         </div>
         <div className="flex items-center gap-1.25">
-          <span className="status bg-base-content/80 status-md"></span>
+          <User height={18} width={18} className="text-base-content/80" />
           <span className="text-nowrap">
             <span className="font-semibold">{beautifiedMembers}</span> members
           </span>
