@@ -44,7 +44,7 @@ export const ServerListItem = ({ server, idx }) => {
       <button
         ref={refs.setReference}
         {...getReferenceProps()}
-        className="btn btn-sm border-none flex items-center gap-1 absolute px-2.5 rounded-full bg-base-100 font-semibold overflow-hidden top-3 left-3 z-20 cursor-pointer shimmer"
+        className="btn btn-sm flex items-center gap-1 absolute px-2.5 rounded-full bg-base-100 font-semibold overflow-hidden top-3 left-3 z-20 cursor-pointer shimmer border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]"
       >
         {server.tagImg && (
           <Image
@@ -70,7 +70,7 @@ export const ServerListItem = ({ server, idx }) => {
       )}
 
       <div className="relative">
-        <figure className="h-40 w-full overflow-hidden bg-primary relative">
+        <figure className="h-40 w-full overflow-hidden bg-base-200 relative">
           {server.banner && (
             <OptionalImage
               src={`https://cdn.discordapp.com/${server.banner}.webp?size=480`}

@@ -14,7 +14,7 @@ export const ServerTagPreview = ({ tagName, tagImg }) => {
   };
 
   return (
-    <div className="p-2 rounded-2xl shadow-lg bg-base-300 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border">
+    <div className="p-2 rounded-2xl shadow-md bg-base-300 border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border">
       <div className="flex flex-col gap-0.5">
         <UserProfileRow
           avatar="https://cdn.discordapp.com/avatars/1093973375627567185/8da0dab9168e1ba26352078ed5a901fc.webp?size=32"
