@@ -5,7 +5,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
-const options = { maxPoolSize: 50, minPoolSize: 2 };
+const options = { maxPoolSize: 25, minPoolSize: 2 };
 
 let client;
 
