@@ -8,8 +8,9 @@ export const setCookie = (name, value, days) => {
 
 export const getCookie = (name) => {
   const wholeName = `${userStoragePrefix}:${name}`;
-  return document.cookie
+  const cookieValue = document.cookie
     .split("; ")
     .find((row) => row.startsWith(wholeName + "="))
     ?.split("=")[1];
+  return cookieValue ? decodeURIComponent(cookieValue) : null;
 };

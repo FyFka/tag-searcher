@@ -31,7 +31,7 @@ export const SubmitServer = ({ handleServerAdd }) => {
         setNotification({ message: data.message || "Unexpected error", type: "error" });
       }
     } catch (err) {
-      setNotification({ message: data.message || "Unexpected error", type: "error" });
+      setNotification({ message: err.message || "Unexpected error", type: "error" });
     } finally {
       setLoading(false);
       setTurnstileToken(null);

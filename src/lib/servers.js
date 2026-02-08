@@ -20,7 +20,7 @@ export const getStats = async () => {
   try {
     const connection = await client;
     const db = connection.db(dbName);
-    const stats = db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
+    const stats = await db.collection("stats").findOne({}, { projection: { _id: 0, __v: 0 } });
     return stats;
   } catch (e) {
     console.log(e.message);
