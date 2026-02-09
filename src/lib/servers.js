@@ -76,7 +76,9 @@ export const getFastRoute = async (segment) => {
   try {
     const connection = await client;
     const db = connection.db(dbName);
-    const fastRoute = db.collection("fastroutes").findOne({ urlSegment: segment }, { projection: { _id: 0, __v: 0 } });
+    const fastRoute = await db
+      .collection("fastroutes")
+      .findOne({ urlSegment: segment }, { projection: { _id: 0, __v: 0 } });
 
     if (!fastRoute) {
       return null;

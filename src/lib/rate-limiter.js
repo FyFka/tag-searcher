@@ -12,7 +12,7 @@ export async function isRateLimited(ip) {
     const db = connection.db(dbName);
     const collection = db.collection("join_attempts");
     const now = Date.now();
-    const recentAttempts = await collection.count({ ip, timestamp: { $gt: now - TIME_FRAME_IN_MS } });
+    const recentAttempts = await collection.countDocuments({ ip, timestamp: { $gt: now - TIME_FRAME_IN_MS } });
 
     if (recentAttempts > MAX_REQUESTS) return true;
 

@@ -13,7 +13,6 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
         const first = entries[0];
 
         if (first.isIntersecting && hasMore && !serversLoading.loading) {
-          const trashHold = window.innerWidth < 768 ? 100 : 220;
           const scrollPosition = window.innerHeight + window.scrollY;
           const threshold = document.body.offsetHeight - trashHold;
           const nearBottom = scrollPosition >= threshold;
