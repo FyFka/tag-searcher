@@ -27,7 +27,7 @@
     "tailwindcss": "^4.1.18"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "type": "module",
   "packageManager": "yarn@4.12.0",
