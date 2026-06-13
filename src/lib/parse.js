@@ -57,6 +57,10 @@ export const parseInviteCode = (userInviteCode) => {
 
 export const parseText = (name) => (typeof name === "string" ? name.trim() : "");
 
+export const escapeRegex = (string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
 const inviteDomains = [
   "discord.gg",
   "discord.com",

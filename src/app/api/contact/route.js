@@ -13,7 +13,7 @@ const contactUs = async (req) => {
     if (!isRecaptchaValid) {
       return new Response(
         JSON.stringify({ type: "error", message: "Hmm... that security check didn’t pass. Give it another shot!" }),
-        { status: 200, headers: { "Content-Type": "application/json" } }
+        { status: 200, headers: { "Content-Type": "application/json" } },
       );
     }
 
@@ -34,19 +34,14 @@ const contactUs = async (req) => {
     const collection = db.collection("contacts");
 
     const now = new Date();
-    await collection.insertOne({
-      name,
-      message,
-      email,
-      createdAt: now,
-    });
+    await collection.insertOne({ name, message, email, createdAt: now });
 
     return new Response(
       JSON.stringify({
         message: "Thanks for your message! We'll get back to you as soon as possible",
         type: "success",
       }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } catch (e) {
     console.log(e.message);

@@ -34,8 +34,8 @@ export const ContactUs = () => {
       }
 
       reset();
-    } catch (error) {
-      setNotification({ message: data.message || "Unexpected error", type: "error" });
+} catch (error) {
+      setNotification({ message: "Unexpected error", type: "error" });
     }
   };
 

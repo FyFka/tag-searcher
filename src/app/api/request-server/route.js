@@ -1,6 +1,6 @@
 import client from "@/lib/mongodb";
 import { dbName, maxSearchInviteCodeLength, serverRequestLimitPerPage } from "@/config";
-import { parseInviteCode, parsePage, parseSearch } from "@/lib/parse";
+import { parseInviteCode, parsePage, parseSearch, escapeRegex } from "@/lib/parse";
 import { validateRecaptchaToken } from "@/lib/recaptcha";
 
 const serverRequestList = async (req) => {
@@ -14,7 +14,7 @@ const serverRequestList = async (req) => {
     const db = connection.db(dbName);
     const collection = db.collection("requestedservertags");
 
-    const query = search ? { inviteCode: { $regex: search, $options: "i" } } : {};
+    const query = search ? { inviteCode: { $regex: escapeRegex(search), $options: "i" } } : {};
     const projection = { _id: 0, __v: 0 };
 
     const [total, items] = await Promise.all([
