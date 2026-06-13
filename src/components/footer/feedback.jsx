@@ -64,18 +64,14 @@ export const Feedback = () => {
             onFocus={() => setShowTurnstile(true)}
           />
         </label>
-        <button type="submit" disabled={isSubmitting} className="btn btn-primary">
+        <button type="submit" disabled={isSubmitting} className="btn btn-primary min-w-16.25">
           {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
           {!isSubmitting && "Send"}
         </button>
       </form>
 
-      {notification.type === "error" && (
-        <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>
-      )}
-      {notification.type === "success" && (
-        <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>
-      )}
+      {notification.type === "error" && <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>}
+      {notification.type === "success" && <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>}
 
       {showTurnstile && (
         <div className="flex items-center justify-end mt-1">

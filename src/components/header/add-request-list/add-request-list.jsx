@@ -1,7 +1,7 @@
 "use client";
 
 import { Search as SearchIcon } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { RequestListTable } from "@/components/header/add-request-list/request-list-table";
 import { Pagination } from "@/components/header/add-request-list/pagination";
 import { debounce } from "@/lib/utils";
@@ -39,7 +39,8 @@ export const AddRequestList = ({ page, setPage, refetchTrigger }) => {
 
   useEffect(() => {
     debouncedFetch(page, search);
-  }, [search, debouncedFetch, refetchTrigger, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, debouncedFetch, refetchTrigger]);
 
   const onSearchChange = (evt) => {
     const val = evt.target.value;
