@@ -31,7 +31,7 @@ const getFastRoutePaths = async () => {
   }
 };
 
-export default {
+const config = {
   siteUrl: process.env.SITE_URL || "https://tagsearcher.org",
   generateRobotsTxt: true,
   robotsTxtOptions: {
@@ -56,3 +56,5 @@ export default {
     ];
   },
 };
+
+export default config;

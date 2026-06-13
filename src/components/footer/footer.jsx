@@ -56,6 +56,17 @@ export const Footer = () => {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link
+                className="link"
+                href="https://github.com/FyFka/tag-searcher/"
+                target="_blank"
+                rel="noopener noreferrer"
+                prefetch={false}
+              >
+                Contribute
+              </Link>
+            </li>
           </ul>
         </div>
 

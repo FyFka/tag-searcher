@@ -29,7 +29,7 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
     return () => {
       if (current) observer.unobserve(current);
     };
-  }, [fetchNextServers]);
+  }, [fetchNextServers, hasMore, serversLoading.loading]);
 
   const isServersLoading = serversLoading.loading;
   const showAds = servers.length > 0;

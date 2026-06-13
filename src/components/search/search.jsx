@@ -29,7 +29,7 @@ export const Search = ({ refetchServers, initSetup }) => {
 
     globalThis.addEventListener("popstate", onPopState);
     return () => globalThis.removeEventListener("popstate", onPopState);
-  }, []);
+  }, [refetchServers]);
 
   const debouncedRefetch = useMemo(
     () => debounce((searchValue) => refetchServers(searchValue, sortBy, NSFW, characters), searchDebounce),
@@ -75,14 +75,7 @@ export const Search = ({ refetchServers, initSetup }) => {
         <div className="relative flex-10">
           <label className="input w-full pr-32 md:pr-40 lg:pr-75">
             <SearchIcon width={22} height={22} />
-            <input
-              onChange={onSearchChange}
-              value={search}
-              type="text"
-              name="search"
-              placeholder="Search"
-              className="w-full"
-            />
+            <input onChange={onSearchChange} value={search} type="text" name="search" placeholder="Search" className="w-full" />
           </label>
           <SuggestedTags onSearchChange={onSearchChange} search={search} />
         </div>
@@ -101,13 +94,7 @@ export const Search = ({ refetchServers, initSetup }) => {
           <option value="newest">Newest</option>
         </select>
         <label className="label px-2.5 py-1.25 bg-base-100 border border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
-          <input
-            onChange={handleToggleNSFW}
-            name="NSFW toggle"
-            type="checkbox"
-            checked={NSFW}
-            className="toggle toggle-sm"
-          />
+          <input onChange={handleToggleNSFW} name="NSFW toggle" type="checkbox" checked={NSFW} className="toggle toggle-sm" />
           <span className={`text-sm ${NSFWHighlight}`}>NSFW</span>
         </label>
         <div className="filter flex items-center">

@@ -23,12 +23,18 @@ import { OptionalImage } from "@/components/optional-image";
 export const ServerListItem = ({ server, idx }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [revealed, setRevealed] = useState(false);
-  const { refs, floatingStyles, context } = useFloating({
+
+  const {
+    refs: { setReference, setFloating },
+    floatingStyles,
+    context,
+  } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(4), flip(), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
   });
+
   const click = useClick(context);
   const dismiss = useDismiss(context);
   const role = useRole(context);
@@ -42,7 +48,7 @@ export const ServerListItem = ({ server, idx }) => {
   return (
     <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
       <button
-        ref={refs.setReference}
+        ref={setReference}
         {...getReferenceProps()}
         className="btn btn-sm flex items-center gap-1 absolute px-2.5 rounded-full bg-base-100 font-semibold overflow-hidden top-3 left-3 z-20 cursor-pointer shimmer border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]"
       >
@@ -62,7 +68,7 @@ export const ServerListItem = ({ server, idx }) => {
       {isOpen && (
         <FloatingPortal>
           <FloatingFocusManager context={context} modal={true}>
-            <div className="z-100" ref={refs.setFloating} style={floatingStyles} {...getFloatingProps()}>
+            <div className="z-100" ref={setFloating} style={floatingStyles} {...getFloatingProps()}>
               <ServerTagPreview tagImg={server.tagImg} tagName={server.tagName} />
             </div>
           </FloatingFocusManager>

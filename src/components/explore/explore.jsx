@@ -21,7 +21,11 @@ import {
 const ThiingsIconCell = ({ gridIndex, servers }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { refs, floatingStyles, context } = useFloating({
+  const {
+    refs: { setReference, setFloating },
+    floatingStyles,
+    context,
+  } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset(4), flip(), shift({ padding: 8 })],
@@ -71,15 +75,13 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
   return (
     <div className="absolute inset-1 flex items-center justify-center">
       <div
-        className={`group transition-transform duration-500 ease-in-out ${
-          isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
-        }`}
+        className={`group transition-transform duration-500 ease-in-out ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
         style={{
           transformOrigin: "center center",
         }}
       >
         <button
-          ref={refs.setReference}
+          ref={setReference}
           {...getReferenceProps()}
           className="btn md:btn-xl btn-sm md:px-6.5 border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] flex items-center gap-1 md:gap-2 rounded-full bg-base-100 font-semibold overflow-hidden cursor-pointer hover:bg-base-200 transition-colors relative shimmer"
         >
@@ -100,7 +102,7 @@ const ThiingsIconCell = ({ gridIndex, servers }) => {
             <FloatingFocusManager context={context} modal={true}>
               <div
                 className="z-50"
-                ref={refs.setFloating}
+                ref={setFloating}
                 style={floatingStyles}
                 {...getFloatingProps()}
                 onMouseDown={(evt) => evt.stopPropagation()}

@@ -13,30 +13,33 @@ export const AddRequestList = ({ page, setPage, refetchTrigger }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  const fetchRequests = async (pageNum, searchTerm = "") => {
-    try {
-      setLoading(true);
-      const query = new URLSearchParams({ page: pageNum });
-      if (searchTerm) query.set("s", searchTerm);
+  const fetchRequests = useCallback(
+    async (pageNum, searchTerm = "") => {
+      try {
+        setLoading(true);
+        const query = new URLSearchParams({ page: pageNum });
+        if (searchTerm) query.set("s", searchTerm);
 
-      const res = await fetch(`/api/request-server?${query.toString()}`);
-      const data = await res.json();
+        const res = await fetch(`/api/request-server?${query.toString()}`);
+        const data = await res.json();
 
-      setRequests(data.items || []);
-      setTotalPages(data.totalPages || 1);
-      setPage(data.page || 1);
-    } catch (err) {
-      console.error("Failed to fetch requests:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setRequests(data.items || []);
+        setTotalPages(data.totalPages || 1);
+        setPage(data.page || 1);
+      } catch (err) {
+        console.error("Failed to fetch requests:", err);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setPage],
+  );
 
-  const debouncedFetch = useMemo(() => debounce((pageNum, searchTerm) => fetchRequests(pageNum, searchTerm), 750), []);
+  const debouncedFetch = useMemo(() => debounce((pageNum, searchTerm) => fetchRequests(pageNum, searchTerm), 750), [fetchRequests]);
 
   useEffect(() => {
     debouncedFetch(page, search);
-  }, [search, debouncedFetch, refetchTrigger]);
+  }, [search, debouncedFetch, refetchTrigger, page]);
 
   const onSearchChange = (evt) => {
     const val = evt.target.value;

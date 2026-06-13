@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { TriangleAlert } from "lucide-react";
 
-export const OptionalImage = (props) => {
+export const OptionalImage = ({ alt, ...props }) => {
   const [isError, setIsError] = useState(false);
 
   if (isError)
@@ -14,5 +14,5 @@ export const OptionalImage = (props) => {
       </div>
     );
 
-  return <Image {...props} onError={() => setIsError(true)} />;
+  return <Image alt={alt} {...props} onError={() => setIsError(true)} />;
 };

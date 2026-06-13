@@ -9,6 +9,8 @@ export const metadata = {
 
 export default function NotFound() {
   const smiles = ["🐸", "🫠", "💥", "🌚", "😵", "😶‍🌫️", "🤖", "👾", "🚫", "🔍", "📦", "🤷‍♂️", "🧙‍♂️", "👻", "😬"];
+
+  // eslint-disable-next-line react-hooks/purity
   const smile = smiles[Math.floor(Math.random() * smiles.length)];
 
   return (
