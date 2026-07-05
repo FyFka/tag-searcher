@@ -18,19 +18,19 @@ const montserrat = Montserrat({
 
 export const metadata = {
   title: { template: "%s | Discord Tags Searcher" },
-  metadataBase: new URL("https://tagsearcher.org"),
+  metadataBase: new URL("https://tagsearcher.net"),
   openGraph: {
-    url: "https://tagsearcher.org/",
+    url: "https://tagsearcher.net/",
     type: "website",
     title: "Search Discord Tags & Badges",
     description:
       "Search, find, and explore the most complete collection of Discord tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
-        url: "https://tagsearcher.org/preview.webp",
+        url: "https://tagsearcher.net/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Tags and Badges available to search on TagSearcher.org",
+        alt: "A display of various Discord Tags and Badges available to search on TagSearcher",
       },
     ],
   },
@@ -52,10 +52,10 @@ export const metadata = {
       "Search, find, and explore the most complete collection of Discord tags and badges for 2026. Customize your profile and discover new communities.",
     images: [
       {
-        url: "https://tagsearcher.org/preview.webp",
+        url: "https://tagsearcher.net/preview.webp",
         width: 1200,
         height: 630,
-        alt: "A display of various Discord Tags and Badges available to search on TagSearcher.org",
+        alt: "A display of various Discord Tags and Badges available to search on TagSearcher",
       },
     ],
   },

@@ -6,7 +6,7 @@
 
 The project architecture consists of three main layers:
 
-- **Web Application Layer** — Client App / BFF built with Next.js (tagsearcher.org).
+- **Web Application Layer** — Client App / BFF built with Next.js (tagsearcher.net).
 - **Storage Layer** — PostgreSQL as the primary database with FerretDB proxy for document-based access.
 - **Background Processing Layer** — GitHub Actions workers (Global Sync Worker and On-Demand Worker) for state and server synchronization.
 

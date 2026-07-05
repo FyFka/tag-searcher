@@ -32,7 +32,7 @@ const getFastRoutePaths = async () => {
 };
 
 const config = {
-  siteUrl: process.env.SITE_URL || "https://tagsearcher.org",
+  siteUrl: process.env.SITE_URL || "https://tagsearcher.net",
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [
