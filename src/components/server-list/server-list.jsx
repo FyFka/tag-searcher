@@ -41,12 +41,16 @@ export const ServerList = ({ servers, hasMore, serversLoading, fetchNextServers 
       {showAds && (
         <>
           <NativeBanner
-            id="container-a3853da0402d9b70eb6612e70db53061"
-            src="https://drainalmost.com/a3853da0402d9b70eb6612e70db53061/invoke.js"
+            id="container-7120eeacb940cd0469a1080b980890b4"
+            src="https://drainalmost.com/7120eeacb940cd0469a1080b980890b4/invoke.js"
           />
           <NativeBanner
-            id="container-75ddb1c05461565f2401775c94246293"
-            src="https://drainalmost.com/75ddb1c05461565f2401775c94246293/invoke.js"
+            id="container-5c23b6f139f42af3e656ea7d2ae42795"
+            src="https://drainalmost.com/5c23b6f139f42af3e656ea7d2ae42795/invoke.js"
+          />
+          <NativeBanner
+            id="container-1c3d7700adf9f75257517635092d7120"
+            src="https://drainalmost.com/1c3d7700adf9f75257517635092d7120/invoke.js"
           />
         </>
       )}
