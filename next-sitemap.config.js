@@ -1,39 +1,50 @@
 import client from "./src/lib/mongodb.js";
 import { dbName } from "./src/config.js";
 
+const locales = ["en", "de", "es", "fr", "it", "nl", "pl", "pt", "ru", "tr"];
+const defaultLocale = "en";
+
+const localizedPath = (locale, path) => {
+  if (locale === defaultLocale) {
+    return path;
+  }
+
+  return `/${locale}${path}`;
+};
+
 const getFastRoutePaths = async () => {
   let connection;
+
   try {
     connection = await client;
     const db = connection.db(dbName);
-    const fastroutes = await db
+
+    const routes = await db
       .collection("fastroutes")
       .find({}, { projection: { urlSegment: 1 } })
       .toArray();
 
-    return fastroutes.map((route) => ({
-      loc: `/tag/${route.urlSegment}`,
-      changefreq: "weekly",
-      priority: 0.7,
-      lastmod: new Date().toISOString(),
-    }));
+    return routes.flatMap((route) =>
+      locales.map((locale) => ({
+        loc: localizedPath(locale, `/tag/${route.urlSegment}`),
+        changefreq: "weekly",
+        priority: 0.7,
+        lastmod: new Date().toISOString(),
+      })),
+    );
   } catch (e) {
-    console.error("Error fetching FastRoute paths:", e);
+    console.error(e);
     return [];
   } finally {
-    if (connection) {
-      try {
-        await connection?.close();
-      } catch (closeError) {
-        console.error("Error closing MongoDB connection:", closeError);
-      }
-    }
+    await connection?.close();
   }
 };
 
 const config = {
   siteUrl: process.env.SITE_URL || "https://tagsearcher.net",
+
   generateRobotsTxt: true,
+
   robotsTxtOptions: {
     policies: [
       {
@@ -42,18 +53,20 @@ const config = {
       },
     ],
   },
+
   exclude: ["/manifest.webmanifest"],
+
   additionalPaths: async () => {
     const tagRoutes = await getFastRoutePaths();
-    return [
-      {
-        loc: "/",
-        changefreq: "daily",
-        priority: 0.7,
-        lastmod: new Date().toISOString(),
-      },
-      ...tagRoutes,
-    ];
+
+    const rootRoutes = locales.map((locale) => ({
+      loc: localizedPath(locale, "/"),
+      changefreq: "daily",
+      priority: 0.7,
+      lastmod: new Date().toISOString(),
+    }));
+
+    return [...rootRoutes, ...tagRoutes];
   },
 };
 
