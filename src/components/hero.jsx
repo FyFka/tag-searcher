@@ -2,18 +2,18 @@
 
 import { formatNumber } from "@/lib/utils";
 import { Globe, Heart, User, Zap } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { LightRays } from "./light-rays";
 
 export const Hero = ({ totalServers, totalMembers, totalVisits, customDescription, customTitle, linkToSearchPage }) => {
+  const t = useTranslations("hero");
   const beautifiedServers = formatNumber(totalServers);
   const beautifiedMembers = formatNumber(totalMembers);
   const beautifiedVisits = formatNumber(totalVisits);
 
-  const title = customTitle ? customTitle : "Discord Tags Searcher";
-  const description = customDescription
-    ? customDescription
-    : `Explore the most up-to-date collection of Discord tags and badges. Search thousands of tags, discover new servers, and personalize your profile to stand out.`;
+  const title = customTitle ? customTitle : t("defaultTitle");
+  const description = customDescription ? customDescription : t("defaultDescription");
   return (
     <div className="py-22 msm:py-26 text-center flex flex-col items-center gap-4 px-2 md:px-10 xl:px-14 bg-base-100 relative">
       <h1 className="font-extrabold text-4xl md:text-6xl xl:text-7xl font-mono z-50">{title}</h1>
@@ -22,25 +22,25 @@ export const Hero = ({ totalServers, totalMembers, totalVisits, customDescriptio
         <div className="flex items-center gap-1.25">
           <Globe height={18} width={18} className="text-primary" />
           <span className="text-nowrap">
-            <span className="font-semibold">{beautifiedServers}</span> servers
+            <span className="font-semibold">{beautifiedServers}</span> {t("servers")}
           </span>
         </div>
         <div className="flex items-center gap-1.25">
           <Zap height={18} width={18} className="text-warning" />
           <span className="text-nowrap">
-            <span className="font-semibold">{beautifiedVisits}</span> visits
+            <span className="font-semibold">{beautifiedVisits}</span> {t("visits")}
           </span>
         </div>
         <div className="flex items-center gap-1.25">
           <User height={18} width={18} className="text-base-content/80" />
           <span className="text-nowrap">
-            <span className="font-semibold">{beautifiedMembers}</span> members
+            <span className="font-semibold">{beautifiedMembers}</span> {t("members")}
           </span>
         </div>
         <div className="flex items-center gap-1.25">
           <Heart height={18} width={18} className="text-error" />
           <span className="text-nowrap">
-            <span className="font-semibold">100%</span> satisfaction
+            <span className="font-semibold">100%</span> {t("satisfaction")}
           </span>
         </div>
       </div>
@@ -58,7 +58,7 @@ export const Hero = ({ totalServers, totalMembers, totalVisits, customDescriptio
       </div>
       {linkToSearchPage && (
         <Link href="/" className="btn btn-primary w-full max-w-80 mt-1.5 relative z-50" prefetch={false}>
-          Find Discord Tag
+          {t("findTag")}
         </Link>
       )}
     </div>

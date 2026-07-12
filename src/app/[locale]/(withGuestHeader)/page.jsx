@@ -3,23 +3,28 @@ import { ServerDashboard } from "@/components/server-dashboard";
 import { notFound } from "next/navigation";
 import { getServers } from "@/lib/servers";
 import { unstable_cache } from "next/cache";
+import { getAlternates } from "@/lib/metadata";
+import { getTranslations } from "next-intl/server";
 
-export const metadata = {
-  title: "Search Discord Tags & Badges",
-  description:
-    "Explore the most up-to-date 2026 Discord tags and badges instantly search thousands of tags discover communities personalize your profile.",
-  keywords: [
-    "Discord special name",
-    "Discord channel symbols",
-    "Discord guilds list",
-    "Discord server tags",
-    "Discord badges",
-    "Discord tags",
-    "Server tag directory",
-    "Username badges 2026",
-    "Discord server icons",
-    "Discord servers",
-  ],
+export const generateMetadata = async () => {
+  const t = await getTranslations("metadata.home");
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: [
+      "Discord special name",
+      "Discord channel symbols",
+      "Discord guilds list",
+      "Discord server tags",
+      "Discord badges",
+      "Discord tags",
+      "Server tag directory",
+      "Username badges 2026",
+      "Discord server icons",
+      "Discord servers",
+    ],
+    alternates: getAlternates("/"),
+  };
 };
 
 const getServersStatic = unstable_cache(async () => getServers(), ["home-page-servers"], {

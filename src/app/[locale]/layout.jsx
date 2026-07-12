@@ -1,7 +1,8 @@
 import { Open_Sans, Montserrat } from "next/font/google";
 import Script from "next/script";
 import { Disclaimer } from "@/components/disclaimer/disclaimer";
-import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import "../globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -69,17 +70,19 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://www.clarity.ms" />
       </head>
       <body className={`${openSans.variable} ${montserrat.variable} antialiased flex flex-col min-h-screen`}>
-        {children}
-        {clarityTagId && (
-          <Script id="ms-clarity" strategy="afterInteractive">
-            {`(function(c,l,a,r,i,t,y){
+        <NextIntlClientProvider>
+          {children}
+          {clarityTagId && (
+            <Script id="ms-clarity" strategy="afterInteractive">
+              {`(function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "${clarityTagId}");`}
-          </Script>
-        )}
-        <Disclaimer />
+            </Script>
+          )}
+          <Disclaimer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

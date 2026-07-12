@@ -12,10 +12,10 @@ const verifyJoin = async (req) => {
     const isRecaptchaValid = await validateRecaptchaToken(token);
 
     if (!isRecaptchaValid) {
-      return new Response(
-        JSON.stringify({ type: "error", message: "Hmm... that security check didn’t pass. Give it another shot!" }),
-        { status: 200, headers: { "Content-Type": "application/json" } },
-      );
+      return new Response(JSON.stringify({ type: "error", message: "securityCheckFailed" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const connection = await client;
@@ -23,11 +23,7 @@ const verifyJoin = async (req) => {
 
     const res = await db
       .collection("servertags")
-      .findOneAndUpdate(
-        { profileId },
-        { $inc: { visits: 1 } },
-        { projection: { inviteCode: 1 }, returnDocument: "after" },
-      );
+      .findOneAndUpdate({ profileId }, { $inc: { visits: 1 } }, { projection: { inviteCode: 1 }, returnDocument: "after" });
 
     return new Response(JSON.stringify({ inviteCode: res?.inviteCode, hasError: false }), {
       status: 200,
@@ -36,7 +32,7 @@ const verifyJoin = async (req) => {
   } catch (e) {
     console.log(e.message);
     const res = {
-      message: "Failed to get invite code, if this problem persists invite code may be invalid",
+      message: "failedToGetInviteCode",
       hasError: true,
     };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });

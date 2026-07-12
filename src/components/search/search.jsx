@@ -2,11 +2,13 @@
 
 import { Search as SearchIcon } from "lucide-react";
 import { useMemo, useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { debounce } from "@/lib/utils";
 import { maxSearchLength, searchDebounce } from "@/config";
 import { SuggestedTags } from "@/components/search/suggested-tags";
 
 export const Search = ({ refetchServers, initSetup }) => {
+  const t = useTranslations("search");
   const [search, setSearch] = useState(initSetup.search);
   const [sortBy, setSortBy] = useState(initSetup.sortBy);
   const [characters, setCharacters] = useState(initSetup.characters);
@@ -75,27 +77,27 @@ export const Search = ({ refetchServers, initSetup }) => {
         <div className="relative flex-10">
           <label className="input w-full pr-32 md:pr-40 lg:pr-75">
             <SearchIcon width={22} height={22} />
-            <input onChange={onSearchChange} value={search} type="text" name="search" placeholder="Search" className="w-full" />
+            <input onChange={onSearchChange} value={search} type="text" name="search" placeholder={t("placeholder")} className="w-full" />
           </label>
           <SuggestedTags onSearchChange={onSearchChange} search={search} />
         </div>
       </div>
       <div className="flex gap-1 items-center flex-wrap">
         <select
-          aria-label="Sort by"
+          aria-label={t("sortBy")}
           onChange={handleChangeSortBy}
           name="Sort by"
           value={sortBy}
           className="select select-sm max-w-40 cursor-pointer"
         >
-          <option value="relevant">Most Relevant</option>
-          <option value="popular">Most Popular</option>
-          <option value="visited">Most Visited</option>
-          <option value="newest">Newest</option>
+          <option value="relevant">{t("sortRelevant")}</option>
+          <option value="popular">{t("sortPopular")}</option>
+          <option value="visited">{t("sortVisited")}</option>
+          <option value="newest">{t("sortNewest")}</option>
         </select>
         <label className="label px-2.5 py-1.25 bg-base-100 border border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] rounded-2xl">
           <input onChange={handleToggleNSFW} name="NSFW toggle" type="checkbox" checked={NSFW} className="toggle toggle-sm" />
-          <span className={`text-sm ${NSFWHighlight}`}>NSFW</span>
+          <span className={`text-sm ${NSFWHighlight}`}>{t("nsfw")}</span>
         </label>
         <div className="filter flex items-center">
           <input
@@ -105,7 +107,7 @@ export const Search = ({ refetchServers, initSetup }) => {
             checked={characters === 2}
             value={2}
             onChange={handleChangeCharacters}
-            aria-label="2 Characters"
+            aria-label={t("characters2")}
           />
           <input
             className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm"
@@ -114,7 +116,7 @@ export const Search = ({ refetchServers, initSetup }) => {
             checked={characters === 3}
             value={3}
             onChange={handleChangeCharacters}
-            aria-label="3 Characters"
+            aria-label={t("characters3")}
           />
           <input
             className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm"
@@ -123,7 +125,7 @@ export const Search = ({ refetchServers, initSetup }) => {
             checked={characters === 4}
             value={4}
             onChange={handleChangeCharacters}
-            aria-label="4 Characters"
+            aria-label={t("characters4")}
           />
           <input
             className="btn bg-base-100 border-[color-mix(in_oklab,var(--color-base-content)_20%,transparent)] btn-sm filter-reset"
@@ -132,7 +134,7 @@ export const Search = ({ refetchServers, initSetup }) => {
             checked={characters === -1}
             value={-1}
             onChange={handleChangeCharacters}
-            aria-label="x"
+            aria-label={t("charactersAny")}
           />
         </div>
       </div>

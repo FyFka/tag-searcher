@@ -38,7 +38,7 @@ const serverList = async (req) => {
     return new Response(JSON.stringify(responseData), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (e) {
     console.log(e.message);
-    const res = { message: "Something went wrong. Please try again later.", error: true };
+    const res = { message: "somethingWentWrong", error: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };

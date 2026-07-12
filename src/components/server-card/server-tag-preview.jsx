@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { UserProfileRow } from "@/components/user-profile-row/user-profile-row";
 import { getFromLocalStorage, setToLocalStorage } from "@/lib/localStorage";
+import { useTranslations } from "next-intl";
 
 export const ServerTagPreview = ({ tagName, tagImg }) => {
+  const t = useTranslations("serverCard");
   const localStorageKey = "username";
-  const [storedUsername, setStoredUsername] = useState(() => getFromLocalStorage(localStorageKey) ?? "Your username");
+  const [storedUsername, setStoredUsername] = useState(() => getFromLocalStorage(localStorageKey) ?? t("yourUsername"));
 
   const handleUsernameUpdate = (newUsername) => {
     setToLocalStorage(localStorageKey, newUsername);

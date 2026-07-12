@@ -1,11 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Feedback } from "./feedback";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export const Footer = () => {
+  const t = useTranslations("footer");
   const year = new Date().getFullYear();
   const [collapsed, setCollapsed] = useState(false);
 
@@ -22,38 +25,35 @@ export const Footer = () => {
         }`}
       >
         <div className="space-y-3 max-w-80">
-          <h2 className="font-extrabold text-lg font-mono">About</h2>
+          <h2 className="font-extrabold text-lg font-mono">{t("aboutTitle")}</h2>
           <p className="text-sm opacity-80">
-            Made in {year} for the Discord community. Not affiliated with{" "}
-            <Link
-              className="link"
-              href="https://discord.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              prefetch={false}
-            >
-              Discord
-            </Link>
-            . Discover and find servers, tags, badges, and join communities easily.
+            {t.rich("aboutText", {
+              year,
+              discordLink: (chunks) => (
+                <Link className="link" href="https://discord.com" target="_blank" rel="noopener noreferrer" prefetch={false}>
+                  {chunks}
+                </Link>
+              ),
+            })}
           </p>
         </div>
 
         <div className="space-y-3">
-          <h2 className="font-extrabold text-lg font-mono">Links</h2>
+          <h2 className="font-extrabold text-lg font-mono">{t("linksTitle")}</h2>
           <ul className="flex flex-col gap-1 text-sm">
             <li>
               <Link className="link" href="/explore" prefetch={false}>
-                Explore Tags
+                {t("exploreTags")}
               </Link>
             </li>
             <li>
               <Link className="link" href="/trending-tags" prefetch={false}>
-                Trending Tags
+                {t("trendingTags")}
               </Link>
             </li>
             <li>
               <Link className="link" href="/contact" prefetch={false}>
-                Contact Us
+                {t("contactUs")}
               </Link>
             </li>
             <li>
@@ -64,23 +64,23 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 prefetch={false}
               >
-                Contribute
+                {t("contribute")}
               </Link>
             </li>
           </ul>
         </div>
 
         <div className="space-y-3">
-          <h2 className="font-extrabold text-lg font-mono">Resources</h2>
+          <h2 className="font-extrabold text-lg font-mono">{t("resourcesTitle")}</h2>
           <ul className="flex flex-col gap-1 text-sm">
             <li>
               <Link className="link" href="/terms" prefetch={false}>
-                Terms of Service
+                {t("termsOfService")}
               </Link>
             </li>
             <li>
               <Link className="link" href="/privacy" prefetch={false}>
-                Privacy Policy
+                {t("privacyPolicy")}
               </Link>
             </li>
           </ul>
@@ -89,16 +89,15 @@ export const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pt-2 md:px-10 xl:px-14 flex justify-between items-center">
-        <span className="text-sm opacity-60">© {year} TagSearcher. All rights reserved.</span>
-        <button
-          className="btn btn-sm btn-ghost flex items-center gap-1"
-          aria-label="Toggle footer"
-          onClick={toggleFooter}
-        >
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-300 ${collapsed ? "rotate-180" : "rotate-0"}`}
-          />
-        </button>
+        <div className="flex items-center gap-3">
+          <span className="text-sm opacity-60">{t("rightsReserved", { year })}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <LanguageSwitcher align="right" up />
+          <button className="btn btn-sm btn-ghost flex items-center gap-1" aria-label={t("toggleFooter")} onClick={toggleFooter}>
+            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${collapsed ? "rotate-180" : "rotate-0"}`} />
+          </button>
+        </div>
       </div>
     </footer>
   );

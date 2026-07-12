@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { formatNumber } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import {
   useClick,
   useDismiss,
@@ -21,6 +22,7 @@ import { ServerTagPreview } from "@/components/server-card/server-tag-preview";
 import { OptionalImage } from "@/components/optional-image";
 
 export const ServerListItem = ({ server, idx }) => {
+  const t = useTranslations("serverCard");
   const [isOpen, setIsOpen] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
@@ -43,7 +45,7 @@ export const ServerListItem = ({ server, idx }) => {
   const beautifiedMembersCount = formatNumber(server.membersCount);
   const beautifiedMembersOnline = formatNumber(server.membersOnline);
   const beautifiedVisits = formatNumber(server.visits);
-  const description = server.description?.length > 0 ? server.description : "No description provided";
+  const description = server.description?.length > 0 ? server.description : t("noDescription");
   const isPriority = idx < 4;
   return (
     <div className="card group bg-base-100 w-full shadow-md overflow-hidden rounded-xl relative border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]">
@@ -95,8 +97,8 @@ export const ServerListItem = ({ server, idx }) => {
               }`}
               onClick={() => setRevealed(true)}
             >
-              <span className="text-white font-semibold uppercase pointer-events-none">NSFW</span>
-              <span className="text-white/60 text-xs pointer-events-none">Click to reveal</span>
+              <span className="text-white font-semibold uppercase pointer-events-none">{t("nsfw")}</span>
+              <span className="text-white/60 text-xs pointer-events-none">{t("clickToReveal")}</span>
             </div>
           )}
         </figure>
@@ -127,16 +129,16 @@ export const ServerListItem = ({ server, idx }) => {
         <div className="flex gap-0.5 justify-between">
           <p className="flex gap-1 items-center text-xs font-semibold text-base-content/70">
             <span className="status status-success"></span>
-            <span className="font-bold text-base-content/75">{beautifiedMembersOnline}</span> <span>online</span>
+            <span className="font-bold text-base-content/75">{beautifiedMembersOnline}</span> <span>{t("online")}</span>
           </p>
           <p className="flex gap-1 items-center justify-end text-xs font-semibold text-base-content/70">
             <span className="status bg-base-content/80"></span>
-            <span className="font-bold text-base-content/75">{beautifiedMembersCount}</span> <span>members</span>
+            <span className="font-bold text-base-content/75">{beautifiedMembersCount}</span> <span>{t("members")}</span>
           </p>
         </div>
         <div className="card-actions items-center justify-end mt-2">
           <p className="text-xs text-base-content/70 font-semibold">
-            <span className="font-bold text-base-content/75">{beautifiedVisits}</span> <span>visits</span>
+            <span className="font-bold text-base-content/75">{beautifiedVisits}</span> <span>{t("visits")}</span>
           </p>
           <Link
             href={`/join/${server.profileId}`}
@@ -145,7 +147,7 @@ export const ServerListItem = ({ server, idx }) => {
             className="btn btn-primary"
             prefetch={false}
           >
-            Join Server
+            {t("joinServer")}
           </Link>
         </div>
       </div>

@@ -19,12 +19,7 @@ const serverRequestList = async (req) => {
 
     const [total, items] = await Promise.all([
       collection.countDocuments(query),
-      collection
-        .find(query, { projection })
-        .sort({ requestedAt: -1 })
-        .skip(skip)
-        .limit(serverRequestLimitPerPage)
-        .toArray(),
+      collection.find(query, { projection }).sort({ requestedAt: -1 }).skip(skip).limit(serverRequestLimitPerPage).toArray(),
     ]);
 
     return new Response(JSON.stringify({ items, page, totalPages: Math.ceil(total / serverRequestLimitPerPage) }), {
@@ -33,7 +28,7 @@ const serverRequestList = async (req) => {
     });
   } catch (e) {
     console.log(e.message);
-    const res = { message: "Failed to load data", hasError: true };
+    const res = { message: "failedToLoadData", hasError: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };
@@ -49,20 +44,17 @@ const serverRequest = async (req) => {
     const isRecaptchaValid = await validateRecaptchaToken(token);
 
     if (!isRecaptchaValid) {
-      return new Response(
-        JSON.stringify({ type: "error", message: "Hmm... that security check didn’t pass. Give it another shot!" }),
-        { status: 200, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ type: "error", message: "securityCheckFailed" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     if (inviteCode.length < 1) {
-      return new Response(
-        JSON.stringify({ type: "error", message: "We couldn't find a valid invite code. Double-check and try again!" }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new Response(JSON.stringify({ type: "error", message: "invalidInviteCode" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const connection = await client;
@@ -75,18 +67,15 @@ const serverRequest = async (req) => {
     ]);
 
     if (existing) {
-      return new Response(
-        JSON.stringify({ message: "That server’s already on the list😉", type: "error" }),
-        {
-          status: 409,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new Response(JSON.stringify({ message: "serverAlreadyOnList", type: "error" }), {
+        status: 409,
+        headers: { "Content-Type": "application/json" },
+      });
     } else if (requested) {
-      return new Response(
-        JSON.stringify({ message: "This server has already been submitted and is being processed", type: "error" }),
-        { status: 409, headers: { "Content-Type": "application/json" } }
-      );
+      return new Response(JSON.stringify({ message: "serverAlreadySubmitted", type: "error" }), {
+        status: 409,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const now = new Date();
@@ -98,14 +87,14 @@ const serverRequest = async (req) => {
 
     return new Response(
       JSON.stringify({
-        message: "Server submitted successfully. It will be processed within 24 hours",
+        message: "serverSubmittedSuccessfully",
         type: "success",
       }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } catch (e) {
     console.log(e.message);
-    const res = { message: "Something went wrong. Please try again later", hasError: true };
+    const res = { message: "somethingWentWrong", hasError: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };

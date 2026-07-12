@@ -6,8 +6,10 @@ import { RequestListTable } from "@/components/header/add-request-list/request-l
 import { Pagination } from "@/components/header/add-request-list/pagination";
 import { debounce } from "@/lib/utils";
 import { maxSearchInviteCodeLength } from "@/config";
+import { useTranslations } from "next-intl";
 
 export const AddRequestList = ({ page, setPage, refetchTrigger }) => {
+  const t = useTranslations("requestList");
   const [search, setSearch] = useState("");
   const [requests, setRequests] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -64,7 +66,7 @@ export const AddRequestList = ({ page, setPage, refetchTrigger }) => {
             value={search}
             type="text"
             name="search"
-            placeholder="Search by invite code"
+            placeholder={t("searchPlaceholder")}
             className="w-full"
           />
         </label>

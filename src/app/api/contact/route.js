@@ -11,10 +11,10 @@ const contactUs = async (req) => {
     const isRecaptchaValid = await validateRecaptchaToken(token);
 
     if (!isRecaptchaValid) {
-      return new Response(
-        JSON.stringify({ type: "error", message: "Hmm... that security check didn’t pass. Give it another shot!" }),
-        { status: 200, headers: { "Content-Type": "application/json" } },
-      );
+      return new Response(JSON.stringify({ type: "error", message: "securityCheckFailed" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
     const name = parseText(body?.name);
@@ -22,7 +22,7 @@ const contactUs = async (req) => {
     const email = parseText(body?.email);
 
     if (name.length < 1 || message.length < 1 || email.length < 1) {
-      return new Response(JSON.stringify({ type: "error", message: "Please fill out all required fields" }), {
+      return new Response(JSON.stringify({ type: "error", message: "fillAllFields" }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
@@ -36,16 +36,13 @@ const contactUs = async (req) => {
     const now = new Date();
     await collection.insertOne({ name, message, email, createdAt: now });
 
-    return new Response(
-      JSON.stringify({
-        message: "Thanks for your message! We'll get back to you as soon as possible",
-        type: "success",
-      }),
-      { status: 200, headers: { "Content-Type": "application/json" } },
-    );
+    return new Response(JSON.stringify({ message: "messageSentSuccessfully", type: "success" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (e) {
     console.log(e.message);
-    const res = { message: "Something went wrong. Please try again later", hasError: true };
+    const res = { message: "somethingWentWrong", hasError: true };
     return new Response(JSON.stringify(res), { status: 500, headers: { "Content-Type": "application/json" } });
   }
 };

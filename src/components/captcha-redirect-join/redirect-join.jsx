@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import { Turnstile } from "next-turnstile";
+import { useTranslations } from "next-intl";
 
 export const RedirectJoin = ({ profileId }) => {
+  const t = useTranslations("captcha");
+  const tApi = useTranslations("api");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -25,7 +29,7 @@ export const RedirectJoin = ({ profileId }) => {
       if (res.ok && data.inviteCode) {
         globalThis.location.href = `https://discord.com/invite/${data.inviteCode}`;
       } else {
-        throw new Error(data.message || "Verification failed. Please try again.");
+        throw new Error(data.message ? tApi(data.message) : t("verificationFailed"));
       }
     } catch (err) {
       setError(err.message);
@@ -43,7 +47,7 @@ export const RedirectJoin = ({ profileId }) => {
         sandbox={process.env.NODE_ENV === "development"}
         onVerify={handleVerify}
       />
-      {loading && <p className="font-semibold">Verifying...</p>}
+      {loading && <p className="font-semibold">{t("verifying")}</p>}
       {error && <p className="text-error font-semibold">{error}</p>}
     </div>
   );

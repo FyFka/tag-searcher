@@ -2,35 +2,40 @@ import { Hero } from "@/components/hero";
 import { notFound } from "next/navigation";
 import { getStats, getTrendingTagsList } from "@/lib/servers";
 import Link from "next/link";
+import { getAlternates } from "@/lib/metadata";
+import { getTranslations } from "next-intl/server";
 
-export const metadata = {
-  title: "Trending Tags list",
-  description:
-    "Trending Tags list – curated tags with high server count or strong engagement. Discover what gamers are joining and the most active tags.",
-  keywords: [
-    "Discord special name",
-    "Discord channel symbols",
-    "Discord guilds list",
-    "Discord server tags",
-    "Discord badges",
-    "Discord tags",
-    "Server tag directory",
-    "Username badges 2026",
-    "Discord server icons",
-    "Discord servers",
-  ],
+export const generateMetadata = async () => {
+  const t = await getTranslations("metadata.trendingTags");
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: [
+      "Discord special name",
+      "Discord channel symbols",
+      "Discord guilds list",
+      "Discord server tags",
+      "Discord badges",
+      "Discord tags",
+      "Server tag directory",
+      "Username badges 2026",
+      "Discord server icons",
+      "Discord servers",
+    ],
+    alternates: getAlternates("/trending-tags"),
+  };
 };
 
 export default async function TrendingTags() {
+  const t = await getTranslations("metadata.trendingTags");
   const [stats, trendingTags] = await Promise.all([getStats(), getTrendingTagsList()]);
 
   if (!stats || !trendingTags || !trendingTags.length) {
     return notFound();
   }
 
-  const customDescription =
-    "Trending Tags list – curated tags with high server count or strong engagement. Discover what gamers are joining and the most active tags.";
-  const customTitle = "Trending Tags List";
+  const customDescription = t("description");
+  const customTitle = t("title");
   return (
     <>
       <Hero
@@ -47,11 +52,7 @@ export default async function TrendingTags() {
             key={tag.urlSegment}
             className="w-full relative group overflow-hidden bg-base-100 rounded-box border border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)]"
           >
-            <Link
-              className="block font-semibold p-2 relative text-center z-30"
-              href={`/tag/${tag.urlSegment}`}
-              prefetch={false}
-            >
+            <Link className="block font-semibold p-2 relative text-center z-30" href={`/tag/${tag.urlSegment}`} prefetch={false}>
               {tag.tagName}
             </Link>
           </li>

@@ -3,8 +3,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Turnstile } from "next-turnstile";
+import { useTranslations } from "next-intl";
 
 export const Feedback = () => {
+  const t = useTranslations("feedback");
+  const tApi = useTranslations("api");
+
   const {
     register,
     handleSubmit,
@@ -34,39 +38,40 @@ export const Feedback = () => {
       });
 
       const data = await res.json();
+      const displayMessage = data.message ? tApi(data.message) : tApi("unexpectedError");
 
       if (data.type === "error") {
-        setNotification({ message: data.message, type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       } else if (data.type === "success") {
-        setNotification({ message: data.message, type: "success" });
+        setNotification({ message: displayMessage, type: "success" });
       } else {
-        setNotification({ message: data.message || "Unexpected error", type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       }
 
       reset();
     } catch (error) {
-      setNotification({ message: "Unexpected error", type: "error" });
+      setNotification({ message: tApi("unexpectedError"), type: "error" });
     }
   };
 
   return (
     <div className="space-y-3 col-span-full lg:col-span-1">
-      <h2 className="font-extrabold text-lg font-mono">Feedback</h2>
-      <p className="text-sm opacity-80">Share your ideas or suggestions to help us improve TagSearcher.</p>
+      <h2 className="font-extrabold text-lg font-mono">{t("title")}</h2>
+      <p className="text-sm opacity-80">{t("description")}</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-2">
         <label className="floating-label w-full">
           <input
-            {...register("message", { required: "Message is required" })}
+            {...register("message", { required: t("messageRequired") })}
             type="text"
-            placeholder="Your feedback"
+            placeholder={t("placeholder")}
             className={`input input-bordered w-full flex-1 ${errors.message ? "border-error" : ""}`}
             onFocus={() => setShowTurnstile(true)}
           />
         </label>
         <button type="submit" disabled={isSubmitting} className="btn btn-primary min-w-16.25">
           {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
-          {!isSubmitting && "Send"}
+          {!isSubmitting && t("submit")}
         </button>
       </form>
 

@@ -3,8 +3,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Turnstile } from "next-turnstile";
+import { useTranslations } from "next-intl";
 
 export const ContactUs = () => {
+  const t = useTranslations("contact");
+  const tApi = useTranslations("api");
+
   const {
     register,
     handleSubmit,
@@ -24,70 +28,65 @@ export const ContactUs = () => {
       });
 
       const data = await res.json();
+      const displayMessage = data.message ? tApi(data.message) : tApi("unexpectedError");
 
       if (data.type === "error") {
-        setNotification({ message: data.message, type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       } else if (data.type === "success") {
-        setNotification({ message: data.message, type: "success" });
+        setNotification({ message: displayMessage, type: "success" });
       } else {
-        setNotification({ message: data.message || "Unexpected error", type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       }
 
       reset();
     } catch (error) {
-      setNotification({ message: "Unexpected error", type: "error" });
+      setNotification({ message: tApi("unexpectedError"), type: "error" });
     }
   };
 
   return (
     <div className="max-w-3xl mx-auto py-12 px-2">
-      <h1 className="text-3xl md:text-4xl font-extrabold font-mono text-center mb-4">Contact Us</h1>
-      <p className="text-base text-center mb-4">
-        We're here to help! Whether you have questions, need assistance, or want to provide feedback, please don't hesitate to reach out.
-        Our team is ready to support you and ensure you have the best experience possible.
-      </p>
+      <h1 className="text-3xl md:text-4xl font-extrabold font-mono text-center mb-4">{t("title")}</h1>
+      <p className="text-base text-center mb-4">{t("description")}</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label className="floating-label">
-            <span>Name</span>
+            <span>{t("nameLabel")}</span>
             <input
-              {...register("name", { required: "Name is required" })}
+              {...register("name", { required: t("nameRequired") })}
               className={`input input-bordered w-full ${errors.name ? "border-error" : ""}`}
-              placeholder="Your name"
+              placeholder={t("namePlaceholder")}
               autoComplete="name"
             />
           </label>
-          {errors.name && <p className="text-error text-sm">{errors.name.message}</p>}
         </div>
         <div>
           <label className="floating-label">
-            <span>Email</span>
+            <span>{t("emailLabel")}</span>
             <input
               {...register("email", {
-                required: "Email is required",
+                required: t("emailRequired"),
                 pattern: {
                   value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                  message: "Invalid email address",
+                  message: t("emailInvalid"),
                 },
               })}
               className={`input input-bordered w-full ${errors.email ? "border-error" : ""}`}
               autoComplete="email"
-              placeholder="you@example.com"
+              placeholder={t("emailPlaceholder")}
             />
           </label>
-          {errors.email && <p className="text-error text-sm">{errors.email.message}</p>}
         </div>
         <div>
           <label className="floating-label">
-            <span>Message</span>
+            <span>{t("messageLabel")}</span>
             <textarea
-              {...register("message", { required: "Message is required" })}
+              {...register("message", { required: t("messageRequired") })}
               rows={4}
               className={`textarea textarea-bordered w-full min-h-48 max-h-80 ${errors.message ? "border-error" : ""}`}
-              placeholder="Your message"
+              placeholder={t("messagePlaceholder")}
             />
           </label>
-          {errors.message && <p className="text-error text-sm">{errors.message.message}</p>}
         </div>
 
         {notification.type === "error" && <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>}
@@ -95,7 +94,7 @@ export const ContactUs = () => {
         <div className="flex items-center justify-end">
           <button type="submit" disabled={isSubmitting} className="btn btn-primary min-w-32">
             {isSubmitting && <span className="loading loading-spinner loading-sm"></span>}
-            {!isSubmitting && "Send Message"}
+            {!isSubmitting && t("submit")}
           </button>
         </div>
         <div className="flex items-center justify-end">

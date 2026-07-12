@@ -12,9 +12,11 @@ import {
 } from "@floating-ui/react";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { AddServerModalContent } from "@/components/header/add-server-modal";
 
 export const AddServer = () => {
+  const t = useTranslations("header");
   const [isOpen, setIsOpen] = useState(false);
 
   const {
@@ -32,7 +34,7 @@ export const AddServer = () => {
     <>
       <button className="btn btn-primary gap-1 btn-sm msm:btn-md" ref={setReference} {...getReferenceProps()}>
         <Plus height={20} width={20} />
-        Add Server
+        {t("addServer")}
       </button>
       {isOpen && (
         <FloatingPortal>
@@ -44,15 +46,15 @@ export const AddServer = () => {
                 </button>
                 <span className="text-sm font-semibold opacity-75 group-hover:opacity-100">ESC</span>
               </div>
-              <div ref={setFloating} {...getFloatingProps()} className="p-1 max-h-full w-full max-w-162.5">
+              <div ref={setFloating} {...getFloatingProps()} className="p-1 max-h-full w-full max-w-164">
                 <div className="relative bg-base-300 py-7 px-6 rounded-2xl shadow-md border-[color-mix(in_oklab,var(--color-base-content)_10%,transparent)] border z-50">
                   <div className="flex justify-between gap-1">
-                    <h2 className="font-extrabold font-mono text-xl msm:text-2xl mb-3">Add a Discord Server</h2>
+                    <h2 className="font-extrabold font-mono text-xl msm:text-2xl mb-3">{t("addServerModalTitle")}</h2>
                     <button
                       className="btn btn-neutral h-9 w-9 p-0 rounded-full z-50 mdc:hidden group"
                       onClick={handleCloseAddServer}
                       type="button"
-                      aria-label="Close"
+                      aria-label={t("close")}
                     >
                       <X className="opacity-85 group-hover:opacity-100" height={16} width={16} />
                     </button>

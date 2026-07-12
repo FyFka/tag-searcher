@@ -4,8 +4,12 @@ import { TriangleAlert } from "lucide-react";
 import { useState } from "react";
 import { parseInviteCodeFromUrl } from "@/lib/parse";
 import { Turnstile } from "next-turnstile";
+import { useTranslations } from "next-intl";
 
 export const SubmitServer = ({ handleServerAdd }) => {
+  const t = useTranslations("submitServer");
+  const tApi = useTranslations("api");
+
   const [inviteCode, setInviteCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({});
@@ -22,16 +26,18 @@ export const SubmitServer = ({ handleServerAdd }) => {
       });
       const data = await res.json();
 
+      const displayMessage = data.message ? tApi(data.message) : tApi("unexpectedError");
+
       if (data.type === "error") {
-        setNotification({ message: data.message, type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       } else if (data.type === "success") {
-        setNotification({ message: data.message, type: "success" });
+        setNotification({ message: displayMessage, type: "success" });
         handleServerAdd();
       } else {
-        setNotification({ message: data.message || "Unexpected error", type: "error" });
+        setNotification({ message: displayMessage, type: "error" });
       }
     } catch (err) {
-      setNotification({ message: err.message || "Unexpected error", type: "error" });
+      setNotification({ message: tApi("unexpectedError"), type: "error" });
     } finally {
       setLoading(false);
       setTurnstileToken(null);
@@ -49,7 +55,7 @@ export const SubmitServer = ({ handleServerAdd }) => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-1 items-end">
       <fieldset className="fieldset py-0 w-full">
-        <legend className="fieldset-legend m-0! pt-0 pb-1 w-full block">Discord Invite Link</legend>
+        <legend className="fieldset-legend m-0! pt-0 pb-1 w-full block">{t("legend")}</legend>
         <div className="flex gap-1 flex-col md:flex-row">
           <label className="input w-full gap-0">
             <span>https://discord.com/invite/</span>
@@ -59,26 +65,23 @@ export const SubmitServer = ({ handleServerAdd }) => {
               name="Server Name"
               type="text"
               className="grow"
-              placeholder="viggle"
+              placeholder={t("placeholder")}
             />
           </label>
           <button className="btn btn-primary w-full md:w-32" disabled={loading || !isValidInviteCode} type="submit">
             {loading && <span className="loading loading-spinner loading-sm"></span>}
-            {!loading && "Submit Server"}
+            {!loading && t("submit")}
           </button>
         </div>
       </fieldset>
-      {notification.type === "error" && (
-        <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>
-      )}
-      {notification.type === "success" && (
-        <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>
-      )}
+      {notification.type === "error" && <div className="badge badge-soft badge-error w-full h-auto">{notification.message}</div>}
+      {notification.type === "success" && <div className="badge badge-soft badge-success w-full h-auto">{notification.message}</div>}
       <div className="flex gap-0.5 items-center w-full">
         <TriangleAlert className="inline-block mr-0.75 min-w-4 min-h-4" height={16} width={16} color="#ffd60a" />
         <p className="text-xs text-muted-foreground">
-          Make sure your invite link has <strong>infinite uses</strong> and{" "}
-          <strong>temporary membership disabled</strong> to avoid removal.
+          {t.rich("warningText", {
+            bold: (chunks) => <strong>{chunks}</strong>,
+          })}
         </p>
       </div>
       <Turnstile
